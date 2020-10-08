@@ -5,9 +5,9 @@
             "id": 694919,
             "genre_ids": [
                 28
-            ]
-        },
-        "title": "Money Plane"
+            ],
+            "title": "Money Plane"
+        }
     },
     {
         "results": {
@@ -18,9 +18,9 @@
                 12,
                 18,
                 14
-            ]
-        },
-        "title": "Mulan"
+            ],
+            "title": "Mulan"
+        }
     },
     {
         "results": {
@@ -31,9 +31,9 @@
                 80,
                 18,
                 53
-            ]
-        },
-        "title": "Ava"
+            ],
+            "title": "Ava"
+        }
     },
     {
         "results": {
@@ -43,9 +43,9 @@
                 28,
                 27,
                 53
-            ]
-        },
-        "title": "Peninsula"
+            ],
+            "title": "Peninsula"
+        }
     },
     {
         "results": {
@@ -54,9 +54,9 @@
             "genre_ids": [
                 28,
                 35
-            ]
-        },
-        "title": "Cats & Dogs 3: Paws Unite"
+            ],
+            "title": "Cats & Dogs 3: Paws Unite"
+        }
     },
     {
         "results": {
@@ -65,9 +65,9 @@
             "genre_ids": [
                 18,
                 10749
-            ]
-        },
-        "title": "After We Collided"
+            ],
+            "title": "After We Collided"
+        }
     },
     {
         "results": {
@@ -80,9 +80,9 @@
                 14,
                 10402,
                 10751
-            ]
-        },
-        "title": "Trolls World Tour"
+            ],
+            "title": "Trolls World Tour"
+        }
     },
     {
         "results": {
@@ -90,9 +90,9 @@
             "id": 627290,
             "genre_ids": [
                 27
-            ]
-        },
-        "title": "Antebellum"
+            ],
+            "title": "Antebellum"
+        }
     },
     {
         "results": {
@@ -102,9 +102,9 @@
                 28,
                 27,
                 53
-            ]
-        },
-        "title": "The Owners"
+            ],
+            "title": "The Owners"
+        }
     },
     {
         "results": {
@@ -113,9 +113,9 @@
             "genre_ids": [
                 28,
                 16
-            ]
-        },
-        "title": "My Hero Academia: Heroes Rising"
+            ],
+            "title": "My Hero Academia: Heroes Rising"
+        }
     },
     {
         "results": {
@@ -125,9 +125,9 @@
                 28,
                 80,
                 18
-            ]
-        },
-        "title": "Force of Nature"
+            ],
+            "title": "Force of Nature"
+        }
     },
     {
         "results": {
@@ -138,9 +138,9 @@
                 18,
                 36,
                 10752
-            ]
-        },
-        "title": "The Outpost"
+            ],
+            "title": "The Outpost"
+        }
     },
     {
         "results": {
@@ -150,9 +150,9 @@
                 80,
                 18,
                 53
-            ]
-        },
-        "title": "The Devil All the Time"
+            ],
+            "title": "The Devil All the Time"
+        }
     },
     {
         "results": {
@@ -163,9 +163,9 @@
                 18,
                 14,
                 10751
-            ]
-        },
-        "title": "Pinocchio"
+            ],
+            "title": "Pinocchio"
+        }
     },
     {
         "results": {
@@ -175,9 +175,9 @@
                 28,
                 878,
                 53
-            ]
-        },
-        "title": "Tenet"
+            ],
+            "title": "Tenet"
+        }
     },
     {
         "results": {
@@ -186,9 +186,9 @@
             "genre_ids": [
                 18,
                 10749
-            ]
-        },
-        "title": "Monsoon"
+            ],
+            "title": "Monsoon"
+        }
     },
     {
         "results": {
@@ -197,9 +197,9 @@
             "genre_ids": [
                 18,
                 53
-            ]
-        },
-        "title": "Lost Girls & Love Hotels"
+            ],
+            "title": "Lost Girls & Love Hotels"
+        }
     },
     {
         "results": {
@@ -209,9 +209,9 @@
                 12,
                 35,
                 878
-            ]
-        },
-        "title": "Bill & Ted Face the Music"
+            ],
+            "title": "Bill & Ted Face the Music"
+        }
     },
     {
         "results": {
@@ -222,9 +222,9 @@
                 12,
                 27,
                 878
-            ]
-        },
-        "title": "The New Mutants"
+            ],
+            "title": "The New Mutants"
+        }
     },
     {
         "results": {
@@ -233,8 +233,8 @@
             "genre_ids": [
                 35,
                 18
-            ]
-        },
-        "title": "The King of Staten Island"
+            ],
+            "title": "The King of Staten Island"
+        }
     }
 ]

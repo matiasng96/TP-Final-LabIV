@@ -15,15 +15,10 @@ class MoviesController
 
     public function ShowListView()
         {
-          
-          
             $moviesList = $this->moviesDAO->APItoMoviesArray();
 
             $this->moviesDAO->SaveData($moviesList);
          
-
-           
-
             require_once(VIEWS_PATH."movies-list.php");
         }
 }

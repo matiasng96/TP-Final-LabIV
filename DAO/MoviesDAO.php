@@ -33,12 +33,8 @@ class MoviesDAO implements IMoviesDAO
         $url ="https://api.themoviedb.org/3/movie/now_playing?api_key=4041fc4595ac01692342a78793dba935&language=en-US&page=1";
         $json = file_get_contents($url);
         $json_data = json_decode($json,true);
-
-
         
         return $json_data;
-
-        
     }
 
     
@@ -48,14 +44,13 @@ class MoviesDAO implements IMoviesDAO
         $nowPlayingArray = $this->GetNowPlayingAPI();
         $moviesArray = array();
     
-        foreach($nowPlayingArray["results"] as $key=>$value){
+        foreach($nowPlayingArray["results"] as $data){
          
-            
             $movie = new Movie();
-            $movie->setPoster_path($nowPlayingArray["results"][$key]['poster_path']);
-            $movie->setId($nowPlayingArray["results"][$key]['id']);
-            $movie->setGenre_ids($nowPlayingArray["results"][$key]['genre_ids']);
-            $movie->setTitle($nowPlayingArray["results"][$key]['title']);
+            $movie->setPoster_path($data['poster_path']);
+            $movie->setId($data['id']);
+            $movie->setGenre_ids($data['genre_ids']);
+            $movie->setTitle($data['title']);
           
             array_push($moviesArray, $movie);
         };
@@ -69,19 +64,22 @@ class MoviesDAO implements IMoviesDAO
     public function SaveData($moviesList) // Toma un arreglo de objetos Movie y los guarda en formato JSON en Data/movies.json
     {
         $arrayToEncode = array();
-        
 
+      
         foreach ($moviesList as $movie) {
 
-            $valuesArray["results"]["poster_path"] = $movie->getPoster_path();
-            $valuesArray["results"]["id"] = $movie->getId();
-            $valuesArray["results"]["genre_ids"] = $movie->getGenre_ids();
-            $valuesArray["title"] = $movie->getTitle();
+            $dataArray["results"]["poster_path"] = $movie->getPoster_path();
+            $dataArray["results"]["id"] = $movie->getId();
+            $dataArray["results"]["genre_ids"] = $movie->getGenre_ids();
+            $dataArray["results"]["title"] = $movie->getTitle();
         
-            array_push($arrayToEncode, $valuesArray);
+            array_push($arrayToEncode, $dataArray);
         }
 
+        
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+        
+
 
         file_put_contents('Data/movies.json', $jsonContent);
     }
@@ -99,12 +97,12 @@ class MoviesDAO implements IMoviesDAO
 
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
-            foreach ($arrayToDecode as $valuesArray) {
+            foreach ($arrayToDecode["results"] as $valuesArray) {
                 //Results
                 $movie = new Movie();
-                $movie->setPoster_path($valuesArray["results"]["poster_path"]);
-                $movie->setId($valuesArray["results"]["id"]);
-                $movie->setGenre_ids($valuesArray["results"]["genre_ids"]);
+                $movie->setPoster_path($valuesArray["poster_path"]);
+                $movie->setId($valuesArray["id"]);
+                $movie->setGenre_ids($valuesArray["genre_ids"]);
                 $movie->setTitle($valuesArray["title"]);
               
                 array_push($this->moviesList, $movie);
