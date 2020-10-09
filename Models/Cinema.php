@@ -6,6 +6,7 @@
         private $name;
         private $capacity;
         private $address;
+        private $ticketPrice;
 
         public function __construct($name = '', $capacity = ''){
 
@@ -21,5 +22,8 @@
 
         public function setAddress($address){$this->address = $address;}
         public function getAddress(){return $this->address;}
+
+        public function getTicketPrice() {return $this->ticketPrice;}
+        public function setTicketPrice($ticketPrice){$this->ticketPrice = $ticketPrice;}
+             
     }
-?>
