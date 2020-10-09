@@ -8,9 +8,7 @@
         private $id;
         private $genre_ids; //array
         private $title;  
-     
-
-    
+            
         public function getPoster_path()
         {
                 return $this->poster_path;
