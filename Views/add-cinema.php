@@ -1,10 +1,12 @@
 <?php
-   
+
+    include_once("nav.php");
+    
 
 ?>
 
 <main>
-    <form>
+    <form action="" method="">
         <div>
             <h1> Agregar Cinema </h1>
         </div>
@@ -25,33 +27,15 @@
         </div>
 
         <div>
-            <label for="">  </label>
-            <input>
+            <label for="rooms"> Cantidad de Salas </label>
+            <input type="number" name="rooms" id="rooms">
         </div>
 
         <div>
-            <label for="">  </label>
-            <input>
-        </div>
-
-        <div>
-            <label for="">  </label>
-            <input>
-        </div>
-
-        <div>
-            <label for="">  </label>
-            <input>
-        </div>
-
-        <div>
-            <label for="">  </label>
-            <input>
-        </div>        
+            <button type="submit"> Agregar Cinema </button>
+        </div>      
     </form>
-
 </main>
-
 <?php
     include_once ("footer.php");
 ?>

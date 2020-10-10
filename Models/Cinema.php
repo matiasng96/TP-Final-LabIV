@@ -6,7 +6,8 @@
         private $id;
         private $name;
         private $capacity;
-        private $address;        
+        private $address;     
+        private $rooms;   
 
         public function __construct($name = '', $capacity = ''){
 
@@ -25,5 +26,8 @@
 
         public function setAddress($address){$this->address = $address;}
         public function getAddress(){return $this->address;}
+        
+        public function setRooms($rooms){$this->rooms = $rooms;}
+        public function getRooms(){return $this->rooms;}
     }
 ?>
