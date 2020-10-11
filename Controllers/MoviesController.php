@@ -2,7 +2,7 @@
      namespace Controllers;
 
 use DAO\MoviesDAO;
-use Models\Movie;
+
 
 class MoviesController
 {
