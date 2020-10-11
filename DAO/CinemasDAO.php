@@ -34,8 +34,20 @@
             if(file_exists($this->fileName)){
 
                 $jsonToDecode = file_get_contents($this->fileName);
-            }
+                $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
+                
+                foreach($contentArray as $content){
 
+                    $cinema = new Cinema();
+                    $cinema->setId($content['id']);
+                    $cinema->setName($content['name']);
+                    $cinema->setCapacity($content['capacity']);
+                    $cinema->setAddress($content['address']);                   
+                    $cinema->setRooms($content['rooms']);
+
+                    array_push($cinemasList, $cinema);
+                }
+            }
         }
 
         public function SaveData(){
