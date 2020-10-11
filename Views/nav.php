@@ -5,6 +5,8 @@
      <ul class="navbar-nav ml-auto">
          
           <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinemas/ShowAddView">Agregar Cine</a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinemas/ShowListView">Listar Cines</a>
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movies/ShowListView">Listar Pelis</a>
           </li>          
      </ul>
