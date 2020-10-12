@@ -12,10 +12,15 @@ class CinemasController
     {
         $this->cinemasDAO = new CinemasDAO;
     }
-    
+ 
     public function ShowAddView()
     {
         require_once(VIEWS_PATH."add-cinema.php");
+    }
+
+    public function ShowEditView()
+    {
+        require_once(VIEWS_PATH."edit-cinema.php");
     }
 
     public function ShowListView()
@@ -45,6 +50,16 @@ class CinemasController
 
         $this->ShowListView();
     }
-}
 
-?>
+    public function Edit($oldName,$name, $capacity, $address, $ticketPrice){
+
+        var_dump($oldName);
+        
+        $newCinema = new Cinema($name,$capacity,$address,$ticketPrice);
+
+        $this->cinemasDAO->Edit($oldName,$newCinema);
+
+        $this->ShowAddView();
+
+    }
+}

@@ -22,5 +22,11 @@
         "capacity": "1121",
         "address": "Sarmiento 2685",
         "ticketPrice": "350"
+    },
+    {
+        "name": "Editado",
+        "capacity": "300",
+        "address": "desconocida",
+        "ticketPrice": "1000"
     }
 ]

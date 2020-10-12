@@ -4,12 +4,13 @@ include_once("nav.php");
 
 
 <div class="form-group">
-    <form action="<?php echo FRONT_ROOT ?>Cinemas/Add" method="POST">
+    <form action="<?php echo FRONT_ROOT ?>Cinemas/Edit" method="POST">
         <div>
-            <h1> Agregar Cine </h1>
+            <h1> Editar Cinema </h1>
         </div>
 
         <div>
+            <input type="hidden" name="oldName" value="<?php echo $_POST["cinemaName"]?>">
             <label for="name"> Nombre </label>
             <input class="form-control" type="text" name="name">
         </div>
@@ -34,4 +35,3 @@ include_once("nav.php");
         </div>
     </form>
 </div>
-
