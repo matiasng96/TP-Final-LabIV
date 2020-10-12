@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Paseo Aldrey",
+        "capacity": "1121",
+        "address": "Sarmiento 2685",
+        "ticketPrice": "350"
+    },
+    {
+        "name": "Paseo Diagonal",
+        "capacity": "800",
+        "address": "Diag. Pueyrredon 3050",
+        "ticketPrice": "300"
+    },
+    {
+        "name": "Los Gallegos",
+        "capacity": "1000",
+        "address": "Rivadavia 3050",
+        "ticketPrice": "320"
+    },
+    {
+        "name": "Cine Ambassador",
+        "capacity": "1200",
+        "address": "Cordoba 1673",
+        "ticketPrice": "280"
+    }
+]

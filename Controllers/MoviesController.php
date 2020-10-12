@@ -1,8 +1,8 @@
 <?php 
-     namespace Controllers;
+namespace Controllers;
 
-    use DAO\MoviesDAO;
-    use Models\Movie;
+use DAO\MoviesDAO;
+
 
     class MoviesController{
 
@@ -20,4 +20,3 @@
             require_once(VIEWS_PATH."movies-list.php");
         }
     }
-?>
