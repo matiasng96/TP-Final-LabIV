@@ -33,7 +33,8 @@ require_once('nav.php');
 
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
-                            <button type="submit" name="deleteBtn" value="<?php $cinema->getName();?>">Borrar</button>
+                        <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
+                        <button type="submit" name="deleteBtn" >Borrar</button>
                         </form>
                     </td>
 

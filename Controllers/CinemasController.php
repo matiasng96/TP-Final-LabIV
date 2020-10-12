@@ -43,7 +43,7 @@ class CinemasController
         
         $this->cinemasDAO->Delete($cinemaName);
 
-    
+        $this->ShowListView();
     }
 }
 
