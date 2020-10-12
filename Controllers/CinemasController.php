@@ -37,6 +37,14 @@ class CinemasController
 
         $this->ShowAddView();
     }
+
+    public function Delete($cinemaName){
+
+        
+        $this->cinemasDAO->Delete($cinemaName);
+
+    
+    }
 }
 
 ?>

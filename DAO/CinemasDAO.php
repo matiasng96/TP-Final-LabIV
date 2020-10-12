@@ -19,6 +19,20 @@ class CinemasDAO implements ICinemasDAO
         $this->SaveData($this->cinemasList);
     }
 
+    public function Delete($cinemaName){
+
+        $this->RetrieveData();
+
+        foreach($this->cinemasList as $key => $cinema){
+            if($cinema->getName() == $cinemaName){
+               
+                unset($this->cinemasList[$key]);
+            }
+        }
+
+        $this->SaveData($this->cinemasList);
+    }
+
     public function GetAll()
     {
         $this->RetrieveData();
@@ -73,4 +87,3 @@ class CinemasDAO implements ICinemasDAO
         }
     }
 }
-?>

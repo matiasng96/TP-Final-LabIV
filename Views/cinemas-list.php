@@ -10,6 +10,7 @@ require_once('nav.php');
             <th>Capacidad</th>
             <th>Dirección</th>
             <th>Precio de Entrada</th>
+            <th>Acciones</th>
         </thead>
         <tbody>
             <?php
@@ -29,6 +30,12 @@ require_once('nav.php');
                     </td>
 
                     <td> <?php echo $cinema->getTicketPrice() ?></td>
+
+                    <td>
+                        <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
+                            <button type="submit" name="deleteBtn" value="<?php $cinema->getName();?>">Borrar</button>
+                        </form>
+                    </td>
 
                 </tr>
             <?php
