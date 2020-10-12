@@ -49,7 +49,7 @@
     },
     {
         "results": {
-            "poster_path": "\/4BgSWFMW2MJ0dT5metLzsRWO7IJ.jpg",
+            "poster_path": "\/gmaDht41xVngHDQA8nOGUIC80v6.jpg",
             "id": 726739,
             "genre_ids": [
                 28,
@@ -82,17 +82,6 @@
     },
     {
         "results": {
-            "poster_path": "\/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg",
-            "id": 528085,
-            "genre_ids": [
-                878,
-                53
-            ],
-            "title": "2067"
-        }
-    },
-    {
-        "results": {
             "poster_path": "\/7W0G3YECgDAfnuiHG91r8WqgIOe.jpg",
             "id": 446893,
             "genre_ids": [
@@ -108,6 +97,18 @@
     },
     {
         "results": {
+            "poster_path": "\/ucktgbaMSaETUDLUBp1ubGD6aNj.jpg",
+            "id": 619592,
+            "genre_ids": [
+                28,
+                80,
+                18
+            ],
+            "title": "Force of Nature"
+        }
+    },
+    {
+        "results": {
             "poster_path": "\/zGVbrulkupqpbwgiNedkJPyQum4.jpg",
             "id": 592350,
             "genre_ids": [
@@ -119,31 +120,6 @@
     },
     {
         "results": {
-<<<<<<< HEAD
-            "poster_path": "\/irkse1FMm9dWemwlxKJ7RINT9Iy.jpg",
-            "id": 627290,
-            "genre_ids": [
-                27
-            ],
-            "title": "Antebellum"
-        }
-    },
-    {
-        "results": {
-            "poster_path": "\/gzFatNrw0lhKD5NxaU6zC7S2KjP.jpg",
-            "id": 659986,
-            "genre_ids": [
-                28,
-                27,
-                53
-            ],
-            "title": "The Owners"
-        }
-    },
-    {
-        "results": {
-=======
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
             "poster_path": "\/hPkqY2EMqWUnFEoedukilIUieVG.jpg",
             "id": 531876,
             "genre_ids": [
@@ -157,28 +133,6 @@
     },
     {
         "results": {
-<<<<<<< HEAD
-            "poster_path": "\/4V2nTPfeB59TcqJcUfQ9ziTi7VN.jpg",
-            "id": 501979,
-            "genre_ids": [
-                12,
-                35,
-                878
-            ],
-            "title": "Bill & Ted Face the Music"
-        }
-    },
-    {
-        "results": {
-            "poster_path": "\/gizz5FphOtfSnLaGpRALOZgILd5.jpg",
-            "id": 530723,
-            "genre_ids": [
-                35,
-                18,
-                10770
-            ],
-            "title": "Bad Education"
-=======
             "poster_path": "\/gzFatNrw0lhKD5NxaU6zC7S2KjP.jpg",
             "id": 659986,
             "genre_ids": [
@@ -197,7 +151,6 @@
                 27
             ],
             "title": "Antebellum"
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
         }
     },
     {
@@ -215,15 +168,6 @@
     },
     {
         "results": {
-<<<<<<< HEAD
-            "poster_path": "\/vQgXwuJrlpzGDI8169tRQRy71Nv.jpg",
-            "id": 479259,
-            "genre_ids": [
-                18,
-                53
-            ],
-            "title": "Lost Girls & Love Hotels"
-=======
             "poster_path": "\/4V2nTPfeB59TcqJcUfQ9ziTi7VN.jpg",
             "id": 501979,
             "genre_ids": [
@@ -232,21 +176,10 @@
                 878
             ],
             "title": "Bill & Ted Face the Music"
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
         }
     },
     {
         "results": {
-<<<<<<< HEAD
-            "poster_path": "\/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
-            "id": 577922,
-            "genre_ids": [
-                28,
-                878,
-                53
-            ],
-            "title": "Tenet"
-=======
             "poster_path": "\/vQgXwuJrlpzGDI8169tRQRy71Nv.jpg",
             "id": 479259,
             "genre_ids": [
@@ -254,22 +187,14 @@
                 53
             ],
             "title": "Lost Girls & Love Hotels"
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
         }
     },
     {
         "results": {
-<<<<<<< HEAD
-            "poster_path": "\/7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg",
-            "id": 499932,
-            "genre_ids": [
-                80,
-=======
             "poster_path": "\/gizz5FphOtfSnLaGpRALOZgILd5.jpg",
             "id": 530723,
             "genre_ids": [
                 35,
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
                 18,
                 10770
             ],
@@ -285,8 +210,6 @@
                 878,
                 53
             ],
-<<<<<<< HEAD
-=======
             "title": "Tenet"
         }
     },
@@ -299,7 +222,6 @@
                 18,
                 53
             ],
->>>>>>> 475915e3304058e1caf49b3c8f59e46bdc53ba95
             "title": "The Devil All the Time"
         }
     },
@@ -312,17 +234,6 @@
                 10749
             ],
             "title": "Monsoon"
-        }
-    },
-    {
-        "results": {
-            "poster_path": "\/zQFjMmE3K9AX5QrBL1SXIxYQ9jz.jpg",
-            "id": 579583,
-            "genre_ids": [
-                35,
-                18
-            ],
-            "title": "The King of Staten Island"
         }
     }
 ]
