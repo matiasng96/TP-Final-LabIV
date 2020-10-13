@@ -9,7 +9,7 @@ use Models\Cinema;
 class CinemasDAO implements ICinemasDAO
 {
     private $cinemasList = array();
-    
+
     public function Add(Cinema $cinema)
     {
         $this->RetrieveData();
@@ -19,14 +19,29 @@ class CinemasDAO implements ICinemasDAO
         $this->SaveData($this->cinemasList);
     }
 
-    public function Delete($cinemaName){
+    public function Delete($cinemaName)
+    {
 
         $this->RetrieveData();
 
-        foreach($this->cinemasList as $key => $cinema){
-            if($cinema->getName() == $cinemaName){
-               
+        foreach ($this->cinemasList as $key => $cinema) {
+            if ($cinema->getName() == $cinemaName) {
+
                 unset($this->cinemasList[$key]);
+            }
+        }
+
+        $this->SaveData($this->cinemasList);
+    }
+
+    public function Edit($oldName,Cinema $newCinema)
+    {
+        $this->RetrieveData();
+
+        foreach ($this->cinemasList as $key => $cinema) {
+
+            if ($cinema->getName() == $oldName) {
+                $this->cinemasList[$key] = $newCinema;
             }
         }
 
@@ -45,27 +60,27 @@ class CinemasDAO implements ICinemasDAO
     {
         $arrayToEncode = array();
 
-      
+
         foreach ($cinemasList as $cinema) {
 
             $dataArray["name"] = $cinema->getName();
             $dataArray["capacity"] = $cinema->getCapacity();
             $dataArray["address"] = $cinema->getAddress();
             $dataArray["ticketPrice"] = $cinema->getTicketPrice();
-            
+
             array_push($arrayToEncode, $dataArray);
         }
-        
+
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        
+
         file_put_contents('Data/cinemas.json', $jsonContent);
     }
 
-    
+
 
     public function RetrieveData()  //Pasa las películas del JSON a un arreglo de objetos Cinema.
     {
-        
+
         $this->cinemasList = array();
 
 
@@ -75,13 +90,13 @@ class CinemasDAO implements ICinemasDAO
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
             foreach ($arrayToDecode as $valuesArray) {
-                
+
                 $cinema = new Cinema();
                 $cinema->setName($valuesArray["name"]);
                 $cinema->setCapacity($valuesArray["capacity"]);
                 $cinema->setAddress($valuesArray["address"]);
                 $cinema->setTicketPrice($valuesArray["ticketPrice"]);
-              
+
                 array_push($this->cinemasList, $cinema);
             }
         }

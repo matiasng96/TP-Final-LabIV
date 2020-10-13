@@ -33,8 +33,18 @@ require_once('nav.php');
 
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
+<<<<<<< HEAD
                             <button type="submit" name="deleteBtn" value="<?php $cinema->getName();?>">Borrar</button>
                             <button> Editar </button>
+=======
+                        <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
+                        <button type="submit" name="deleteBtn" >Borrar</button>
+                        </form>
+
+                        <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/ShowEditview">
+                        <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
+                        <button type="submit" name="editBtn" >Editar</button>
+>>>>>>> 3513b96e2dee1b777a98bae2e44a938200252c26
                         </form>
                     </td>
 
@@ -46,19 +56,3 @@ require_once('nav.php');
         </tbody>
     </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- En esta viste la idea es hacer lo mismo que en movies-list.php pero con los Cines-->

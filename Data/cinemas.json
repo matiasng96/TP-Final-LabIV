@@ -1,11 +1,5 @@
 [
     {
-        "name": "Paseo Aldrey",
-        "capacity": "1121",
-        "address": "Sarmiento 2685",
-        "ticketPrice": "350"
-    },
-    {
         "name": "Paseo Diagonal",
         "capacity": "800",
         "address": "Diag. Pueyrredon 3050",
@@ -22,5 +16,17 @@
         "capacity": "1200",
         "address": "Cordoba 1673",
         "ticketPrice": "280"
+    },
+    {
+        "name": "Paseo Aldrey",
+        "capacity": "1121",
+        "address": "Sarmiento 2685",
+        "ticketPrice": "350"
+    },
+    {
+        "name": "Editado",
+        "capacity": "300",
+        "address": "desconocida",
+        "ticketPrice": "1000"
     }
 ]
