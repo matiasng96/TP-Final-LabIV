@@ -35,8 +35,3 @@ include_once("nav.php");
     </form>
 </div>
 
-<<<<<<< HEAD
-<!-- La idea en esta vista es crear un form que para agregar los cines
-    Esta va a ser una tarea del Administrador, los datos se guardan en un JSON y se muestran en la vista cinemas-list.php -->
-=======
->>>>>>> 3513b96e2dee1b777a98bae2e44a938200252c26
