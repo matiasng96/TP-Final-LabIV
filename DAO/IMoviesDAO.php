@@ -3,11 +3,10 @@
 
      use Models\Movie as Movie;
 
-     interface IMoviesDAO
-     {
-          function Add(Movie $movie);
-          function GetAll(); //from JSON
-  
-     }
-        
+     interface IMoviesDAO{
+          
+          public function Add(Movie $movie);
+          public function GetAll(); //from JSON
+          public function delete($id);
+     }        
 ?>

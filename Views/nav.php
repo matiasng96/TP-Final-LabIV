@@ -8,6 +8,6 @@
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinemas/ShowAddView">Agregar Cine</a>
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinemas/ShowListView">Listar Cines</a>
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movies/ShowListView">Listar Pelis</a>
-          </li>          
+          </li>
      </ul>
 </nav>
