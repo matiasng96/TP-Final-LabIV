@@ -30,7 +30,7 @@
 
         public function GetNowPlayingAPI(){
             
-            $url ="https://api.themoviedb.org/3/movie/now_playing?api_key=4041fc4595ac01692342a78793dba935&language=en-US&page=1";
+            $url = API_PATH;
             $json = file_get_contents($url);
             $json_data = json_decode($json,true);
             
