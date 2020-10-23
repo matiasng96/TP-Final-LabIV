@@ -6,8 +6,6 @@
      interface ICinemasDAO
      {
           function Add(Cinema $cinema);
-          function GetAll(); //from JSON
-  
-     }
-        
+          function GetAll(); //from JSON  
+     }        
 ?>
