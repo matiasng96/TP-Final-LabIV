@@ -14,9 +14,7 @@
             $this->setCapacity($capacity);
             $this->setAddress($address);
             $this->setTicketPrice($ticketPrice);
-        }
-
-      
+        }  
 
         public function setName($name){$this->name = $name;}
         public function getName(){return $this->name;}
