@@ -33,7 +33,7 @@ require_once('nav.php');
                                ?>
                          </td>
 
-                         <td><?php echo $movie->getPoster_path() ?></td>
+                         <td><img src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
                          
                     </tr>
                <?php
