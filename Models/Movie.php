@@ -15,11 +15,9 @@
         
                 public function getId(){return $this->id; }
                 public function setId($id){$this->id = $id;}
-
                 
                 public function getGenre_ids(){return $this->genre_ids;}      
                 public function setGenre_ids($genre_ids){$this->genre_ids = $genre_ids;}
-
         
                 public function getTitle(){return $this->title;}
                 public function setTitle($title){ $this->title = $title;}
