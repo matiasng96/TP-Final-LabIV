@@ -3,13 +3,13 @@ require_once('nav.php');
 ?>
 <div class="container">
     <h2 class="display-4">Listado de Cines</h2>
-    <table class="table">
+    <table class="table table-bordered ">
         <thead>
-            <th>Nombre</th>
-            <th>Capacidad</th>
-            <th>Dirección</th>
-            <th>Precio de Entrada</th>
-            <th>Acciones</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Capacidad</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Precio de Entrada</th>
+            <th scope="col">Acciones</th>
         </thead>
         <tbody>
             <?php
@@ -33,12 +33,12 @@ require_once('nav.php');
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                        <button class="btn btn-danger" type="submit" name="deleteBtn" >Borrar</button>
+                        <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn" >Borrar</button>
                         </form>
 
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/ShowEditview">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                        <button class="btn btn-primary" type="submit" name="editBtn" >Editar</button>
+                        <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
 

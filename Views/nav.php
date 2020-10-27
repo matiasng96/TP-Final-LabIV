@@ -1,3 +1,4 @@
+<div class="container">
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
      <a class="navbar-brand" href="<?php echo FRONT_ROOT ?>Home/Index">Movie Pass</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
