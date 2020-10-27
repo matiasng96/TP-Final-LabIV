@@ -18,8 +18,10 @@
         }
 
 
-        public function singUp($name, $lastName, $gender, $dni, $email, $password){
+        public function SingUp($name, $lastName, $gender, $dni, $email, $password){
 
+            echo "$name, $lastName, $gender, $dni, $email, $password";
+            require_once(VIEWS_PATH."login.php");
 
         }
     }
