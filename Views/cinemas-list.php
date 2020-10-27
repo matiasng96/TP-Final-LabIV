@@ -2,9 +2,8 @@
 require_once('nav.php');
 ?>
 <div class="container">
-
     <h2 class="display-4">Listado de Cines</h2>
-    <table class="table table-striped table-dark">
+    <table class="table">
         <thead>
             <th>Nombre</th>
             <th>Capacidad</th>
@@ -34,12 +33,12 @@ require_once('nav.php');
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                        <button type="submit" name="deleteBtn" >Borrar</button>
+                        <button class="btn btn-danger" type="submit" name="deleteBtn" >Borrar</button>
                         </form>
 
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/ShowEditview">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                        <button type="submit" name="editBtn" >Editar</button>
+                        <button class="btn btn-primary" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
 

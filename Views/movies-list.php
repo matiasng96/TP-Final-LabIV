@@ -4,7 +4,7 @@ require_once('nav.php');
 <div class="container">
     
      <h2 class="display-4">Listado de películas</h2>
-     <table class="table table-striped table-dark">
+     <table class="table">
           <thead>
                <th>ID</th>
                <th>Titulo</th>

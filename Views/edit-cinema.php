@@ -10,24 +10,24 @@ include_once("nav.php");
         </div>
 
         <div>
-            <input type="hidden" name="oldName" value="<?php echo $_POST["cinemaName"]?>">
+            <input type="hidden" name="oldName" value="<?php $cinemaName ?>">
             <label for="name"> Nombre </label>
-            <input class="form-control" type="text" name="name">
+            <input class="form-control" type="text" name="name" placeholder="<?php $cinemaName ?>" required>
         </div>
 
         <div>
             <label for="capacity"> Capacidad maxima </label>
-            <input class="form-control" type="number" name="capacity">
+            <input class="form-control" type="number" name="capacity" required>
         </div>
 
         <div>
             <label for="address"> Direccion </label>
-            <input class="form-control" type="text" name="address">
+            <input class="form-control" type="text" name="address" required>
         </div>
 
         <div>
             <label for="ticketPrice"> Precio de entrada </label>
-            <input class="form-control" type="number" name="ticketPrice">
+            <input class="form-control" type="number" name="ticketPrice" required>
         </div>
 
         <div>
