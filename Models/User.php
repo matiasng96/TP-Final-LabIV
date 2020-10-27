@@ -3,26 +3,27 @@
 
     class User{
 
-        private $user;
+        private $email;
         private $password;    
         private $id;
-        private $nombre;
-        private $apellido;
-        private $genero;
+        private $name;
+        private $lastName;
+        private $gender;
         private $dni;
 
-        function __construct ($user='', $password='', $id='', $nombre='', $apellido='', $dni=''){
+        function __construct ($email='', $password='', $id='', $name='', $lastName='', $gener='', $dni=''){
 
-            $this->setUser($user);
+            $this->setUser($email);
             $this->setPassword($password);
             $this->setId($id);
-            $this->setNombre($nombre);
-            $this->setApellido($apellido);
+            $this->setName($name);
+            $this->setLastName($lastName);
+            $this->setGender($gener);
             $this->setDni($dni);
         }
 
-        public function setUser($user){$this->user = $user;}
-        public function getUser(){return $this->user;}
+        public function setUser($email){$this->email = $email;}
+        public function getUser(){return $this->email;}
 
         public function setPassword($password){$this->password = $password;}
         public function getPassword(){return $this->password;}
@@ -30,16 +31,16 @@
         public function setId($id){$this->id = $id;}
         public function getId(){return $this->id;}
 
-        public function setApellido($a){ $this->apellido=$a;}
-        public function getApellido(){return $this->apellido;}
+        public function setLastName($a){ $this->lastName=$a;}
+        public function getLastName(){return $this->lastName;}
 
-        public function setNombre($a){$this->nombre=$a;}
-        public function getNombre(){return $this->nombre;}
+        public function setName($a){$this->name=$a;}
+        public function getName(){return $this->name;}
 
-        public function setGenero($genero){$this->genero = $genero;}
-        public function getGenero(){return $this->genero;}
+        public function setGender($gender){$this->gender = $gender;}
+        public function getGender(){return $this->gender;}
         
-        public function setDni($a){$this->dni=$a;}
+        public function setDni($dni){$this->dni=$dni;}
         public function getDni(){return $this->dni;}        
 }
 ?>
