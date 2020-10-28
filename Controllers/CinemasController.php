@@ -1,7 +1,10 @@
 <?php 
      namespace Controllers;
 
-use DAO\CinemasDAO;
+/*Si usamos este namespace accedemos al DAO con JSON. */
+//use DAO\CinemasDAO as CinemasDAO;
+/*Si usamos este namespace accedemos al DAO con PDO. */
+use DAO\CinemasPDO as CinemasDAO;   
 use Models\Cinema;
 
 class CinemasController
@@ -18,7 +21,7 @@ class CinemasController
         require_once(VIEWS_PATH."add-cinema.php");
     }
 
-    public function ShowEditView()
+    public function ShowEditView($cinemaName)
     {
         require_once(VIEWS_PATH."edit-cinema.php");
     }
@@ -53,13 +56,11 @@ class CinemasController
 
     public function Edit($oldName,$name, $capacity, $address, $ticketPrice){
 
-        var_dump($oldName);
-        
         $newCinema = new Cinema($name,$capacity,$address,$ticketPrice);
 
         $this->cinemasDAO->Edit($oldName,$newCinema);
 
-        $this->ShowAddView();
+        $this->ShowListView();
 
     }
 }
