@@ -32,7 +32,7 @@
 
             $this->userDAO->Add($user);
             
-            echo "ya estas registrado felicifdades";
+            require_once(VIEWS_PATH."add-cinema.php");
         }
     }
 ?>
