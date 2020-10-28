@@ -4,7 +4,7 @@ require_once('nav.php');
 <div class="container">
     
      <h2 class="display-4">Listado de películas</h2>
-     <table class="table table-striped table-dark">
+     <table class="table">
           <thead>
                <th>ID</th>
                <th>Titulo</th>
@@ -33,7 +33,7 @@ require_once('nav.php');
                                ?>
                          </td>
 
-                         <td><img src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
+                         <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
                          
                     </tr>
                <?php
