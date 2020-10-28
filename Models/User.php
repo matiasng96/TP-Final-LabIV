@@ -1,56 +1,46 @@
 <?php
+    namespace Models;
 
-namespace Models;
+    class User{
 
-class User
-{
+        private $email;
+        private $password;    
+        private $id;
+        private $name;
+        private $lastName;
+        private $gender;
+        private $dni;
 
-    private $nombre;
-    private $apellido;
-    private $dni;
+        function __construct ($email='', $password='', $id='', $name='', $lastName='', $gener='', $dni=''){
 
-        function __construct ()
-        {
-         $this->nombre = null;
-         $this->apellido = null;
-         $this->dni = null;
-
+            $this->setUser($email);
+            $this->setPassword($password);
+            $this->setId($id);
+            $this->setName($name);
+            $this->setLastName($lastName);
+            $this->setGender($gener);
+            $this->setDni($dni);
         }
 
-        /////////////////////// SETTERS //////////////////////
+        public function setUser($email){$this->email = $email;}
+        public function getUser(){return $this->email;}
 
-        public function setApellido($a)
-        {
-                $this->apellido=$a;
-        }
+        public function setPassword($password){$this->password = $password;}
+        public function getPassword(){return $this->password;}
 
-        public function setNombre($a)
-        {
-                $this->nombre=$a;
-        }
+        public function setId($id){$this->id = $id;}
+        public function getId(){return $this->id;}
 
-        public function setDni($a)
-        {
-                $this->dni=$a;
-        }
+        public function setLastName($a){ $this->lastName=$a;}
+        public function getLastName(){return $this->lastName;}
 
-        /////////////////// GETTERS //////////////////////////
+        public function setName($a){$this->name=$a;}
+        public function getName(){return $this->name;}
 
-        public function getApellido()
-        {
-                return $this->apellido;
-        }
-
-        public function getNombre()
-        {
-                return $this->nombre;
-        }
-
-        public function getDni()
-        {
-                return $this->dni;
-        }
-
+        public function setGender($gender){$this->gender = $gender;}
+        public function getGender(){return $this->gender;}
         
+        public function setDni($dni){$this->dni=$dni;}
+        public function getDni(){return $this->dni;}        
 }
 ?>
