@@ -1,14 +1,21 @@
 <?php
     namespace Controllers;
 
+use DAO\UserDAO;
+use Models\User;
+
     class UsersController{
 
-        public function ShowAddView(){
+        private $userDAO;
 
-            require_once(VIEWS_PATH."registry.php");
+        public function __construct()
+        {
+            $this->userDAO = new UserDAO();
         }
 
-        public function logIn($email, $password){
+        public function ShowSingUpView(){require_once(VIEWS_PATH."registry.php");}
+
+        public function LogIn($email, $password){
 
             echo $email;
             echo $password;
@@ -20,10 +27,17 @@
 
         public function SingUp($name, $lastName, $gender, $dni, $email, $password){
 
-            echo "$name, $lastName, $gender, $dni, $email, $password";
-            require_once(VIEWS_PATH."login.php");
+            $user = new User();
+            $user->setName($name);
+            $user->setLastName($lastName);
+            $user->setGender($gender);
+            $user->setDni($dni);
+            $user->setEmail($email);
+            $user->setPassword($password);
 
+            $this->userDAO->Add($user);
+            
+            echo "ya estas registrado felicifdades";
         }
     }
-
 ?>
