@@ -1,8 +1,8 @@
 <?php
-    require_once("header.php");
+    include_once("header.php");
 ?>
     <div class="form-group">
-        <form action="<?php echo FRONT_ROOT ?>Users/singUp" method="POST">      
+        <form action="<?php echo FRONT_ROOT ?>Users/SingUp" method="POST">      
 
             <div class="form-group">
                 <label for="name"> Name </label>
@@ -41,11 +41,7 @@
             </div>    
             
             <div>
-                <button type="submit" class="btn btn-primary"> Sign Up</button>
+                <button type="submit" class="btn btn-primary"> Sign Up </button>
             </div>            
         </form>
     </div>
-<?php
-
-
-?>
