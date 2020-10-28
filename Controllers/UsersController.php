@@ -1,17 +1,13 @@
 <?php
     namespace Controllers;
-
-use DAO\UserDAO;
-use Models\User;
+    use DAO\UserDAO;
+    use Models\User;
 
     class UsersController{
 
         private $userDAO;
 
-        public function __construct()
-        {
-            $this->userDAO = new UserDAO();
-        }
+        public function __construct(){$this->userDAO = new UserDAO();}
 
         public function ShowSingUpView(){require_once(VIEWS_PATH."registry.php");}
 
@@ -23,7 +19,6 @@ use Models\User;
 
 
         }
-
 
         public function SingUp($name, $lastName, $gender, $dni, $email, $password){
 
