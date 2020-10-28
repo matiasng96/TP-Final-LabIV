@@ -30,7 +30,7 @@ include_once("nav.php");
             </div>
 
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mt-2"> Confirmar </button>
+                <button type="submit" class="btn btn-primary mt-2 mb-2"> Confirmar </button>
             </div>
         </form>
     </div>
