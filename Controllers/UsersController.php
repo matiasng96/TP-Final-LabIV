@@ -20,7 +20,7 @@
 
         }
 
-        public function SingUp($name, $lastName, $gender, $dni, $email, $password){
+        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
             $user = new User();
             $user->setName($name);
