@@ -1,6 +1,7 @@
 <?php
-    require_once("header.php");
+require_once("nav.php");
 ?>
+
     <div class="form-group">
         <form action="<?php echo FRONT_ROOT ?>Users/singUp" method="POST">      
 

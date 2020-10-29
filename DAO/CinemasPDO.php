@@ -34,7 +34,25 @@ class CinemasPDO implements ICinemasDAO
     
     
     
-    public function GetAll(){} //from DataBase 
+    public function GetAll(){
+        
+        try
+        {
+            $query = "SELECT * FROM ".$this->tableName;
+            
+
+        }
+        catch(Exception $ex)
+        {
+            throw $ex;
+        }
+
+
+
+
+
+
+    } //from DataBase 
 
 
 

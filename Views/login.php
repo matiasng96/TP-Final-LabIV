@@ -1,3 +1,6 @@
+<?php
+require_once("nav.php");
+?>
 
 
 <div class="form-group">
