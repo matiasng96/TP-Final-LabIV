@@ -36,15 +36,19 @@
 
         public function read ($email)
         {
-            $sql= "SELECT * FROM users WHEARE email = :email";
+            $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email";
 
-            $parameters["email"] = $email;
-            
+            $parameters["U_email"] = $email;
+            //echo($sql);
             try {
-                $this->connection= $connection :: getInstance();
-                $result = $this->connection->Execute(sql, $parameters);
+                
+                $this->connection= Connection::getInstance();
+               
+
+                $result = $this->connection->Execute($sql, $parameters);
 
             } catch (Excepcion $ex) {
+                                
                 throw $ex;
             }
 

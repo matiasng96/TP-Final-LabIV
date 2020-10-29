@@ -39,8 +39,10 @@
                 $this->Prepare($query);
                 
                 $this->BindParameters($parameters, $queryType);
-                
+                echo($query);
                 $this->pdoStatement->execute();
+               
+
 
                 return $this->pdoStatement->fetchAll();
             }
@@ -54,6 +56,8 @@
 	    {            
             try
             {
+                
+
                 $this->Prepare($query);
                 
                 $this->BindParameters($parameters, $queryType);
