@@ -30,7 +30,7 @@
 
         public function GetNowPlayingAPI(){
             
-            $url = API_PATH;
+            $url = API_PATH_NOW;
             $json = file_get_contents($url);
             $json_data = json_decode($json,true);
             
