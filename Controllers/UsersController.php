@@ -2,8 +2,8 @@
     namespace Controllers;
     //use DAO\UserDAO as UserDao;
 
-    use Model\User as User;
-    use DAO\UserPDO as UserDAO;
+    use Models\User as User;
+    use DAO\UsersPDO as UserDAO;
 
    class UsersController{
 
@@ -14,9 +14,13 @@
             $this->userDAO = new UserDAO();
         }
 
-        public function ShowSingUpView()
+        public function ShowSignUpView()
         {
             require_once(VIEWS_PATH."registry.php");
+        }
+        public function ShowLoginView()
+        {
+            require_once(VIEWS_PATH."login.php");
         }
         
         public function setSession($user)
@@ -42,7 +46,7 @@
             return false;
         }
 
-        public function Add ($user)
+        /*public function Add ($user)
         {
             $D_user= new UserDAO();
 
@@ -53,9 +57,11 @@
             } catch (Throwable $ex) {
                 throw $ex;
             }
-        }
+        }*/
         
-        public function SingUp($name, $lastName, $gender, $dni, $email, $password){
+        public function Add($name, $lastName, $gender, $dni, $email, $password){
+
+            echo "LLEGUE";
 
             $user = new User();
             $user->setName($name);
@@ -65,13 +71,10 @@
             $user->setEmail($email);
             $user->setPassword($password);
             
-            try {
-                $this->userDao->Add($user);
-                return true;
+           $this->userDAO->Add($user);
 
-            } catch (Throwable $ex) {
-                throw $ex;
-            }           
+            $this->ShowLoginView();            
+
         }
            
      }        

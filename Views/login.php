@@ -1,4 +1,6 @@
-
+<?php
+    include_once("nav.php");
+?>
 
 <div class="form-group">
     <form action="<?php echo FRONT_ROOT ?>Users/logIn " method="POST">
@@ -16,7 +18,7 @@
             <button class="btn btn-primary" type="submit"> Log in </button>
         </div>
     <div>
-        <p>Do you not have an account? <a href="<?php echo VIEWS_PATH."registry.php"?>"> Sign up! </a></p>        
+        <p>Do you not have an account? <a href="<?php echo FRONT_ROOT."Users/ShowSignUpView"?>"> Sign up! </a></p>        
     </div>    
     </form>
 
