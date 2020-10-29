@@ -34,5 +34,4 @@ require_once("nav.php");
             </div>
         </form>
     </div>
-
 </div>

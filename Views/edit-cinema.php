@@ -1,5 +1,5 @@
 <?php
-include_once("nav.php");
+require_once("nav.php");
 ?>
 
 
@@ -11,24 +11,24 @@ include_once("nav.php");
         </div>
 
         <div class="col-auto">
-            <input type="hidden" name="oldName" value="<?php $cinemaName ?>">
+            <input type="hidden" name="currentName" value="<?php echo $cinemaName ?>">
             <label for="name"> Nombre </label>
-            <input class="form-control" type="text" name="name" placeholder="<?php $cinemaName ?>" required>
+            <input class="form-control" type="text" name="name" placeholder="<?php echo $cinemaName ?>" required>
         </div>
 
         <div class="col-auto">
             <label for="capacity"> Capacidad maxima </label>
-            <input class="form-control" type="number" name="capacity" required>
+            <input class="form-control" type="number" name="capacity" placeholder="<?php echo $cinemaCapacity ?>" required>
         </div>
 
         <div class="col-auto">
             <label for="address"> Direccion </label>
-            <input class="form-control" type="text" name="address" required>
+            <input class="form-control" type="text" name="address" placeholder="<?php echo $cinemaAddress ?>" required>
         </div>
 
         <div class="col-auto">
             <label for="ticketPrice"> Precio de entrada </label>
-            <input class="form-control" type="number" name="ticketPrice" required>
+            <input class="form-control" type="number" name="ticketPrice" placeholder="<?php echo $cinemaTicketPrice ?>" required>
         </div>
 
         <div class="col-auto">
