@@ -59,6 +59,10 @@
             }
         }*/
         
+        public function ShowLoggedView($email, $password){
+
+            $this->logIn($email, $password);
+        }
     
 
         public function ShowLogInViews(){
