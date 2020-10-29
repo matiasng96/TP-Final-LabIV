@@ -1,6 +1,8 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
 
+SELECT * FROM cinemas;
+
 CREATE TABLE IF NOT EXISTS users(
 Id_users INT NOT NULL AUTO_INCREMENT,
 U_name VARCHAR(30) NOT NULL,
@@ -12,13 +14,16 @@ U_dni SMALLINT (30) NOT NULL,
 CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_users)
 );
 
+
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
 C_name VARCHAR(30) NOT NULL,
 Capacity SMALLINT NOT NULL,
 C_address VARCHAR(20) NOT NULL,
 TicketPrice SMALLINT NOT NULL,
-CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema)
+CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema),
+CONSTRAINT unq_C_name UNIQUE (C_name),
+CONSTRAINT unq_C_address UNIQUE (C_address)
 );
 
 CREATE TABLE IF NOT EXISTS movies(
@@ -43,4 +48,3 @@ CONSTRAINT `PK-Id_genresXmovies` PRIMARY KEY (Id_genresXmovies),
 CONSTRAINT `FK-Id_movie` FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
-
