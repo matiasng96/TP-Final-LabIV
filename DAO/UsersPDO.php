@@ -11,39 +11,44 @@
         private $connection;
         private $userTable = "users";
         
-        public function Add ($user)
+        public function Add (User $user)
         {
-            $sql = "INSERT INTO" .$this->userTable. "(email ,name, password, lastName,  gender, dni)  VALUES (:email, :name, :password, :lastName, :gender, :dni);";
-
-            $parameters ["email"]= $user->getEmail();
-            $parameters ["name"]= $user->getName();
-            $parameters ["password"]= $user->getPassword();
-            $parameters ["lastName"]= $user->getLastName();
-            $parameters ["gender"]= $user->getGender();
-            $parameters ["dni"]= $user->getDni();
-            
             try
             {
+                $sql = "INSERT INTO ".$this->userTable."(U_name ,U_email, U_lastName, U_password, U_gender, U_dni)  VALUES(:U_name, :U_email, :U_lastName, :U_password, :U_gender, :U_dni);";
+
+                $parameters ["U_name"]= $user->getEmail();
+                $parameters ["U_email"]= $user->getName();
+                $parameters ["U_lastName"]= $user->getPassword();
+                $parameters ["U_password"]= $user->getLastName();
+                $parameters ["U_gender"]= $user->getGender();
+                $parameters ["U_dni"]= $user->getDni();
+                
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
 
-            } catch (Exception $ex) {
-                throw $ex;
-            }
+                } catch (Exception $ex){
+                
+                    throw $ex;
+                }
         
         }
 
         public function read ($email)
         {
-            $sql= "SELECT * FROM users WHEARE email = :email";
+            $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email";
 
-            $parameters["email"] = $email;
-            
+            $parameters["U_email"] = $email;
+            //echo($sql);
             try {
-                $this->connection= $connection :: getInstance();
-                $result = $this->connection->Execute(sql, $parameters);
+                
+                $this->connection= Connection::getInstance();
+               
+
+                $result = $this->connection->Execute($sql, $parameters);
 
             } catch (Excepcion $ex) {
+                                
                 throw $ex;
             }
 
