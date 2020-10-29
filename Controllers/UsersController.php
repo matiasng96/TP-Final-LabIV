@@ -1,10 +1,6 @@
 <?php
     namespace Controllers;
-<<<<<<< HEAD
-    //use DAO\UserDAO;
-=======
     //use DAO\UserDAO as UserDao;
->>>>>>> nicolas
 
     use Model\User as User;
     use DAO\UserPDO as UserDAO;
@@ -17,21 +13,12 @@
         {
             $this->userDAO = new UserDAO();
         }
-<<<<<<< HEAD
 
         public function ShowSingUpView()
         {
             require_once(VIEWS_PATH."registry.php");
         }
         
-=======
-
-        public function ShowSingUpView()
-        {
-            require_once(VIEWS_PATH."registry.php");
-        }
-
->>>>>>> nicolas
         public function setSession($user)
         {
             $_SESSION["userLogedIn"] = $user;
@@ -57,11 +44,8 @@
 
         public function Add ($user)
         {
-<<<<<<< HEAD
             $D_user= new UserDAO();
 
-=======
->>>>>>> nicolas
             try {
                 $this->userDao->Add($user);
                 return true;
@@ -71,13 +55,8 @@
             }
         }
         
-        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
-
-<<<<<<< HEAD
         public function SingUp($name, $lastName, $gender, $dni, $email, $password){
 
-=======
->>>>>>> nicolas
             $user = new User();
             $user->setName($name);
             $user->setLastName($lastName);
@@ -85,21 +64,15 @@
             $user->setDni($dni);
             $user->setEmail($email);
             $user->setPassword($password);
-
-<<<<<<< HEAD
-            $this->userDAO->Add($user);
             
-            echo "ya estas registrado felicifdades";
-        }
-=======
             try {
                 $this->userDao->Add($user);
                 return true;
 
             } catch (Throwable $ex) {
                 throw $ex;
-            }
-        }        
->>>>>>> nicolas
-    }
+            }           
+        }
+           
+     }        
 ?>
