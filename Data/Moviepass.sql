@@ -18,7 +18,7 @@ U_email VARCHAR(40) NOT NULL,
 U_lastName VARCHAR(30) NOT NULL,
 U_password VARCHAR(30) NOT NULL,
 U_gender VARCHAR(30) NOT NULL,
-U_dni SMALLINT NOT NULL,
+U_dni INT NOT NULL,
 CONSTRAINT `PK-Id_users` PRIMARY KEY (Id_users)
 );
 
@@ -46,3 +46,4 @@ CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
 SELECT * FROM users;
+
