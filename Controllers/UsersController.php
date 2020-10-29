@@ -66,7 +66,7 @@
             require_once(VIEWS_PATH."registry.php");
         }
 
-        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
+        public function SignUp($email, $password, $name, $lastName, $gender, $dni){
 
             $user = new User();
             $user->setName($name);
@@ -75,9 +75,9 @@
             $user->setDni($dni);
             $user->setEmail($email);
             $user->setPassword($password);
-            
-           $this->userDAO->Add($user);
 
+           $this->userDAO->Add($user);
+            
             $this->ShowLoginView();            
 
         }
