@@ -14,7 +14,7 @@ CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema)
 CREATE TABLE IF NOT EXISTS users(
 Id_users INT NOT NULL AUTO_INCREMENT,
 U_name VARCHAR(30) NOT NULL,
-U_email VARCHAR(20) NOT NULL,
+U_email VARCHAR(40) NOT NULL,
 U_lastName VARCHAR(30) NOT NULL,
 U_password VARCHAR(30) NOT NULL,
 U_gender VARCHAR(30) NOT NULL,
@@ -44,3 +44,5 @@ CONSTRAINT `PK-Id_genresXmovies` PRIMARY KEY (Id_genresXmovies),
 CONSTRAINT `FK-Id_movie` FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
+
+SELECT * FROM users;

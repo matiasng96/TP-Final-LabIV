@@ -6,7 +6,7 @@
     use DAO\UsersPDO as UserDAO;
 
    class UsersController{
-
+       
         private $userDAO;
 
         public function __construct()
@@ -80,11 +80,8 @@
             $user->setEmail($email);
             $user->setPassword($password);
 
-            // ver que onda esto de pdo o dao
-           $this->userDAO->Add($user);            
-           $this->ShowLoginView();        
-
-        }
-           
-     }        
+            $this->userDAO->Add($user);            
+            $this->ShowLoginView();    
+        }           
+    }        
 ?>

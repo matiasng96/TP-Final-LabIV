@@ -17,21 +17,20 @@
             {
                 $sql = "INSERT INTO ".$this->userTable."(U_name ,U_email, U_lastName, U_password, U_gender, U_dni)  VALUES(:U_name, :U_email, :U_lastName, :U_password, :U_gender, :U_dni);";
 
-                $parameters ["U_name"]= $user->getEmail();
-                $parameters ["U_email"]= $user->getName();
-                $parameters ["U_lastName"]= $user->getPassword();
-                $parameters ["U_password"]= $user->getLastName();
+                $parameters ["U_name"]= $user->getName();
+                $parameters ["U_email"]= $user->getEmail();
+                $parameters ["U_lastName"]= $user->getLastName();
+                $parameters ["U_password"]= $user->getPassword();
                 $parameters ["U_gender"]= $user->getGender();
                 $parameters ["U_dni"]= $user->getDni();
                 
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
+            }
+            catch(Exception $ex){
 
-                } catch (Exception $ex){
-                
-                    throw $ex;
-                }
-        
+                throw $ex;
+            }        
         }
 
         public function read ($email)
@@ -39,15 +38,13 @@
             $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email";
 
             $parameters["U_email"] = $email;
-            //echo($sql);
+            
             try {
                 
                 $this->connection= Connection::getInstance();
-               
-
                 $result = $this->connection->Execute($sql, $parameters);
 
-            }catch(Exception $ex) {
+            }catch(Exception $ex){
                                 
                 throw $ex;
             }
@@ -55,12 +52,11 @@
             if(!empty($result))
             {
                 return $this->mapear($result);
-            }else
+            }
+            else
             {
                 return false;
             }
-
-
         }
         
         protected function mapear($value)
@@ -76,5 +72,4 @@
 
         public function getAll(){}
     }
-
 ?>
