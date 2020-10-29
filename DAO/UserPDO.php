@@ -13,7 +13,7 @@
         
         public function Add ($user)
         {
-            $sql = "INSER INTO" .$this->userTable. "(email ,name, password, lastName,  gender, dni)  VALUES (:email, :name, :password, :lastName, :gender, :dni)";
+            $sql = "INSERT INTO" .$this->userTable. "(email ,name, password, lastName,  gender, dni)  VALUES (:email, :name, :password, :lastName, :gender, :dni)";
 
             $parameters ["email"]= $user->getEmail();
             $parameters ["name"]= $user->getName();

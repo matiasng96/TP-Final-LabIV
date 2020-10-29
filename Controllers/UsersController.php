@@ -9,9 +9,15 @@
 
         private $userDAO;
 
-        public function __construct(){$this->userDAO = new UserDAO();}
+        public function __construct()
+        {
+            $this->userDAO = new UserDAO();
+        }
 
-        public function ShowSingUpView(){require_once(VIEWS_PATH."registry.php");}
+        public function ShowSingUpView()
+        {
+            require_once(VIEWS_PATH."registry.php");
+        }
 
         public function setSession($user)
         {
@@ -38,18 +44,16 @@
 
         public function Add ($user)
         {
-            $D_user= new UserDao();
-
             try {
-                $D_user->Add($user);
+                $this->userDao->Add($user);
                 return true;
 
             } catch (Throwable $ex) {
                 throw $ex;
             }
         }
-
-        public function SingUp($name, $lastName, $gender, $dni, $email, $password){
+        
+        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
             $user = new User();
             $user->setName($name);
@@ -59,9 +63,13 @@
             $user->setEmail($email);
             $user->setPassword($password);
 
-            $this->userDAO->Add($user);
-            
-            echo "ya estas registrado felicifdades";
-        }
+            try {
+                $this->userDao->Add($user);
+                return true;
+
+            } catch (Throwable $ex) {
+                throw $ex;
+            }
+        }        
     }
 ?>
