@@ -47,7 +47,7 @@
 
                 $result = $this->connection->Execute($sql, $parameters);
 
-            } catch (Excepcion $ex) {
+            }catch(Exception $ex) {
                                 
                 throw $ex;
             }
@@ -65,10 +65,10 @@
         
         protected function mapear($value)
         {
-            $value= $is_array($value) ? $value :[];
+            $value= is_array($value) ? $value :[];
         
             $resp= array_map(function($p){
-                return new M_User ($p ["email"],$p ["password"], $p ["name"], $p ["lastName"], $p ["gener"], $p ["dni"]
+                return new User ($p ["email"],$p ["password"], $p ["name"], $p ["lastName"], $p ["gener"], $p ["dni"]
             );
             }, $value);
             return count ($resp) > 1 ? $resp : $resp['0'];
