@@ -2,7 +2,7 @@
     include_once("header.php");
 ?>
     <div class="form-group">
-        <form action="<?php echo FRONT_ROOT ?>Users/SingUp" method="POST">      
+        <form action="<?php echo FRONT_ROOT?>Users/SignUp" method="POST">      
 
             <div class="form-group">
                 <label for="name"> Name </label>
