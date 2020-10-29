@@ -3,7 +3,7 @@
 ?>
 
 <div class="form-group">
-    <form action="<?php echo FRONT_ROOT ?>Users/logIn " method="POST">
+    <form action="<?php echo FRONT_ROOT ?>Users/logIn" method="POST">
         <div>
             <label for="email"> Email </label>
             <input class="form-control" type="email" name="email" id="email" required>

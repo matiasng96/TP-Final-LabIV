@@ -59,9 +59,14 @@
             }
         }*/
         
-        public function Add($name, $lastName, $gender, $dni, $email, $password){
+    
 
-            echo "LLEGUE";
+        public function ShowLogInViews(){
+
+            require_once(VIEWS_PATH."registry.php");
+        }
+
+        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
             $user = new User();
             $user->setName($name);
