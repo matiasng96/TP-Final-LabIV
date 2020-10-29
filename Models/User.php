@@ -4,11 +4,11 @@
     class User{
 
         private $email;
-        private $password;    
-        private $id;
+        private $password;            
         private $name;
-        private $lastName;
+        private $lastName;        
         private $gender;
+        private $dni;
 
         function __construct ($email='', $password='', $name='', $lastName='', $gener='', $dni=''){
 
@@ -24,10 +24,7 @@
         public function getEmail(){return $this->email;}
 
         public function setPassword($password){$this->password = $password;}
-        public function getPassword(){return $this->password;}
-
-        public function setId($id){$this->id = $id;}
-        public function getId(){return $this->id;}       
+        public function getPassword(){return $this->password;}     
 
         public function setName($a){$this->name=$a;}
         public function getName(){return $this->name;}
