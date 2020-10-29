@@ -1,7 +1,7 @@
 <?php
     include_once("header.php");
 ?>
-    <div class="form-group">
+    <div class="container row justify-content-center">
         <form action="<?php echo FRONT_ROOT ?>Users/SignUp" method="POST">      
 
             <div class="form-group">

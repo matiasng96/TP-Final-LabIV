@@ -20,6 +20,11 @@
 
         }
 
+        public function ShowLogInView(){
+
+            require_once(VIEWS_PATH."registry.php");
+        }
+
         public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
             $user = new User();
