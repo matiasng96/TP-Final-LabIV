@@ -9,7 +9,7 @@ UserGender VARCHAR(30) NOT NULL,
 UserDni BIGINT (30) NOT NULL,
 UserEmail VARCHAR(20) NOT NULL,
 UserPassword VARCHAR(30) NOT NULL,
-CONSTRAINT `PK-Id_users` PRIMARY KEY (Id_users)
+CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
 );
  
 /*
