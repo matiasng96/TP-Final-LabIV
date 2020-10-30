@@ -1,5 +1,5 @@
 <?php
-include_once("nav.php");
+require_once("nav.php");
 ?>
 
 <div class="container row justify-content-center">
@@ -34,5 +34,4 @@ include_once("nav.php");
             </div>
         </form>
     </div>
-
 </div>

@@ -1,6 +1,12 @@
 <?php
+<<<<<<< HEAD
     include_once("nav.php");
 ?>
+=======
+require_once("nav.php");
+?>
+
+>>>>>>> mati
 
 <div class="form-group">
     <form action="<?php echo FRONT_ROOT ?>Users/logIn" method="POST">

@@ -34,13 +34,13 @@ class CinemasDAO implements ICinemasDAO
         $this->SaveData($this->cinemasList);
     }
 
-    public function Edit($oldName,Cinema $newCinema)
+    public function Edit($currentName,Cinema $newCinema)
     {
         $this->RetrieveData();
 
         foreach ($this->cinemasList as $key => $cinema) {
 
-            if ($cinema->getName() == $oldName) {
+            if ($cinema->getName() == $currentName) {
                 $this->cinemasList[$key] = $newCinema;
             }
         }
@@ -55,7 +55,7 @@ class CinemasDAO implements ICinemasDAO
         return $this->cinemasList;
     }
 
-
+    
     public function SaveData($cinemasList) // Toma un arreglo de objetos Cinema y los guarda en formato JSON en Data/cinemas.json
     {
         $arrayToEncode = array();
