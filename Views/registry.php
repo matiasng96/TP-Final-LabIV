@@ -3,7 +3,7 @@ require_once("nav.php");
 ?>
 
     <div class="form-group">
-        <form action="<?php echo FRONT_ROOT ?>Users/SignUp" method="POST">      
+        <form action="<?php echo FRONT_ROOT?>Users/SignUp" method="POST">      
 
             <div class="form-group">
                 <label for="name"> Name </label>

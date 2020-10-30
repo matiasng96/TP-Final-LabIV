@@ -10,13 +10,13 @@
         private $gender;
         private $dni;
 
-        function __construct ($email='', $password='', $name='', $lastName='', $gener='', $dni=''){
+        function __construct ($email='', $password='', $name='', $lastName='', $gender='', $dni=''){
 
             $this->setEmail($email);
             $this->setPassword($password);
             $this->setName($name);
             $this->setLastName($lastName);
-            $this->setGender($gener);
+            $this->setGender($gender);
             $this->setDni($dni);
         }
 
