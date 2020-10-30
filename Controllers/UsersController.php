@@ -30,11 +30,9 @@
 
         public function logIn($email, $password)
         {
-            $D_user = new UserDAO();
-
-            $user= $D_user->read($email);
+            $user= $this->userDAO->read($email);
             //FUNCION READ DEL DAOUSER (EMAIL) 
-
+            
             if($user)
             {
                 if($user->getPassword() == $password)

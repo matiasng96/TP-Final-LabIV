@@ -2,7 +2,7 @@
     namespace Models;
 
     class User{
-
+        private $id;
         private $email;
         private $password;            
         private $name;
@@ -37,5 +37,8 @@
         
         public function setDni($dni){$this->dni=$dni;}
         public function getDni(){return $this->dni;}        
+
+        public function getId(){return $this->id;}
+        public function setId($id){$this->id = $id;}
     }
 ?>

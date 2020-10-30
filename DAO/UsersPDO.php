@@ -35,21 +35,22 @@
 
         public function read ($email)
         {
-            $sql= "SELECT * FROM ". $this->userTable ." WHERE UserEmail = :email LIMIT 1";
-
-            $parameters["UserEmail"] = $email;
-            
-            try {
+            try
+            {
                 
-                $this->connection= Connection::getInstance();
+            $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
 
+            $parameters ["UserEmail"] = $email;
+            
+            
+                $this->connection= Connection::getInstance();
                 $result = $this->connection->Execute($sql, $parameters);
                 
                 $user2 = new User();
 
                 foreach ($result as $value)
                 {
-                    $user2->setId($value["IdUsers"]);
+                    $user2->setId($value["UserId"]);
                     $user2->setName($value["UserName"]);
                     $user2->setEmail($value["UserEmail"]);
                     $user2->setLastName($value["UserLastName"]);
