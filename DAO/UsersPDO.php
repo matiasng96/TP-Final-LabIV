@@ -49,13 +49,13 @@
 
                 foreach ($result as $value)
                 {
-                    $user2->setId($value["Id_users"]);
+                    $user2->setId($value["IdUsers"]);
                     $user2->setName($value["UserName"]);
-                    $user2->setEmail($value["U_email"]);
-                    $user2->setLastName($value["U_lastName"]);
-                    $user2->setPassword($value["U_password"]);
-                    $user2->setGender($value["U_gender"]);
-                    $user2->setDni($value["U_dni"]);
+                    $user2->setEmail($value["UserEmail"]);
+                    $user2->setLastName($value["UserLastName"]);
+                    $user2->setPassword($value["UserPassword"]);
+                    $user2->setGender($value["UserGender"]);
+                    $user2->setDni($value["UserDni"]);
 
                 }
                 return $user2;
