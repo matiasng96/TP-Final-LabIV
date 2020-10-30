@@ -26,10 +26,10 @@
         public function setPassword($password){$this->password = $password;}
         public function getPassword(){return $this->password;}     
 
-        public function setName($a){$this->name=$a;}
+        public function setName($name){$this->name=$name;}
         public function getName(){return $this->name;}
         
-        public function setLastName($a){ $this->lastName=$a;}
+        public function setLastName($lastName){ $this->lastName=$lastName;}
         public function getLastName(){return $this->lastName;}
 
         public function setGender($gender){$this->gender = $gender;}

@@ -35,20 +35,36 @@
 
         public function read ($email)
         {
-            $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email";
+            try
+            {
+                $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email LIMIT 1";
 
-            $parameters["U_email"] = $email;
-            
-            try {
+                $parameters["U_email"] = $email;
                 
                 $this->connection= Connection::getInstance();
+
                 $result = $this->connection->Execute($sql, $parameters);
+                
+                $user2 = new User();
+
+                foreach ($result as $value)
+                {
+                    $user2->setId($value["Id_users"]);
+                    $user2->setName($value["U_name"]);
+                    $user2->setEmail($value["U_email"]);
+                    $user2->setLastName($value["U_lastName"]);
+                    $user2->setPassword($value["U_password"]);
+                    $user2->setGender($value["U_gender"]);
+                    $user2->setDni($value["U_dni"]);
+
+                }
+                return $user2;
 
             }catch(Exception $ex){
                                 
                 throw $ex;
             }
-
+            /*
             if(!empty($result))
             {
                 return $this->mapear($result);
@@ -57,8 +73,9 @@
             {
                 return false;
             }
+            */
         }
-        
+       /* 
         protected function mapear($value)
         {
             $value= is_array($value) ? $value :[];
@@ -69,6 +86,7 @@
             }, $value);
             return count ($resp) > 1 ? $resp : $resp['0'];
         }
+        */
 
         public function getAll(){}
     }
