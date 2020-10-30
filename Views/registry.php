@@ -1,17 +1,9 @@
 <?php
-<<<<<<< HEAD
-    include_once("nav.php");
-=======
 require_once("nav.php");
->>>>>>> mati
 ?>
 
     <div class="form-group">
-<<<<<<< HEAD
         <form action="<?php echo FRONT_ROOT?>Users/SignUp" method="POST">      
-=======
-        <form action="<?php echo FRONT_ROOT ?>Users/Add" method="POST">      
->>>>>>> mati
 
             <div class="form-group">
                 <label for="name"> Name </label>
