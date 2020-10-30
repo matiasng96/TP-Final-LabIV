@@ -15,14 +15,14 @@
         {
             try
             {
-                $sql = "INSERT INTO ".$this->userTable."(U_name ,U_email, U_lastName, U_password, U_gender, U_dni)  VALUES(:U_name, :U_email, :U_lastName, :U_password, :U_gender, :U_dni);";
+                $sql = "INSERT INTO ".$this->userTable."(UserName,UserEmail,UserLastName,UserPassword,UserGender,UserDni) VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni);";
 
-                $parameters ["U_name"]= $user->getName();
-                $parameters ["U_email"]= $user->getEmail();
-                $parameters ["U_lastName"]= $user->getLastName();
-                $parameters ["U_password"]= $user->getPassword();
-                $parameters ["U_gender"]= $user->getGender();
-                $parameters ["U_dni"]= $user->getDni();
+                $parameters ["UserName"]= $user->getName();
+                $parameters ["UserEmail"]= $user->getEmail();
+                $parameters ["UserLastName"]= $user->getLastName();
+                $parameters ["UserPassword"]= $user->getPassword();
+                $parameters ["UserGender"]= $user->getGender();
+                $parameters ["UserDni"]= $user->getDni();
                 
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
@@ -35,9 +35,9 @@
 
         public function read ($email)
         {
-            $sql= "SELECT * FROM ". $this->userTable ." WHERE U_email = :email";
+            $sql= "SELECT * FROM ". $this->userTable ." WHERE UserEmail = :email";
 
-            $parameters["U_email"] = $email;
+            $parameters["email"] = $email;
             
             try {
                 
