@@ -57,4 +57,4 @@ CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 
 SELECT * FROM users;
 
-DROP DATABASE Moviepass;
+DROP TABLE users;
