@@ -48,3 +48,6 @@ CONSTRAINT `PK-Id_genresXmovies` PRIMARY KEY (Id_genresXmovies),
 CONSTRAINT `FK-Id_movie` FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
+
+INSERT INTO genres(Id_genre, G_name) VALUES (28,"Action"), (12,"Adventure" ), (, ), (, ), (, ),
+(, ),

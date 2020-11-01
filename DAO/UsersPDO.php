@@ -15,7 +15,9 @@
         {
             try
             {
-                $sql = "INSERT INTO ".$this->userTable."(UserName,UserEmail,UserLastName,UserPassword,UserGender,UserDni) VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni);";
+                $sql = "INSERT INTO ".$this->userTable.
+                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni) 
+                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni);";
 
                 $parameters ["UserName"]= $user->getName();
                 $parameters ["UserEmail"]= $user->getEmail();
@@ -33,23 +35,28 @@
             }        
         }
 
-        public function read ($email)
+        public function read ($UserEmail)
         {
-            $sql= "SELECT * FROM ". $this->userTable ." WHERE UserEmail = :email LIMIT 1";
-
-            $parameters["UserEmail"] = $email;
-            
             try {
-                
+
+            
+            $sql= "SELECT * FROM ". $this->userTable ." WHERE (UserEmail = :UserEmail);";
+           
+            
+
+            $parameters["UserEmail"] = $UserEmail;
+            var_dump($parameters["UserEmail"]);
+            
                 $this->connection= Connection::getInstance();
 
                 $result = $this->connection->Execute($sql, $parameters);
+               
                 
                 $user2 = new User();
 
                 foreach ($result as $value)
                 {
-                    $user2->setId($value["IdUsers"]);
+                    $user2->setId($value["UserId"]);
                     $user2->setName($value["UserName"]);
                     $user2->setEmail($value["UserEmail"]);
                     $user2->setLastName($value["UserLastName"]);
