@@ -2,9 +2,9 @@
      namespace Controllers;
 
 /*Si usamos este namespace accedemos al DAO con JSON. */
-//use DAO\CinemasDAO as CinemasDAO;
+use DAO\CinemasDAO as CinemasDAO;
 /*Si usamos este namespace accedemos al DAO con PDO. */
-use DAO\CinemasPDO as CinemasDAO;   
+//use DAO\CinemasPDO as CinemasDAO;   
 use Models\Cinema;
 
 class CinemasController
@@ -76,4 +76,25 @@ class CinemasController
         $this->ShowListView();
 
     }
+
+    public function ShowBuyTicketView(){
+                
+        require_once(VIEWS_PATH."BuyTickets.php");
+    }
+
+    public function setSession(){
+
+        $_SESSION[""];
+        var_dump($_SESSION);
+    }
+
+    public function checkSessionStart($cinema, $tickets){
+
+         $this->setSession();
+    }
 }
+?>
+
+
+
+     
