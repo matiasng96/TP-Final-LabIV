@@ -21,14 +21,21 @@ require_once('nav.php');
                     </td>
 
                     <td>
-                        <?php echo $cinema->getCapacity() ?>
+                        <?php echo $cinema->getTotalCapacity() ?>
                     </td>
 
                     <td>
                         <?php echo $cinema->getAddress() ?>
                     </td>
 
-                    <td> <?php echo $cinema->getTicketPrice() ?></td>
+                    <td> 
+                        <?php                         
+                            foreach($cinema->getRooms() as $room){
+
+                                echo $room;
+                            }                   
+                        ?>
+                    </td>
 
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">

@@ -66,8 +66,6 @@ class CinemasDAO implements ICinemasDAO
             $dataArray["name"] = $cinema->getName();
             $dataArray["capacity"] = $cinema->getCapacity();
             $dataArray["address"] = $cinema->getAddress();
-            $dataArray["ticketPrice"] = $cinema->getTicketPrice();
-
             array_push($arrayToEncode, $dataArray);
         }
 
@@ -93,10 +91,8 @@ class CinemasDAO implements ICinemasDAO
 
                 $cinema = new Cinema();
                 $cinema->setName($valuesArray["name"]);
-                $cinema->setCapacity($valuesArray["capacity"]);
+                $cinema->setTotalCapacity($valuesArray["capacity"]);
                 $cinema->setAddress($valuesArray["address"]);
-                //$cinema->setTicketPrice($valuesArray["ticketPrice"]);
-
                 array_push($this->cinemasList, $cinema);
             }
         }
