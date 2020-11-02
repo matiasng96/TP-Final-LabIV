@@ -13,9 +13,9 @@ class RoomPDO {
 public function Add(Room $room)
 {
     try {
-        $query = "INSERT INTO " . $this->tableName . " (R_name, TicketPrice, Capacity) VALUES (:R_name, :TicketPrice, :Capacity);";
+        $query = "INSERT INTO " . $this->tableName . " (RoomName, TicketPrice, Capacity) VALUES (:RoomName, :TicketPrice, :Capacity);";
 
-        $parameters["R_name"] = $room->getName();
+        $parameters["RoomName"] = $room->getName();
         $parameters["TicketPrice"] = $room->getTicketPrice();
         $parameters["Capacity"] = $room->getCapacity();
         
