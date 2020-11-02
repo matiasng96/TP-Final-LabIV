@@ -2,9 +2,9 @@
      namespace Controllers;
 
 /*Si usamos este namespace accedemos al DAO con JSON. */
-use DAO\CinemasDAO as CinemasDAO;
+//use DAO\CinemasDAO as CinemasDAO;
 /*Si usamos este namespace accedemos al DAO con PDO. */
-//use DAO\CinemasPDO as CinemasDAO;   
+use DAO\CinemasPDO as CinemasDAO;   
 use Models\Cinema;
 
 class CinemasController
