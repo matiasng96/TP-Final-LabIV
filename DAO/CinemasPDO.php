@@ -14,12 +14,12 @@ class CinemasPDO implements ICinemasDAO
     public function Add(Cinema $cinema)
     {
         try {
-            $query = "INSERT INTO " . $this->tableName . " (C_name, Capacity, C_address, TicketPrice) VALUES (:C_name, :Capacity, :C_address, :TicketPrice);";
+            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, C_address) VALUES (:CinemaName, :TotalCapacity, :C_address);";
 
-            $parameters["C_name"] = $cinema->getName();
-            $parameters["Capacity"] = $cinema->getCapacity();
-            $parameters["C_address"] = $cinema->getAddress();
-            $parameters["TicketPrice"] = $cinema->getTicketPrice();
+            $parameters["CinemaName"] = $cinema->getName();
+            $parameters["Capacity"] = $cinema->getTotalCapacity();
+            $parameters["CinemaAddress"] = $cinema->getAddress();
+            
 
             $this->connection = Connection::GetInstance();
 
@@ -35,9 +35,9 @@ class CinemasPDO implements ICinemasDAO
     {
         try {
 
-            $query = "SELECT * FROM " . $this->tableName . " WHERE (C_name = :C_name);";
+            $query = "SELECT * FROM " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
 
-            $parameters['C_name'] = $C_Name;
+            $parameters['CinemaName'] = $C_Name;
 
             $this->connection = Connection::GetInstance();
 
@@ -58,12 +58,11 @@ class CinemasPDO implements ICinemasDAO
         try {
 
             $query = "UPDATE " . $this->tableName . 
-            " SET C_name=:C_name , Capacity=:Capacity, C_address=:C_address, TicketPrice=:TicketPrice WHERE (C_name=:currentName);";
+            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemAddress = :C_address WHERE (CinemaName = :currentName);";
 
-            $parameters["C_name"] = $newCinema->getName();
-            $parameters["Capacity"] = $newCinema->getCapacity();
-            $parameters["C_address"] = $newCinema->getAddress();
-            $parameters["TicketPrice"] = $newCinema->getTicketPrice();
+            $parameters["CinemaName"] = $newCinema->getName();
+            $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();
+            $parameters["CinemaAddress"] = $newCinema->getAddress();
             $parameters["currentName"] = $currentName;
 
             $this->connection = Connection::GetInstance();
@@ -71,19 +70,20 @@ class CinemasPDO implements ICinemasDAO
             $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
 
             return $deletedCount;
+
         } catch (Exception $ex) {
 
             throw $ex;
         }
     }
 
-    public function Delete($C_Name)
+    public function Delete($CinemaName)
     {
         try {
 
-            $query = "DELETE FROM  " . $this->tableName . " WHERE (C_name = :C_name);";
+            $query = "DELETE FROM  " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
 
-            $parameters['C_name'] = $C_Name;
+            $parameters['CinemaName'] = $CinemaName;
 
             $this->connection = Connection::GetInstance();
 
@@ -119,15 +119,15 @@ class CinemasPDO implements ICinemasDAO
 
             foreach ($cinemasResults as $row) {
                 $cinema = new Cinema();
-                $cinema->setName($row["C_name"]);
-                $cinema->setCapacity($row["Capacity"]);
-                $cinema->setAddress($row["C_address"]);
-                $cinema->setTicketPrice($row["TicketPrice"]);
+                $cinema->setName($row['CinemaName']);
+                $cinema->setTotalCapacity($row['TotalCapacity']);
+                $cinema->setAddress($row['CinemaAddress']);
 
                 array_push($cinemasList, $cinema);
             }
 
             return $cinemasList;
+
         } catch (Exception $ex) {
 
             throw $ex;
