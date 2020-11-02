@@ -86,7 +86,7 @@
             $user->setPassword($password);
 
             $this->userDAO->Add($user);            
-            $this->ShowLoginView();    
+            $this->ShowLoggedView($email, $password);    
         }           
     }        
 ?>
