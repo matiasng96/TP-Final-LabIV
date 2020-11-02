@@ -19,7 +19,7 @@ class CinemasPDO implements ICinemasDAO
             $parameters["C_name"] = $cinema->getName();
             $parameters["Capacity"] = $cinema->getCapacity();
             $parameters["C_address"] = $cinema->getAddress();
-            $parameters["TicketPrice"] = $cinema->getTicketPrice();
+            //$parameters["TicketPrice"] = $cinema->getTicketPrice();
 
             $this->connection = Connection::GetInstance();
 
@@ -63,7 +63,7 @@ class CinemasPDO implements ICinemasDAO
             $parameters["C_name"] = $newCinema->getName();
             $parameters["Capacity"] = $newCinema->getCapacity();
             $parameters["C_address"] = $newCinema->getAddress();
-            $parameters["TicketPrice"] = $newCinema->getTicketPrice();
+            //$parameters["TicketPrice"] = $newCinema->getTicketPrice();
             $parameters["currentName"] = $currentName;
 
             $this->connection = Connection::GetInstance();
@@ -122,7 +122,7 @@ class CinemasPDO implements ICinemasDAO
                 $cinema->setName($row["C_name"]);
                 $cinema->setCapacity($row["Capacity"]);
                 $cinema->setAddress($row["C_address"]);
-                $cinema->setTicketPrice($row["TicketPrice"]);
+                //$cinema->setTicketPrice($row["TicketPrice"]);
 
                 array_push($cinemasList, $cinema);
             }

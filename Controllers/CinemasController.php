@@ -43,7 +43,7 @@ class CinemasController
         $cinema->setName($name);
         $cinema->setCapacity($capacity);
         $cinema->setAddress($address);
-        $cinema->setTicketPrice($ticketPrice);
+        //$cinema->setTicketPrice($ticketPrice);
 
         $this->cinemasDAO->Add($cinema);
 
