@@ -34,6 +34,13 @@ require_once("nav.php");
             <div class="form-group">
                 <label for="user"> Email </label>
                 <input class="form-control" type="email" name="user" id="user" required>
+                <?php
+                if (!empty($messege))
+                {
+                    echo("holaaaaaa");
+                    echo($messege);
+                }
+                ?>
             </div>
             
             <div class="form-group">

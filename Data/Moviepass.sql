@@ -9,6 +9,7 @@ UserLastName VARCHAR(30) NOT NULL,
 UserPassword VARCHAR(30) NOT NULL,
 UserGender VARCHAR(40) NOT NULL,
 UserDni BIGINT NOT NULL,
+UserAdmin BIT NOT NULL,
 CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
 );
  

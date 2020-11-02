@@ -8,13 +8,14 @@
    class UsersController{
        
         private $userDAO;
+        private $messege;
 
         public function __construct()
         {
             $this->userDAO = new UserDAO();
         }
 
-        public function ShowSignUpView()
+        public function ShowSignUpView( $messege = '')
         {
             require_once(VIEWS_PATH."registry.php");
         }
@@ -39,23 +40,11 @@
                 {
                     $this->setSession($user);
                     return $user;
+
                 }
             }
             return false;
         }
-
-        /*public function Add ($user)
-        {
-            $D_user= new UserDAO();
-
-            try {
-                $this->userDao->Add($user);
-                return true;
-
-            } catch (Throwable $ex) {
-                throw $ex;
-            }
-        }*/
         
         public function ShowLoggedView($email, $password){
 
@@ -70,6 +59,11 @@
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
+            $exist= $this->userDAO->read($email);
+            $messege = "MAIL YA ASOCIADO A OTRO USUARIO";
+            if(!$exist)
+            {
+
             $user = new User();
             $user->setName($name);
             $user->setLastName($lastName);
@@ -80,6 +74,11 @@
 
             $this->userDAO->Add($user);            
             $this->ShowLoginView();    
+            }else {
+            //echo '<script>swal({title: "El email con el que intentas loguearte ya esta asociado a otra cuenta.",icon: "warning",showCancelButton: true})</script>';
+            $this->ShowSignUpView($messege);
+            }
+
         }           
     }        
 ?>
