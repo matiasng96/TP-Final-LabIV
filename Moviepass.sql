@@ -1,18 +1,7 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
 
-SELECT * FROM cinemas;
-
-CREATE TABLE IF NOT EXISTS users(
-Id_users INT NOT NULL AUTO_INCREMENT,
-U_name VARCHAR(30) NOT NULL,
-U_email VARCHAR(20) NOT NULL,
-U_lastName VARCHAR(30) NOT NULL,
-U_passwrod VARCHAR(30) NOT NULL,
-U_gender VARCHAR(30) NOT NULL,
-U_dni SMALLINT (30) NOT NULL,
-CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_users)
-);
+SELECT * FROM genresxmovies;
 
 
 CREATE TABLE IF NOT EXISTS cinemas(
@@ -26,12 +15,16 @@ CONSTRAINT unq_C_name UNIQUE (C_name),
 CONSTRAINT unq_C_address UNIQUE (C_address)
 );
 
+DROP DATABASE Moviepass;
+DROP TABLE genres;
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,
+Id_genre INT NOT NULL,
 M_name VARCHAR(30) NOT NULL,    
 Poster_path VARCHAR(200)  NOT NULL,
 Title VARCHAR(30) NOT NULL,
-CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie)
+CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie),
+CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
 CREATE TABLE IF NOT EXISTS genres(
@@ -49,5 +42,20 @@ CONSTRAINT `FK-Id_movie` FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
-INSERT INTO genres(Id_genre, G_name) VALUES (28,"Action"), (12,"Adventure" ), (, ), (, ), (, ),
-(, ),
+/*INSERT INTO genres(Id_genre, G_name) VALUES (28,"Action"), (12,"Adventure" ), (, ), (, ), (, ),
+(, ),*/
+
+CREATE TABLE IF NOT EXISTS users(
+UserId INT NOT NULL AUTO_INCREMENT,
+UserName VARCHAR(30) NOT NULL,
+UserEmail VARCHAR(30) NOT NULL,
+UserLastName VARCHAR(30) NOT NULL,
+UserPassword VARCHAR(30) NOT NULL,
+UserGender VARCHAR(40) NOT NULL,
+UserDni BIGINT NOT NULL,
+CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
+);
+
+
+
+DESCRIBE users;

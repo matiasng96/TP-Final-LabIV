@@ -18,9 +18,14 @@
         {
             require_once(VIEWS_PATH."registry.php");
         }
+
         public function ShowLoginView()
         {
             require_once(VIEWS_PATH."login.php");
+        }
+
+        public function ShowAdminView(){
+            require_once(VIEWS_PATH. "administrator.php");
         }
         
         public function setSession($user)

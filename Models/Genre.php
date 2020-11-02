@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Genres
+class Genre
 {
     private $id;
     private $name;
