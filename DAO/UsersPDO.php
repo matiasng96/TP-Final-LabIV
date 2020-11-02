@@ -15,7 +15,9 @@
         {
             try
             {
-                $sql = "INSERT INTO ".$this->userTable."(UserName,UserEmail,UserLastName,UserPassword,UserGender,UserDni,UserAdmin) VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni, :UserAdmin);";
+                $sql = "INSERT INTO ".$this->userTable.
+                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni) 
+                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni);";
 
                 $parameters ["UserName"]= $user->getName();
                 $parameters ["UserEmail"]= $user->getEmail();
@@ -34,18 +36,19 @@
             }        
         }
 
-        public function read ($email)
+        public function read ($UserEmail)
         {
             try
             {
                 
             $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
 
-            $parameters ["UserEmail"] = $email;
+            $parameters ["UserEmail"] = $UserEmail;
             
             
                 $this->connection= Connection::getInstance();
                 $result = $this->connection->Execute($sql, $parameters);
+               
                 
                 $user2 = new User();
 

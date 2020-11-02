@@ -2,6 +2,7 @@
     namespace Models;
 
     class User{
+       
         private $id;
         private $email;
         private $password;            
@@ -11,8 +12,9 @@
         private $dni;
         private $admin;
 
-        function __construct ($email='', $password='', $name='', $lastName='', $gender='', $dni=''){
+        function __construct ($id = '', $email='', $password='', $name='', $lastName='', $gender='', $dni=''){
 
+            $this->setId($id);
             $this->setEmail($email);
             $this->setPassword($password);
             $this->setName($name);
@@ -45,4 +47,3 @@
         public function getId(){return $this->id;}
         public function setId($id){$this->id = $id;}
     }
-?>
