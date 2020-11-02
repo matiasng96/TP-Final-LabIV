@@ -21,7 +21,7 @@ class CinemasController
         require_once(VIEWS_PATH."add-cinema.php");
     }
 
-    public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress, $cinemaTicketPrice)
+    public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress)
     {
         require_once(VIEWS_PATH."edit-cinema.php");
     }
@@ -33,7 +33,7 @@ class CinemasController
         require_once(VIEWS_PATH."cinemas-list.php");
     }
 
-    public function Add($name, $capacity, $address, $ticketPrice)
+    public function Add($name, $TotalCapacity, $address)
     {
         $exists = $this->cinemasDAO->SearchCinemaByName($name);
  
@@ -41,9 +41,8 @@ class CinemasController
         if(!$exists){
         $cinema = new Cinema();
         $cinema->setName($name);
-        $cinema->setCapacity($capacity);
+        $cinema->setTotalCapacity($TotalCapacity);
         $cinema->setAddress($address);
-        //$cinema->setTicketPrice($ticketPrice);
 
         $this->cinemasDAO->Add($cinema);
 
@@ -68,9 +67,9 @@ class CinemasController
         }
     }
 
-    public function Edit($currentName,$name, $capacity, $address, $ticketPrice){
+    public function Edit($currentName,$name, $capacity, $address){
 
-        $newCinema = new Cinema($name,$capacity,$address,$ticketPrice);
+        $newCinema = new Cinema($name,$capacity,$address);
 
         $this->cinemasDAO->Edit($currentName,$newCinema);
 
