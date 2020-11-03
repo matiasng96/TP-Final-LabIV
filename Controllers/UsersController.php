@@ -66,6 +66,7 @@
 
             $exist= $this->userDAO->read($email);
             $messege = "MAIL YA ASOCIADO A OTRO USUARIO";
+
             if(!$exist)
             {
 
@@ -80,7 +81,6 @@
             $this->userDAO->Add($user);            
             $this->ShowLoginView();    
             }else {
-            //echo '<script>swal({title: "El email con el que intentas loguearte ya esta asociado a otra cuenta.",icon: "warning",showCancelButton: true})</script>';
             $this->ShowSignUpView($messege);
             }
 
