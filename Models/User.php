@@ -10,6 +10,7 @@
         private $lastName;        
         private $gender;
         private $dni;
+        private $admin;
 
         function __construct ($id = '', $email='', $password='', $name='', $lastName='', $gender='', $dni=''){
 
@@ -20,7 +21,10 @@
             $this->setLastName($lastName);
             $this->setGender($gender);
             $this->setDni($dni);
+            $this->setAdmin();
         }
+        public function setAdmin(){$this->admin = false;}
+        public function getAdmin(){return $this->admin;}
 
         public function setEmail($email){$this->email = $email;}
         public function getEmail(){return $this->email;}

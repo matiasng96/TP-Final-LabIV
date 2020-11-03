@@ -14,6 +14,14 @@
         "results": {
             "poster_path": "\/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg",
             "id": 531219,
+<<<<<<< HEAD
+            "genre_ids": [
+                14,
+                10751,
+                12,
+                35,
+                27
+=======
             "genre_ids": [
                 14,
                 10751,
@@ -32,12 +40,23 @@
                 878,
                 53,
                 18
+>>>>>>> TestNicolas
             ],
-            "title": "2067"
+            "title": "Roald Dahl's The Witches"
         }
     },
     {
         "results": {
+<<<<<<< HEAD
+            "poster_path": "\/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg",
+            "id": 528085,
+            "genre_ids": [
+                878,
+                53,
+                18
+            ],
+            "title": "2067"
+=======
             "poster_path": "\/lQfdytwN7eh0tXWjIiMceFdBBvD.jpg",
             "id": 560050,
             "genre_ids": [
@@ -47,10 +66,22 @@
                 14
             ],
             "title": "Over the Moon"
+>>>>>>> TestNicolas
         }
     },
     {
         "results": {
+<<<<<<< HEAD
+            "poster_path": "\/lQfdytwN7eh0tXWjIiMceFdBBvD.jpg",
+            "id": 560050,
+            "genre_ids": [
+                16,
+                12,
+                10751,
+                14
+            ],
+            "title": "Over the Moon"
+=======
             "poster_path": "\/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
             "id": 337401,
             "genre_ids": [
@@ -60,34 +91,74 @@
                 14
             ],
             "title": "Mulan"
+>>>>>>> TestNicolas
         }
     },
     {
         "results": {
+<<<<<<< HEAD
+            "poster_path": "\/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
+            "id": 337401,
+=======
             "poster_path": "\/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
             "id": 635302,
+>>>>>>> TestNicolas
             "genre_ids": [
                 16,
                 28,
                 36,
                 12,
+<<<<<<< HEAD
+                18,
+                14
+            ],
+            "title": "Mulan"
+=======
                 14,
                 18
             ],
             "title": "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train"
+>>>>>>> TestNicolas
         }
     },
     {
         "results": {
+<<<<<<< HEAD
+            "poster_path": "\/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
+            "id": 635302,
+=======
             "poster_path": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
             "id": 718444,
+>>>>>>> TestNicolas
             "genre_ids": [
+                16,
                 28,
+                36,
                 12,
+<<<<<<< HEAD
+                14,
+                18
+            ],
+            "title": "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train"
+=======
                 18,
                 53
             ],
             "title": "Rogue"
+>>>>>>> TestNicolas
+        }
+    },
+    {
+        "results": {
+            "poster_path": "\/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg",
+            "id": 590223,
+            "genre_ids": [
+                28,
+                12,
+                35,
+                878
+            ],
+            "title": "Love and Monsters"
         }
     },
     {
@@ -127,6 +198,7 @@
     },
     {
         "results": {
+<<<<<<< HEAD
             "poster_path": "\/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg",
             "id": 590223,
             "genre_ids": [
@@ -148,6 +220,16 @@
                 14,
                 10751
             ],
+=======
+            "poster_path": "\/zfdhsR3Y3xw42OHrMpi0oBw0Uk8.jpg",
+            "id": 741074,
+            "genre_ids": [
+                16,
+                35,
+                14,
+                10751
+            ],
+>>>>>>> TestNicolas
             "title": "Once Upon a Snowman"
         }
     },

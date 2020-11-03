@@ -23,13 +23,14 @@ require_once('nav.php');
                          <td>
                               <?php echo $movie->getTitle() ?>
                          </td>
-
+                    
                          <td>
                               <?php 
+                              /*
                               foreach($movie->getGenre_ids() as $genre){
                                    echo $genre;
                                    
-                              } 
+                              } */
                                ?>
                          </td>
 
