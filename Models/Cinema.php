@@ -10,10 +10,10 @@
         private $address;     
         private $rooms;   
 
-        public function __construct($name = '', $TotalCapacity = '', $address = '', $rooms = array()){
+        public function __construct($name = '', $totalCapacity = '', $address = '', $rooms = array()){
 
             $this->setName($name);
-            $this->setTotalCapacity($TotalCapacity);
+            $this->setTotalCapacity($totalCapacity);
             $this->setAddress($address);
             $this->$rooms = array();
         }  
@@ -21,8 +21,8 @@
         public function setName($name){$this->name = $name;}
         public function getName(){return $this->name;}
 
-        public function setTotalCapacity($TotalCapacity){$this->TotalCapacity = $TotalCapacity;}
-        public function getTotalCapacity(){return $this->TotalCapacity;}
+        public function setTotalCapacity($totalCapacity){$this->totalCapacity = $totalCapacity;}
+        public function getTotalCapacity(){return $this->totalCapacity;}
 
         public function setAddress($address){$this->address = $address;}
         public function getAddress(){return $this->address;}

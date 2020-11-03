@@ -49,17 +49,10 @@
             
                 array_push($moviesArray, $movie);
             };
-
-        
             
             return $moviesArray;
         }
 
-
-        public function SaveData($moviesList)
-        {
-          
-        }
 
 }
 ?>

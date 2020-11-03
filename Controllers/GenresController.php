@@ -16,8 +16,7 @@ class GenresController
 
     public function SaveAllGenres(){
         $genresList = $this->genresDAO->APItoGenresArray(); 
-        var_dump($genresList);
-
+      
         foreach($genresList as $genre){
             $this->genresDAO->Add($genre);
         }

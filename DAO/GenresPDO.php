@@ -41,10 +41,10 @@ class GenresPDO {
 public function Add(Genre $genre)
 {
     try {
-        $query = "INSERT INTO " . $this->tableName . " (Id_genre, G_name) VALUES (:Id_genre, :G_name);";
+        $query = "INSERT INTO " . $this->tableName . " (Id_genre, GenreName) VALUES (:Id_genre, :GenreName);";
 
         $parameters["Id_genre"] = $genre->getId();
-        $parameters["G_name"] = $genre->getName();
+        $parameters["GenreName"] = $genre->getName();
        
 
         $this->connection = Connection::GetInstance();
