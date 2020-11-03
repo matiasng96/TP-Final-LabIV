@@ -14,10 +14,10 @@ class CinemasPDO implements ICinemasDAO
     public function Add(Cinema $cinema)
     {
         try {
-            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, C_address) VALUES (:CinemaName, :TotalCapacity, :C_address);";
+            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, Cinemaddress) VALUES (:CinemaName, :TotalCapacity, :Cinemaddress);";
 
             $parameters["CinemaName"] = $cinema->getName();
-            $parameters["Capacity"] = $cinema->getTotalCapacity();
+            $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
             $parameters["CinemaAddress"] = $cinema->getAddress();
             
 
@@ -58,7 +58,7 @@ class CinemasPDO implements ICinemasDAO
         try {
 
             $query = "UPDATE " . $this->tableName . 
-            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemAddress = :C_address WHERE (CinemaName = :currentName);";
+            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemAddress = :Cinemaddress WHERE (CinemaName = :currentName);";
 
             $parameters["CinemaName"] = $newCinema->getName();
             $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();

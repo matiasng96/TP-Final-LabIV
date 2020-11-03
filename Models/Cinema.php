@@ -15,13 +15,13 @@
             $this->setName($name);
             $this->setTotalCapacity($totalCapacity);
             $this->setAddress($address);
-            $this->$rooms = array();
+            //$this->$rooms = array();
         }  
 
         public function setName($name){$this->name = $name;}
         public function getName(){return $this->name;}
 
-        public function setTotalCapacity($TotalCapacity){$this->totalCapacity = $totalCapacity;}
+        public function setTotalCapacity($totalCapacity){$this->totalCapacity = $totalCapacity;}
         public function getTotalCapacity(){return $this->totalCapacity;}
 
         public function setAddress($address){$this->address = $address;}
