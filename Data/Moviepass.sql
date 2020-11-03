@@ -14,11 +14,12 @@ CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
-C_name VARCHAR(30) NOT NULL,
-Capacity SMALLINT NOT NULL,
-C_address VARCHAR(20) NOT NULL,
-TicketPrice SMALLINT NOT NULL,
-CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema)
+CinemaName VARCHAR(30) NOT NULL,
+TotalCapacity SMALLINT NOT NULL,
+CinemaAddress VARCHAR(20) NOT NULL,
+CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema),
+CONSTRAINT unq_Cinema_name UNIQUE (CinemaName),
+CONSTRAINT unq_Cinema_address UNIQUE (CinemaAddress)
 );
 
 CREATE TABLE IF NOT EXISTS rooms(
