@@ -64,26 +64,27 @@
         }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password){
-
+            
             $exist= $this->userDAO->read($email);
-           if(!$exist)
-            {
+            
+            var_dump($exist);
 
-            $user = new User();
-            $user->setName($name);
-            $user->setLastName($lastName);
-            $user->setGender($gender);
-            $user->setDni($dni);
-            $user->setEmail($email);
-            $user->setPassword($password);
+            if(!$exist){
 
-            $this->userDAO->Add($user);            
-              
-            }else
-            {
-            $this->ShowLoginView();  
+                $user = new User();
+                $user->setName($name);
+                $user->setLastName($lastName);
+                $user->setGender($gender);
+                $user->setDni($dni);
+                $user->setEmail($email);
+                $user->setPassword($password);
+
+                $this->userDAO->Add($user);
+                echo $email;
             }
-
+            else{
+                $this->ShowLoginView();  
+            }
         }           
     }        
 ?>

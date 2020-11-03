@@ -19,17 +19,15 @@
                 "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni, UserAdmin) 
                 VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni , :UserAdmin);";
 
-
                 $parameters ["UserName"]= $user->getName();
                 $parameters ["UserEmail"]= $user->getEmail();
                 $parameters ["UserLastName"]= $user->getLastName();
                 $parameters ["UserPassword"]= $user->getPassword();
                 $parameters ["UserGender"]= $user->getGender();
                 $parameters ["UserDni"]= $user->getDni();
-                $parameters["UserAdmin"]= $user->getAdmin();
+                $parameters ["UserAdmin"]= $user->getAdmin();
 
-
-                var_dump($parameters);
+                //var_dump($parameters);
 
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
@@ -42,13 +40,11 @@
 
         public function read ($UserEmail)
         {
-            try
-            {
+            try{
                 
-            $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
+                $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
 
-            $parameters ["UserEmail"] = $UserEmail;
-            
+                $parameters ["UserEmail"] = $UserEmail;            
             
                 $this->connection= Connection::getInstance();
                 $result = $this->connection->Execute($sql, $parameters);
@@ -65,7 +61,6 @@
                     $user2->setPassword($value["UserPassword"]);
                     $user2->setGender($value["UserGender"]);
                     $user2->setDni($value["UserDni"]);
-
                 }
                 return $user2;
 
