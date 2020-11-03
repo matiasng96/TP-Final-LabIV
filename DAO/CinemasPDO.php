@@ -22,7 +22,6 @@ class CinemasPDO implements ICinemasDAO
 
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
-
         } 
         catch(Exception $ex){
             throw $ex;
@@ -58,7 +57,7 @@ class CinemasPDO implements ICinemasDAO
         try {
 
             $query = "UPDATE " . $this->tableName . 
-            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemaAddress = :C_address WHERE (CinemaName = :currentName);";
+            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemaAddress = :CinemaAddress WHERE (CinemaName = :currentName);";
 
             $parameters["CinemaName"] = $newCinema->getName();
             $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();
