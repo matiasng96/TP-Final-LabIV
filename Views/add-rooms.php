@@ -1,5 +1,11 @@
+<?php
+    require_once("nav.php");
+?>
+
 <div>
-    <form action="<?php echo FRONT_ROOT?> " method="POST">
+    <h1> Agregar una sala nueva</h1>
+
+    <form action="<?php echo FRONT_ROOT?>Room/Add" method="POST">
         <div>
             <label>Nombre de la sala</label>
             <input >

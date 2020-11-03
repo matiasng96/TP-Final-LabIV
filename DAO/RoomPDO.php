@@ -3,7 +3,7 @@
     use Models\Room as Room;
     use \Exception as Exception;
 
-    class RoomPDO {
+    class RoomPDO implements IRoomsPDO{
 
         private $connection;
         private $tableName = "rooms";
@@ -24,6 +24,15 @@
             } catch (Exception $ex) {
                 throw $ex;
             }
+        }
+
+        public function Delete(){
+
+        }
+
+        public function Edit(){
+
+
         }
     }
 ?>
