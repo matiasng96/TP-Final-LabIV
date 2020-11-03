@@ -16,8 +16,9 @@
             try
             {
                 $sql = "INSERT INTO ".$this->userTable.
-                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni) 
-                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni);";
+                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni, UserAdmin) 
+                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni , :UserAdmin);";
+
 
                 $parameters ["UserName"]= $user->getName();
                 $parameters ["UserEmail"]= $user->getEmail();
@@ -26,7 +27,10 @@
                 $parameters ["UserGender"]= $user->getGender();
                 $parameters ["UserDni"]= $user->getDni();
                 $parameters["UserAdmin"]= $user->getAdmin();
-                
+
+
+                var_dump($parameters);
+
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
             }

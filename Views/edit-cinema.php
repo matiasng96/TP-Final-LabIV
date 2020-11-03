@@ -27,11 +27,6 @@ require_once("nav.php");
         </div>
 
         <div class="col-auto">
-            <label for="ticketPrice"> Precio de entrada </label>
-            <input class="form-control" type="number" name="ticketPrice" placeholder="<?php echo $cinemaTicketPrice ?>" required>
-        </div>
-
-        <div class="col-auto">
             <button type="submit" class="btn btn-primary"> Confirmar </button>
         </div>
     </form>

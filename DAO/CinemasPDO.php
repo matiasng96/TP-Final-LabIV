@@ -14,7 +14,7 @@ class CinemasPDO implements ICinemasDAO
     public function Add(Cinema $cinema)
     {
         try {
-            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, Cinemaddress) VALUES (:CinemaName, :TotalCapacity, :Cinemaddress);";
+            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) VALUES (:CinemaName, :TotalCapacity, :CinemaAddress);";
 
             $parameters["CinemaName"] = $cinema->getName();
             $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
@@ -31,13 +31,13 @@ class CinemasPDO implements ICinemasDAO
 
 
     //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
-    public function SearchCinemaByName($C_Name)
+    public function SearchCinemaByName($CinemaName)
     {
         try {
 
             $query = "SELECT * FROM " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
 
-            $parameters['CinemaName'] = $C_Name;
+            $parameters['CinemaName'] = $CinemaName;
 
             $this->connection = Connection::GetInstance();
 
@@ -58,7 +58,7 @@ class CinemasPDO implements ICinemasDAO
         try {
 
             $query = "UPDATE " . $this->tableName . 
-            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemAddress = :Cinemaddress WHERE (CinemaName = :currentName);";
+            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemaAddress = :CinemaAddress WHERE (CinemaName = :currentName);";
 
             $parameters["CinemaName"] = $newCinema->getName();
             $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();

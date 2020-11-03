@@ -8,7 +8,7 @@ require_once('nav.php');
             <th scope="col">Nombre</th>
             <th scope="col">Capacidad</th>
             <th scope="col">Dirección</th>
-            <th scope="col">Precio de Entrada</th>
+
             <th scope="col">Acciones</th>
         </thead>
         <tbody>
@@ -21,15 +21,12 @@ require_once('nav.php');
                     </td>
 
                     <td>
-                        <?php echo $cinema->getCapacity() ?>
+                        <?php echo $cinema->getTotalCapacity() ?>
                     </td>
 
                     <td>
                         <?php echo $cinema->getAddress() ?>
                     </td>
-
-                    <td> <?php echo $cinema->getTicketPrice() ?></td>
-
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/Delete">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
@@ -38,9 +35,8 @@ require_once('nav.php');
 
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/ShowEditview">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                        <input type="hidden" name="cinemaCapacity" value="<?php echo $cinema->getCapacity() ?>">
+                        <input type="hidden" name="cinemaCapacity" value="<?php echo $cinema->getTotalCapacity() ?>">
                         <input type="hidden" name="cinemaAddress" value="<?php echo $cinema->getAddress() ?>">
-                        <input type="hidden" name="cinemaTicketPrice" value="<?php echo $cinema->getTicketPrice() ?>">
                         <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
