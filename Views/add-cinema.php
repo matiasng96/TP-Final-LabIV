@@ -23,12 +23,15 @@ require_once("nav.php");
                 <label for="address"> Direccion </label>
                 <input class="form-control" type="text" name="address" required>
             </div>
+<<<<<<< HEAD
 <!-- 
             <div class="col-auto">
                 <label for="ticketPrice"> Precio de entrada </label>
                 <input class="form-control" type="number" name="ticketPrice" required>
             </div> -->
 
+=======
+>>>>>>> 528344fbd9cc25287160ab11ce5542a0a5926250
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mt-2 mb-2"> Confirmar </button>
             </div>

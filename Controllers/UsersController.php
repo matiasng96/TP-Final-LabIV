@@ -39,6 +39,7 @@
             $user= $this->userDAO->read($email);
             //FUNCION READ DEL DAOUSER (EMAIL) 
             
+            
             if($user)
             {
                 if($user->getPassword() == $password)
@@ -65,9 +66,7 @@
         public function SignUp($name, $lastName, $gender, $dni, $email, $password){
 
             $exist= $this->userDAO->read($email);
-            $messege = "MAIL YA ASOCIADO A OTRO USUARIO";
-
-            if(!$exist)
+           if(!$exist)
             {
 
             $user = new User();
@@ -79,9 +78,10 @@
             $user->setPassword($password);
 
             $this->userDAO->Add($user);            
-            $this->ShowLoginView();    
-            }else {
-            $this->ShowSignUpView($messege);
+              
+            }else
+            {
+            $this->ShowLoginView();  
             }
 
         }           

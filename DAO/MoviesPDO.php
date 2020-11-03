@@ -16,7 +16,7 @@
         {
             try{
             $sql= "INSERT INTO ". $this->tableName. "(Id_movie, Poster_path, Title) 
-                                                    VALUE (:id, :poster_path, :title);";
+                                                      VALUE (:id, :poster_path, :title);";
                                                     
             $parameters["id"]= $movie->getId(); 
             $parameter["genero"]= 
@@ -32,7 +32,20 @@
             }
         }
 
-        
+        public function AddGenerForMovie(Movie $movie)
+        {
+            
+            try {
+                $sql= "SELECT * ";
+            } catch (Exception $ex)
+            {
+               
+            }
+
+
+
+        }
+
 
 
 
@@ -88,7 +101,7 @@
                 $movie = new Movie();
                 $movie->setPoster_path($data['poster_path']);
                 $movie->setId($data['id']);
-               // $movie->setGenre_ids($data['genre_ids']);
+                $movie->setGenre_ids($data['genre_ids']);
                 $movie->setTitle($data['title']);
             
                 array_push($moviesArray, $movie);

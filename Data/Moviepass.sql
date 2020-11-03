@@ -68,4 +68,5 @@ UserAdmin BIT NOT NULL,
 CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
 );
 
+select * from users;
 drop database Moviepass;

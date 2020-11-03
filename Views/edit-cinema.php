@@ -22,7 +22,11 @@ require_once("nav.php");
 
         <div class="col-auto">
             <label for="address"> Direccion </label>
+<<<<<<< HEAD
             <input class="form-control" type="text" name="address" value="<?php echo $cinemaAddress ?>" required>
+=======
+            <input class="form-control" type="text" name="address" placeholder="<?php echo $cinemaAddress ?>" required>
+>>>>>>> 528344fbd9cc25287160ab11ce5542a0a5926250
         </div>
 
         <div class="col-auto">
