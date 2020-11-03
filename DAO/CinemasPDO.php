@@ -14,16 +14,17 @@ class CinemasPDO implements ICinemasDAO
     public function Add(Cinema $cinema)
     {
         try {
-            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) VALUES (:CinemaName, :TotalCapacity, :CinemaAdress);";
+            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) VALUES (:CinemaName, :TotalCapacity, :CinemaAddress);";
 
             $parameters["CinemaName"] = $cinema->getName();
-            $parameters["Capacity"] = $cinema->getTotalCapacity();
+            $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
             $parameters["CinemaAddress"] = $cinema->getAddress();
             
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+
         } catch (Exception $ex) {
             throw $ex;
         }

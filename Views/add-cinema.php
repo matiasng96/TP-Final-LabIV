@@ -23,11 +23,11 @@ require_once("nav.php");
                 <label for="address"> Direccion </label>
                 <input class="form-control" type="text" name="address" required>
             </div>
-
+<!-- 
             <div class="col-auto">
                 <label for="ticketPrice"> Precio de entrada </label>
                 <input class="form-control" type="number" name="ticketPrice" required>
-            </div>
+            </div> -->
 
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mt-2 mb-2"> Confirmar </button>
