@@ -48,7 +48,7 @@ require_once('nav.php');
                         <form method="post" action="<?php echo FRONT_ROOT ?>Cinemas/ShowEditview">
                         <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
                         <input type="hidden" name="cinemaCapacity" value="<?php echo $cinema->getTotalCapacity() ?>">
-                        <input type="hidden" name="cinemaAddress" value="<?php echo $cinema->getAddress() ?>">                   
+                        <input type="hidden" name="cinemaAddress" value="<?php echo $cinema->getAddress() ?>">
                         <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>

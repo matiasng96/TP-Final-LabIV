@@ -18,12 +18,13 @@ class CinemasPDO implements ICinemasDAO
 
             $parameters["CinemaName"] = $cinema->getName();
             $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
-            $parameters["CinemaAddress"] = $cinema->getAddress();          
+            $parameters["CinemaAddress"] = $cinema->getAddress();
+            
 
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
-        } 
-        catch(Exception $ex){
+
+        } catch (Exception $ex) {
             throw $ex;
         }
     }

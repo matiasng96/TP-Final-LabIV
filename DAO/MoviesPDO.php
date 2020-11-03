@@ -9,6 +9,8 @@
     class MoviesPDO implements IMoviesDAO
     {
         private $moviesList = array();
+        private $connection;
+        private $tableName= "movies";
 
         public function Add(Movie $movie)
         {
@@ -29,6 +31,9 @@
                 throw $ex;
             }
         }
+
+        
+
 
 
         public function GetAll()
@@ -83,7 +88,7 @@
                 $movie = new Movie();
                 $movie->setPoster_path($data['poster_path']);
                 $movie->setId($data['id']);
-                //$movie->setGenre_ids($data['genre_ids']);
+               // $movie->setGenre_ids($data['genre_ids']);
                 $movie->setTitle($data['title']);
             
                 array_push($moviesArray, $movie);

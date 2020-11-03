@@ -25,6 +25,7 @@
                 $parameters ["UserPassword"]= $user->getPassword();
                 $parameters ["UserGender"]= $user->getGender();
                 $parameters ["UserDni"]= $user->getDni();
+                $parameters["UserAdmin"]= $user->getAdmin();
                 
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
@@ -37,18 +38,15 @@
 
         public function read ($UserEmail)
         {
-            try {
+            try
+            {
+                
+            $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
 
+            $parameters ["UserEmail"] = $UserEmail;
             
-            $sql= "SELECT * FROM ". $this->userTable ." WHERE (UserEmail = :UserEmail);";
-           
-            
-
-            $parameters["UserEmail"] = $UserEmail;
-            var_dump($parameters["UserEmail"]);
             
                 $this->connection= Connection::getInstance();
-
                 $result = $this->connection->Execute($sql, $parameters);
                
                 
