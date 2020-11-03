@@ -1,32 +1,17 @@
 <div>
-    <form action="" method="POST">
+    <form action="<?php echo FRONT_ROOT?> BuyTickets/checkSessionStart" method="POST">
         <div>
-            <label for="cinema"> Select Cineme</label>
-            <input name="cinema" id="cinema" type="">
+            <label for="cinema"> Elige tu Cine </label>
+            <input name="cinema" id="cinema" type=" " required>
         </div>
 
         <div>
-            <label for="cantidad"> Quantity tickets</label>
-            <input name="cantidad" id="cantidad" type="number">
+            <label for="cantidad"> Cantidad de Entradas </label>
+            <input name="cantidad" id="cantidad" type="number" required>
         </div>
 
         <div>
-            <label for=""></label>
-            <input name="" id="" type="">
-        </div>
-
-        <div>
-            <label for=""></label>
-            <input name="" id="" type="">
-        </div>
-
-        <div>
-            <label for=""></label>
-            <input name="" id="" type="">
-        </div>
-
-        <div>
-            <button type="submit"> Confirm </button>
+            <button type="submit"> Confirmar </button>
         </div>
     </form>
 </div>

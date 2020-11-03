@@ -31,13 +31,13 @@ class CinemasPDO implements ICinemasDAO
 
 
     //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
-    public function SearchCinemaByName($CinemasName)
+    public function SearchCinemaByName($CinemaName)
     {
         try {
 
             $query = "SELECT * FROM " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
 
-            $parameters['CinemaName'] = $CinemasName;
+            $parameters['CinemaName'] = $CinemaName;
 
             $this->connection = Connection::GetInstance();
 

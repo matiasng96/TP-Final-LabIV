@@ -76,4 +76,25 @@ class CinemasController
         $this->ShowListView();
 
     }
+
+    public function ShowBuyTicketView(){
+                
+        require_once(VIEWS_PATH."BuyTickets.php");
+    }
+
+    public function setSession(){
+
+        $_SESSION[""];
+        var_dump($_SESSION);
+    }
+
+    public function checkSessionStart($cinema, $tickets){
+
+         $this->setSession();
+    }
 }
+?>
+
+
+
+     
