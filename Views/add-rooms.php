@@ -4,7 +4,7 @@
 
 <div class="container row justify-content-center">
     <div class="form-group mt-4 border borderForm">   
-        <form action="<?php echo FRONT_ROOT?>Room/Add" method="POST">        
+        <form action="<?php echo FRONT_ROOT?>Rooms/Add" method="POST">        
             <div class="col-auto">
                 <h2> Agregar una sala nueva</h2>
             </div>
@@ -16,7 +16,7 @@
 
             <div class="col-auto">
                 <label for="price">Precio de la entrada</label>
-                <input class="form-control" type="number" name="price" min=0 id="price" required>
+                <input class="form-control" type="number" name="price" min=0 id="price" placeholder=" $ " required>
             </div>
             
             <div class="col-auto">
