@@ -5,7 +5,7 @@
     interface IRoomsPDO{
             
         function Add(Room $newRoom);
-        function Delete();
-        function Edit();
+        function Delete($room);
+        function Edit($currentName, Room $newRoom);
     }
 ?>
