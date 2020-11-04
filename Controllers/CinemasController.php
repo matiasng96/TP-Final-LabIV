@@ -29,7 +29,6 @@ class CinemasController
     public function ShowListView()
     {
         $cinemasList = $this->cinemasDAO->GetAll();
-
         require_once(VIEWS_PATH."cinemas-list.php");
     }
 
@@ -39,14 +38,14 @@ class CinemasController
  
 
         if(!$exists){
-        $cinema = new Cinema();
-        $cinema->setName($name);
-        $cinema->setTotalCapacity($TotalCapacity);
-        $cinema->setAddress($address);
 
-        $this->cinemasDAO->Add($cinema);
+            $cinema = new Cinema();
+            $cinema->setName($name);
+            $cinema->setTotalCapacity($TotalCapacity);
+            $cinema->setAddress($address);
 
-        $this->ShowAddView();
+            $this->cinemasDAO->Add($cinema);
+            $this->ShowAddView();
         }
         else{
             echo "Ya existe un cine con ese nombre.";
@@ -70,11 +69,8 @@ class CinemasController
     public function Edit($currentName,$name, $capacity, $address){
 
         $newCinema = new Cinema($name,$capacity,$address);
-
         $this->cinemasDAO->Edit($currentName,$newCinema);
-
         $this->ShowListView();
-
     }
 
     public function ShowBuyTicketView(){
@@ -94,7 +90,3 @@ class CinemasController
     }
 }
 ?>
-
-
-
-     
