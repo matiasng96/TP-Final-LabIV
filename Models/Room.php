@@ -7,6 +7,7 @@
         private $name;
         private $ticketPrice;
         private $capacity;
+        private $cinemaName;
 
         public function __construct($name='', $ticketPrice='', $capacity=''){
           
@@ -23,5 +24,8 @@
 
         public function getCapacity(){return $this->capacity;}
         public function setCapacity($capacity){$this->capacity = $capacity;}
+
+        public function getCinemaName(){return $this->cinemaName;}
+        public function setCinemaName($cinemaName){$this->cinemaName = $cinemaName;}
     }
 ?>

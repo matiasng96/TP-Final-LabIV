@@ -1,6 +1,8 @@
 <?php
     namespace DAO;
     use Models\Room as Room;
+    use Models\Cinema as Cinema;
+    use DAO\CinemasPDO as CinemaPDO;
     use DAO\Connection as Connection;
     use \Exception as Exception;
 
@@ -12,17 +14,17 @@
         public function Add(Room $room)
         {
             try {
-                $query = "INSERT INTO " . $this->tableName . " (RoomName, TicketPrice, Capacity) VALUES (:RoomName, :TicketPrice, :Capacity);";
+
+                $query = "INSERT INTO ".$this->tableName." (RoomName, TicketPrice, Capacity) VALUES (:RoomName, :TicketPrice, :Capacity);";
 
                 $parameters["RoomName"] = $room->getName();
                 $parameters["TicketPrice"] = $room->getTicketPrice();
                 $parameters["Capacity"] = $room->getCapacity();
                 
                 $this->connection = Connection::GetInstance();
-
                 $this->connection->ExecuteNonQuery($query, $parameters);
-
-            } catch (Exception $ex) {
+            } 
+            catch(Exception $ex) {
                 throw $ex;
             }
         }
@@ -36,7 +38,8 @@
                 $this->connection = Connection::GetInstance();
                 $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
                 return $deletedCount;
-            }catch(Exception $ex){
+            }
+            catch(Exception $ex){
 
                 throw $ex;
             }
@@ -73,12 +76,16 @@
                 $this->connection = Connection::GetInstance();
                 $roomsResults = $this->connection->Execute($query);
 
+                $cinemaPDO = new CinemasPDO();
+
                 foreach($roomsResults as $row){
 
+                    $cinema = new Cinema();
                     $room = new Room();
                     $room->setName($row['RoomName']);
                     $room->setTicketPrice($row['TicketPrice']);
                     $room->setCapacity($row['Capacity']);
+                    $room->setCinemaName($cinemaPDO->getOneCinema($row["CinemaName"]));
 
                     array_push($roomList, $room);
                 }
