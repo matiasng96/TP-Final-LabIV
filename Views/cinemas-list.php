@@ -13,7 +13,7 @@ require_once('nav.php');
         </thead>
         <tbody>
             <?php
-            foreach ($cinemasList as $cinema) {
+                foreach ($cinemasList as $cinema) {
             ?>
                 <tr>
                     <td><?php echo $cinema->getName(); ?></td>
@@ -75,13 +75,13 @@ require_once('nav.php');
 
                         <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/ShowAddView">
                             <input type="hidden" name="cinemaName" value="<?php echo $cinema->getName() ?>">
-                            <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn"> Agregar Salas </button>
+                            <button class="btn btn-danger btn-block mt-2" type="submit" name="deleteBtn"> Agregar salas </button>
                         </form>
                     </td>
 
                 </tr>
             <?php
-            }
+                }   
             ?>
             </tr>
         </tbody>
