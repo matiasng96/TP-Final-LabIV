@@ -6,7 +6,7 @@ require_once('nav.php');
     <table class="table table-bordered ">
         <thead>
             <th scope="col">Nombre</th>
-            <th scope="col">Capacidad</th>
+            <th scope="col">Capacidad Total</th>
             <th scope="col">Dirección</th>
             <th scope="col">Salas</th>
             <th scope="col">Acciones</th>
