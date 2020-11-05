@@ -1,9 +1,8 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
-
+DROP DATABASE moviepass;
 SELECT * FROM movies;
-
-
+SELECT * FROM genres;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,

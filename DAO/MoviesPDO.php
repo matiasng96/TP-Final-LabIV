@@ -11,6 +11,7 @@ class MoviesPDO implements IMoviesDAO
     private $moviesList = array();
     private $connection;
     private $tableName = "movies";
+    private $tableGxM = "genresXmovies";
 
     public function Add(Movie $movie)
     {
@@ -100,6 +101,7 @@ class MoviesPDO implements IMoviesDAO
             } else {
                 $movie->setRuntime(120);
             }
+            $movie->setGenres_ids($data['genre_ids']);
             $movie->setLanguage($data['original_language']);
             $movie->setTitle($data['title']);
 

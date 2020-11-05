@@ -7,6 +7,7 @@
                 private $id;
                 private $poster_path; //image url
                 private $runtime;
+                private $genres_ids;
                 private $language;
                 private $title;  
                
@@ -25,5 +26,8 @@
 
                 public function getLanguage(){return $this->language;}
                 public function setLanguage($language) {$this->language = $language;}
+
+                public function getGenres_ids(){return $this->genres_ids;}
+                public function setGenres_ids($genres_ids){$this->genres_ids = $genres_ids;}
         }
 ?>

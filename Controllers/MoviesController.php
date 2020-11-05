@@ -28,7 +28,7 @@ class MoviesController
 
     public function ShowListView()
     {
-        $this->Add();
+        //$this->Add();
         $moviesList = $this->moviesDAO->GetAll();
 
         require_once(VIEWS_PATH."movies-list.php");
