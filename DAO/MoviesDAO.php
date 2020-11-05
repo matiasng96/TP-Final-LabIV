@@ -51,7 +51,6 @@
                 $movie = new Movie();
                 $movie->setPoster_path($data['poster_path']);
                 $movie->setId($data['id']);
-                $movie->setGenre_ids($data['genre_ids']);
                 $movie->setTitle($data['title']);
             
                 array_push($moviesArray, $movie);
@@ -104,7 +103,6 @@
                     $movie = new Movie();
                     $movie->setPoster_path($valuesArray["poster_path"]);
                     $movie->setId($valuesArray["id"]);
-                    $movie->setGenre_ids($valuesArray["genre_ids"]);
                     $movie->setTitle($valuesArray["title"]);
                 
                     array_push($this->moviesList, $movie);

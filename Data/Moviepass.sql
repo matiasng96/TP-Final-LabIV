@@ -1,6 +1,9 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
 
+SELECT * FROM movies;
+
+
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
@@ -24,6 +27,8 @@ CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  
 Poster_path VARCHAR(200)  NOT NULL,
+Runtime SMALLINT NOT NULL,
+Original_language VARCHAR(10),
 Title VARCHAR(30) NOT NULL,
 CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie)
 );

@@ -6,9 +6,9 @@ require_once('nav.php');
      <h2 class="display-4">Listado de películas</h2>
      <table class="table">
           <thead>
-               <th>ID</th>
-               <th>Titulo</th>
-               <th>ID Géneros</th>
+               <th>Título</th>
+               <th>Idioma</th>
+               <th>Duración</th>
                <th>Portada</th>
           </thead>
           <tbody>
@@ -17,21 +17,15 @@ require_once('nav.php');
                ?>
                     <tr>
                          <td>
-                              <?php echo $movie->getId() ?>
+                              <?php echo $movie->getTitle() ?>
                          </td>
 
                          <td>
-                              <?php echo $movie->getTitle() ?>
+                              <?php echo $movie->getLanguage() ?>
                          </td>
                     
                          <td>
-                              <?php 
-                              /*
-                              foreach($movie->getGenre_ids() as $genre){
-                                   echo $genre;
-                                   
-                              } */
-                               ?>
+                              <?php echo $movie->getRuntime() ?>
                          </td>
 
                          <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>

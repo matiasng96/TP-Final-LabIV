@@ -8,7 +8,6 @@ use DAO\MoviesPDO as MoviesDAO;
 
 class MoviesController
 {
-
     private $moviesDAO;
 
     public function __construct()
@@ -17,13 +16,6 @@ class MoviesController
         $this->moviesDAO = new MoviesDAO;
     }
 
-    /*public function ShowListView()
-    {
-
-        $moviesList = $this->moviesDAO->APItoMoviesArray();
-        $this->moviesDAO->SaveData($moviesList);
-        require_once(VIEWS_PATH . "movies-list.php");
-    }*/
 
     public function Add ()
     {
@@ -36,12 +28,10 @@ class MoviesController
 
     public function ShowListView()
     {
+        $this->Add();
         $moviesList = $this->moviesDAO->GetAll();
-        if(!$moviesList){
-             $this->Add();
-        }else {
-            require_once(VIEWS_PATH. "movies-list.php");
-        } 
+
+        require_once(VIEWS_PATH."movies-list.php");
     }
 
 }
