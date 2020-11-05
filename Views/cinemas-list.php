@@ -9,7 +9,7 @@ require_once('nav.php');
             <th scope="col">Capacidad Total</th>
             <th scope="col">Dirección</th>
             <th scope="col">Salas</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Opciones</th>
         </thead>
         <tbody>
             <?php
