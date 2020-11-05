@@ -1,92 +1,92 @@
 <?php 
-     namespace Controllers;
+    namespace Controllers;
 
-/*Si usamos este namespace accedemos al DAO con JSON. */
-//use DAO\CinemasDAO as CinemasDAO;
-/*Si usamos este namespace accedemos al DAO con PDO. */
-use DAO\CinemasPDO as CinemasDAO;   
-use Models\Cinema;
+    /*Si usamos este namespace accedemos al DAO con JSON. */
+    //use DAO\CinemasDAO as CinemasDAO;
+    /*Si usamos este namespace accedemos al DAO con PDO. */
+    use DAO\CinemasPDO as CinemasDAO;   
+    use Models\Cinema;
 
-class CinemasController
-{
-    private $cinemasDAO;
-
-    public function __construct()
+    class CinemasController
     {
-        $this->cinemasDAO = new CinemasDAO;
-    }
- 
-    public function ShowAddView()
-    {
-        require_once(VIEWS_PATH."add-cinema.php");
-    }
+        private $cinemasDAO;
 
-    public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress)
-    {
-        require_once(VIEWS_PATH."edit-cinema.php");
-    }
-
-    public function ShowListView()
-    {
-        $cinemasList = $this->cinemasDAO->GetAll();
-        require_once(VIEWS_PATH."cinemas-list.php");
-    }
-
-    public function Add($name, $TotalCapacity, $address)
-    {
-        $exists = $this->cinemasDAO->SearchCinemaByName($name);
- 
-
-        if(!$exists){
-
-            $cinema = new Cinema();
-            $cinema->setName($name);
-            $cinema->setTotalCapacity($TotalCapacity);
-            $cinema->setAddress($address);
-
-            $this->cinemasDAO->Add($cinema);
-            $this->ShowAddView();
+        public function __construct()
+        {
+            $this->cinemasDAO = new CinemasDAO;
         }
-        else{
-            echo "Ya existe un cine con ese nombre.";
-            $this->ShowAddView();
+    
+        public function ShowAddView()
+        {
+            require_once(VIEWS_PATH."add-cinema.php");
         }
-    }
 
-    public function Delete($cinemaName){
+        public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress)
+        {
+            require_once(VIEWS_PATH."edit-cinema.php");
+        }
 
-        $deleted = $this->cinemasDAO->Delete($cinemaName);
+        public function ShowListView()
+        {
+            $cinemasList = $this->cinemasDAO->GetAll();
+            require_once(VIEWS_PATH."cinemas-list.php");
+        }
 
-        if($deleted > 0){
+        public function Add($name, $TotalCapacity, $address)
+        {
+            $exists = $this->cinemasDAO->SearchCinemaByName($name);
+            
+            if(!$exists){
 
+                $cinema = new Cinema();
+                $cinema->setName($name);
+                $cinema->setTotalCapacity($TotalCapacity);
+                $cinema->setAddress($address);
+
+                $this->cinemasDAO->Add($cinema);
+                $this->ShowAddView();
+            }
+            else{
+
+                echo "<script> alert('El cine que intenta registrar con el nombre $name fue registrado anteriormente, ya existe. Le sugerimos registrar un nuevo cine.');</script>";
+                $this->ShowAddView();
+            }
+        }
+
+        public function Delete($cinemaName){
+
+            $deleted = $this->cinemasDAO->Delete($cinemaName);
+
+            if($deleted > 0){
+
+                $this->ShowListView();
+
+            }else{
+                echo "<script> alert('Ha ocurrido un error inesperado al intentar Eliminar dicho Cine, por favor intente nuevamente.');</script>";
+            }
+        }
+
+        public function Edit($currentName,$name, $capacity, $address){
+
+            $newCinema = new Cinema($name,$capacity,$address);
+            $this->cinemasDAO->Edit($currentName,$newCinema);
             $this->ShowListView();
+        }
 
-        }else{
-            echo "Error al Eliminar el Cine";
+        public function ShowBuyTicketView(){
+                    
+            require_once(VIEWS_PATH."BuyTickets.php");
+        }
+
+        public function setSession(){
+
+            $_SESSION[""];
+            var_dump($_SESSION);
+        }
+
+        public function checkSessionStart($cinema, $tickets){
+
+            $this->setSession();
         }
     }
-
-    public function Edit($currentName,$name, $capacity, $address){
-
-        $newCinema = new Cinema($name,$capacity,$address);
-        $this->cinemasDAO->Edit($currentName,$newCinema);
-        $this->ShowListView();
-    }
-
-    public function ShowBuyTicketView(){
-                
-        require_once(VIEWS_PATH."BuyTickets.php");
-    }
-
-    public function setSession(){
-
-        $_SESSION[""];
-        var_dump($_SESSION);
-    }
-
-    public function checkSessionStart($cinema, $tickets){
-
-         $this->setSession();
-    }
-}
 ?>
