@@ -11,18 +11,12 @@
     {
         private $cinemasDAO;
 
-        public function __construct()
-        {
-            $this->cinemasDAO = new CinemasDAO;
-        }
+        public function __construct(){$this->cinemasDAO = new CinemasDAO;}
     
-        public function ShowAddView()
-        {
-            require_once(VIEWS_PATH."add-cinema.php");
-        }
+        public function ShowAddView(){require_once(VIEWS_PATH."add-cinema.php");}
 
-        public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress)
-        {
+        public function ShowEditView($cinemaName, $cinemaCapacity, $cinemaAddress){
+            
             require_once(VIEWS_PATH."edit-cinema.php");
         }
 
@@ -38,11 +32,7 @@
             
             if(!$exists){
 
-                $cinema = new Cinema();
-                $cinema->setName($name);
-                $cinema->setTotalCapacity($TotalCapacity);
-                $cinema->setAddress($address);
-
+                $cinema = new Cinema($name, $TotalCapacity, $address);
                 $this->cinemasDAO->Add($cinema);
                 $this->ShowAddView();
             }
@@ -58,9 +48,7 @@
             $deleted = $this->cinemasDAO->Delete($cinemaName);
 
             if($deleted > 0){
-
                 $this->ShowListView();
-
             }else{
                 echo "<script> alert('Ha ocurrido un error inesperado al intentar Eliminar dicho Cine, por favor intente nuevamente.');</script>";
             }
