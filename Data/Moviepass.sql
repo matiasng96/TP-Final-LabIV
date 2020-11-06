@@ -6,7 +6,7 @@ Id_cinema INT NOT NULL AUTO_INCREMENT,
 CinemaName VARCHAR(30) NOT NULL,
 TotalCapacity SMALLINT NOT NULL,
 CinemaAddress VARCHAR(20) NOT NULL,
-CONSTRAINT `PK-Id_cinema` PRIMARY KEY (Id_cinema),
+CONSTRAINT pk_IdCinema PRIMARY KEY (Id_cinema),
 CONSTRAINT unq_Cinema_name UNIQUE (CinemaName),
 CONSTRAINT unq_Cinema_address UNIQUE (CinemaAddress)
 );
@@ -16,8 +16,8 @@ CinemaName VARCHAR(20) NOT NULL,
 RoomName VARCHAR(20) NOT NULL,
 TicketPrice FLOAT NOT NULL,
 Capacity INT NOT NULL,
-CONSTRAINT `PK-roomName` PRIMARY KEY(RoomName),
-CONSTRAINT `FK-cinemaName` FOREIGN KEY (CinemaName) REFERENCES cinemas (CinemaName)
+CONSTRAINT pk_roomName PRIMARY KEY(RoomName),
+CONSTRAINT fk_cinemaName FOREIGN KEY (CinemaName) REFERENCES cinemas (CinemaName)
 );
 
 CREATE TABLE IF NOT EXISTS movies(
@@ -66,5 +66,6 @@ CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
 );
 
 select * from rooms;
+select * from cinemas;
 drop table rooms;
 drop database Moviepass;
