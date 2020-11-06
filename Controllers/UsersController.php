@@ -3,16 +3,21 @@
     //use DAO\UserDAO as UserDao;
 
     use Models\User as User;
+    use Models\Rol as Rol;
     use DAO\UsersPDO as UserDAO;
+    use DAO\UserRolePDO as RolePDO;
+    
 
    class UsersController{
        
         private $userDAO;
+        private $userRole;
         private $messege;
 
         public function __construct()
         {
             $this->userDAO = new UserDAO();
+            $this->userRole = new RolePDO();
         }
 
         public function ShowSignUpView( $messege = '')
@@ -36,9 +41,7 @@
 
         public function logIn($email, $password)
         {
-            $user= $this->userDAO->read($email);
-            //FUNCION READ DEL DAOUSER (EMAIL) 
-            
+            $user= $this->userDAO->read($email);            
             
             if($user)
             {
@@ -63,25 +66,39 @@
             require_once(VIEWS_PATH."login.php");
         }
 
-        public function SignUp($name, $lastName, $gender, $dni, $email, $password){
+        public function SignUp($name, $lastName, $gender, $dni, $email, $password)
+        {
 
             $exist= $this->userDAO->read($email);
-           if(!$exist)
+            if(!$exist)
             {
-          
+            $roleArray= $this->userRole->retrieveAll();//TRAIGO EL ARREGLO DE ROLES, NECESARIO PARA AGREGAR ROL AL USUARIO
+            $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)
+
             $user = new User();
+            $user->setEmail($email);
+            $user->setPassword($password);
             $user->setName($name);
             $user->setLastName($lastName);
             $user->setGender($gender);
             $user->setDni($dni);
-            $user->setEmail($email);
-            $user->setPassword($password);
-            $this->userDAO->Add($user);            
-            $this->ShowLogInView();  
+
+            if($flag==0)
+            {
+                $user->setUserRole($roleArray[0]);
             }else
+            {
+                $user->setUserRole($roleArray[1]);
+            }
+
+            $this->userDAO->Add($user);
+
+            $this->ShowLogInView();  
+           }else
             {
             $this->ShowSignUpView();
             }
+        
 
         }           
     }        

@@ -4,7 +4,7 @@
     use DAO\IUserDAO as IuserDAO;
     use Models\User as User;
     use DAO\Connection as Connection;
-    use \Exception as Exception;
+    use \PDOException as PDOException;
 
     class UsersPDO implements IuserDAO
     {
@@ -13,12 +13,12 @@
         
         public function Add (User $user)
         {
+        
             try
             {
                 $sql = "INSERT INTO ".$this->userTable.
-                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni, UserAdmin) 
-                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni , :UserAdmin);";
-
+                "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni, Id_userRole) 
+                VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni , :Id_userRole);";
 
                 $parameters ["UserName"]= $user->getName();
                 $parameters ["UserEmail"]= $user->getEmail();
@@ -26,15 +26,17 @@
                 $parameters ["UserPassword"]= $user->getPassword();
                 $parameters ["UserGender"]= $user->getGender();
                 $parameters ["UserDni"]= $user->getDni();
-                $parameters["UserAdmin"]= $user->getAdmin();
+                $parameters["Id_userRole"]= $user->getUserRoleId();
 
 
+                /*echo('<pre>');
                 var_dump($parameters);
-
+                echo('</pre>');
+                */
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
             }
-            catch(Exception $ex){
+            catch(PDOException $ex){
 
                 throw $ex;
             }        
@@ -69,33 +71,31 @@
                 }
                 return $user2;
 
-            }catch(Exception $ex){
+            }catch(PDOException $ex){
                                 
                 throw $ex;
             }
-            /*
-            if(!empty($result))
-            {
-                return $this->mapear($result);
-            }
-            else
-            {
-                return false;
-            }
-            */
         }
-       /* 
-        protected function mapear($value)
+
+    ///FUNCION QUE RETORNA LA LISTA DE USERS, NECESARIA PARA AGREGAR ROL A LOS USUARIOS
+        public function checkUserList()
         {
-            $value= is_array($value) ? $value :[];
+            try
+            {
+                $query = "SELECT COUNT(*) as quantity FROM " . $this->userTable ;
+
+                $this->connection = Connection::getInstance();
+
+                $resultSet = $this->connection->execute($query);
+
+            }
+            catch (PDOException $e)
+            {
+            throw $e;
+            }
         
-            $resp= array_map(function($p){
-                return new User ($p ["email"],$p ["password"], $p ["name"], $p ["lastName"], $p ["gener"], $p ["dni"]
-            );
-            }, $value);
-            return count ($resp) > 1 ? $resp : $resp['0'];
-        }
-        */
+            return $resultSet[0]['quantity'];
+        } 
 
         public function getAll(){}
     }

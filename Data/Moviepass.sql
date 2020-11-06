@@ -52,6 +52,20 @@ UserLastName VARCHAR(30) NOT NULL,
 UserPassword VARCHAR(30) NOT NULL,
 UserGender VARCHAR(40) NOT NULL,
 UserDni BIGINT NOT NULL,
-UserAdmin BIT NOT NULL,
-CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId)
+Id_userRole BIT NOT NULL,
+CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId),
+CONSTRAINT `unq_email` UNIQUE(UserEmail),
+CONSTRAINT `fk_users_roles` FOREIGN KEY(id_userRole) REFERENCES userRole(id_role)
 );
+
+CREATE TABLE IF NOT EXISTS userRole (
+Id_role INT NOT NULL auto_increment,
+RoleDescrip VARCHAR (40) NOT NULL,
+CONSTRAINT `PK-Id_role`PRIMARY KEY (Id_role),
+CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
+);
+
+
+
+drop table users;
+select * from users;
