@@ -22,6 +22,21 @@ CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
 );
 
 
+SELECT * FROM movies;
+SELECT * FROM genresXmovies;
+SELECT * FROM genres;
+
+
+SELECT m.Title, g.GenreName, m.Runtime, m.Original_language , m.Poster_path
+FROM movies m
+INNER JOIN genresXmovies gXm 
+ON (m.Id_movie = gXm.Id_movie)
+INNER JOIN genres g
+ON (g.Id_genre = gXm.Id_genre)
+
+GROUP BY(m.Title);
+
+INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
 
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  

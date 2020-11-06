@@ -4,7 +4,7 @@ namespace DAO;
 
 use DAO\IMoviesDAO as IMoviesDAO;
 use Models\Movie as Movie;
-use \Exception as Exception;
+use \PDOException as Exception;
 
 class MoviesPDO implements IMoviesDAO
 {
@@ -25,6 +25,24 @@ class MoviesPDO implements IMoviesDAO
             $parameters["Original_language"] = $movie->getLanguage();
             $parameters["Title"] = $movie->getTitle();
 
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($sql, $parameters);
+
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
+
+    public function AddGenresXmovie($IdMovie, $IdGenre){
+        try {
+            $sql = "INSERT INTO " . $this->tableGxM . "(Id_movie, Id_genre) 
+                                                      VALUE (:Id_movie, :Id_genre);";
+
+            $parameters["Id_movie"] = $IdMovie;
+            $parameters["Id_genre"] = $IdGenre;
+        
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($sql, $parameters);
