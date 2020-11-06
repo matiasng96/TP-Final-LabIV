@@ -29,6 +29,7 @@ require_once('nav.php');
                                         <th scope="col"> Nombre </th>            
                                         <th scope="col"> Capacidad </th>
                                         <th scope="col"> Precio de la Sala </th>
+                                        <th scope="col"> Opciones </th>
                                     </thead>
 
                                     <?php
@@ -54,10 +55,15 @@ require_once('nav.php');
                                             </td>
                                         </tr>
                                     <?php
-                                        }
+                                       }
                                     ?>
                                 </table>
-                        <?php }else{echo "Este cine no contiene salas.";}?>
+                        <?php 
+                            }
+                            else{
+                                echo "Este cine no contiene salas.";   
+                            }
+                        ?>
                     </td>
 
                     <td>
