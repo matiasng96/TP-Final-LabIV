@@ -60,7 +60,7 @@
 
         public function ShowLogInViews(){
 
-            require_once(VIEWS_PATH."registry.php");
+            require_once(VIEWS_PATH."login.php");
         }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password){
@@ -68,7 +68,7 @@
             $exist= $this->userDAO->read($email);
            if(!$exist)
             {
-
+          
             $user = new User();
             $user->setName($name);
             $user->setLastName($lastName);
@@ -76,12 +76,11 @@
             $user->setDni($dni);
             $user->setEmail($email);
             $user->setPassword($password);
-
             $this->userDAO->Add($user);            
-              
+            $this->ShowLogInView();  
             }else
             {
-            $this->ShowLoginView();  
+            $this->ShowSignUpView();
             }
 
         }           
