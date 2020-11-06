@@ -15,17 +15,16 @@
             require_once(VIEWS_PATH."rooms-list.php");
         }
 
-        public function ShowAddView(){require_once(VIEWS_PATH."add-rooms.php");}
+        public function ShowAddView($cinemaName){
 
-        public function Add($name, $price, $capacity){
+            require_once(VIEWS_PATH."add-rooms.php");
+        }
 
-            $room = new Room();
-            $room->setName($name);
-            $room->setTicketPrice($price);
-            $room->setCapacity($capacity);
-            
+        public function Add($cinemaName, $name, $price, $capacity){
+
+            $room = new Room($cinemaName, $name, $price, $capacity);            
             $this->rooomPDO->Add($room);
-            $this->ShowAddView();
+            $this->ShowListView();
         }
     }
 ?>
