@@ -16,7 +16,7 @@
             $userRole->setId($row["Id_role"]);
             return $userRole;
         }
-    
+    ///FUNCION QUE RETORNA TODOS LOS ROLES DE LA BASE DE DATOS
         public function retrieveAll() {
             $userRoleList = array();
     
@@ -41,6 +41,32 @@
             }
             
             return $userRoleList;
+        }
+
+        /// FUNCION QUE ME TRAE UN ROL, BUSCADO POR ID DE ROL
+        public function retrieveOne($id)
+        {
+            $userRole = null;
+    
+            try
+            {
+                $parameters['id'] = $id;
+    
+                $query = "SELECT * FROM userRole WHERE Id_role=:id";
+    
+                $this->connection = Connection::getInstance();
+    
+                $resultSet = $this->connection->Execute($query, $parameters);
+    
+                if(!empty($resultSet)) {
+                    $userRole = $this->read($resultSet[0]);
+                }
+            }
+            catch (PDOException $ex)
+            {
+                throw $ex;
+            }
+            return $userRole;
         }
     
 

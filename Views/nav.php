@@ -18,6 +18,9 @@
                <li class="nav-item">
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/ShowLogInView"> Iniciar Sesion</a>
                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/LogOut"> Cerra Sesion</a>
+               </li>
 
                <li class="nav-item">
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/ShowAdminView"> TEST</a>

@@ -5,6 +5,7 @@
     use Models\User as User;
     use DAO\Connection as Connection;
     use \PDOException as PDOException;
+    use DAO\UserRolePDO as RoleDAO;
 
     class UsersPDO implements IuserDAO
     {
@@ -29,10 +30,7 @@
                 $parameters["Id_userRole"]= $user->getUserRoleId();
 
 
-                /*echo('<pre>');
-                var_dump($parameters);
-                echo('</pre>');
-                */
+                
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
             }
@@ -67,6 +65,11 @@
                     $user2->setPassword($value["UserPassword"]);
                     $user2->setGender($value["UserGender"]);
                     $user2->setDni($value["UserDni"]);
+
+                //TRAIGO EL ROL QUE CORRESPONDE AL USUARIO Y LO SETTTEO
+                    $userRoleDAO = new RoleDAO();
+                    $userRole = $userRoleDAO->retrieveOne($value["Id_userRole"]);
+                    $user2->setUserRole($userRole);
 
                 }
                 return $user2;

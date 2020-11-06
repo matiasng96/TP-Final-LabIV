@@ -11,7 +11,8 @@
         private $dni;
         private $gender;
         private $email;
-        private $password; 
+        private $password;
+        private $rol;
 
         function __construct ($id = '', $email='', $password='', $name='', $lastName='', $gender='', $dni=''){
 
@@ -72,20 +73,24 @@
         {
             return $this->gender;
         }
+        public function getUserRole()
+        {
+            return $this->rol;
+        }
 
-        public function setUserRole(Rol $userRole) {
-            $this->userRole = $userRole;
+        public function setUserRole(Rol $rol) {
+            $this->rol = $rol;
         }
     
         public function getUserRoleId() {
-            $userRole = $this->userRole;
-            $id = $userRole->getId();
+            $rol = $this->rol;
+            $id = $rol->getId();
             return $id;
         }
     
         public function getUserRoleDescription() {
-            $userRole = $this->userRole;
-            $descripcion = $userRole->getRol();
+            $rol = $this->rol;
+            $descripcion = $rol->getRol();
             return $descripcion;
         }
         

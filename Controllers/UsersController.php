@@ -20,19 +20,6 @@
             $this->userRole = new RolePDO();
         }
 
-        public function ShowSignUpView( $messege = '')
-        {
-            require_once(VIEWS_PATH."registry.php");
-        }
-
-        public function ShowLoginView()
-        {
-            require_once(VIEWS_PATH."login.php");
-        }
-
-        public function ShowAdminView(){
-            require_once(VIEWS_PATH. "administrator.php");
-        }
         
         public function setSession($user)
         {
@@ -41,47 +28,72 @@
 
         public function logIn($email, $password)
         {
-            $user= $this->userDAO->read($email);            
+            $user= $this->userDAO->read($email);   
+             echo('<pre>');
+            var_dump($user);
+            echo('</pre>');    
             
-            if($user)
+            
+            
+            if(strcmp($user->getEmail(), $email) == 0)
             {
-                if($user->getPassword() == $password)
+                echo($password);
+                if(strcmp($user->getPassword(), $password)== 0)
                 {
+                    
                     $this->setSession($user);
-                    return $user;
-
+                    if($user->getUserRoleId() == 1 )
+                    {
+                        
+                        require_once(VIEWS_PATH. "administrator.php");
+                    }elseif ($user->getUserRoleId() == 2) {
+                        echo($user->getUserRoleId());
+                        require_once(VIEWS_PATH. "cinemas-list.php");
+                    }else {
+                        echo($user->getUserRoleId());
+                        require_once (VIEWS_PATH. "login.php");
+                    }
                 }
             }
-            return false;
+          
         }
-        
-        public function ShowLoggedView($email, $password){
 
-            $this->logIn($email, $password);
+        public function logOut()
+        {
+            session_destroy();
+            require_once(VIEWS_PATH . "login.php");
         }
     
 
-        public function ShowLogInViews(){
+        public function setUser ($name, $lastName, $gender, $dni, $email, $password)
+        {
+            $aux= new User();
+            $aux->setEmail($email);
+            $aux->setPassword($password);
+            $aux->setName($name);
+            $aux->setLastName($lastName);
+            $aux->setGender($gender);
+            $aux->setDni($dni);
 
-            require_once(VIEWS_PATH."login.php");
+            return $aux;
         }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
         {
 
             $exist= $this->userDAO->read($email);
-            if(!$exist)
+           
+            
+            ///PREGUNTA SI ESTA SETTEADO O ES DISTINTA DE NULL LA VARIABLE EXIST
+            if($exist->getEmail() == NULL)
             {
+             
             $roleArray= $this->userRole->retrieveAll();//TRAIGO EL ARREGLO DE ROLES, NECESARIO PARA AGREGAR ROL AL USUARIO
             $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)
 
             $user = new User();
-            $user->setEmail($email);
-            $user->setPassword($password);
-            $user->setName($name);
-            $user->setLastName($lastName);
-            $user->setGender($gender);
-            $user->setDni($dni);
+             
+            $user= $this->setUser($name, $lastName, $gender, $dni, $email, $password);
 
             if($flag==0)
             {
@@ -90,13 +102,13 @@
             {
                 $user->setUserRole($roleArray[1]);
             }
-
             $this->userDAO->Add($user);
 
-            $this->ShowLogInView();  
+            require_once(VIEWS_PATH."login.php");  // VISTA DE LOGGEO
            }else
             {
-            $this->ShowSignUpView();
+            
+            require_once(VIEWS_PATH."registry.php"); /// VISTA DE REGISTRO
             }
         
 
