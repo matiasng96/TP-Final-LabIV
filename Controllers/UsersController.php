@@ -29,31 +29,30 @@
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
-             echo('<pre>');
-            var_dump($user);
-            echo('</pre>');    
+            //echo('<pre>');
+            //var_dump($user);
+            //echo('</pre>');    
             
             
             
             if(strcmp($user->getEmail(), $email) == 0)
             {
-                echo($password);
                 if(strcmp($user->getPassword(), $password)== 0)
                 {
                     
                     $this->setSession($user);
                     if($user->getUserRoleId() == 1 )
                     {
-                        
-                        require_once(VIEWS_PATH. "administrator.php");
+                        require_once(VIEWS_PATH . "administrator.php");
                     }elseif ($user->getUserRoleId() == 2) {
                         echo($user->getUserRoleId());
-                        require_once(VIEWS_PATH. "cinemas-list.php");
-                    }else {
-                        echo($user->getUserRoleId());
-                        require_once (VIEWS_PATH. "login.php");
+                        require_once(VIEWS_PATH . "movies-list.php");
                     }
                 }
+            }else {
+                //echo($user->getUserRoleId());
+
+                require_once(VIEWS_PATH . "login.php");
             }
           
         }
