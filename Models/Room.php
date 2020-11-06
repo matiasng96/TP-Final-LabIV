@@ -9,8 +9,9 @@
         private $capacity;
         private $cinemaName;
 
-        public function __construct($name='', $ticketPrice='', $capacity=''){
+        public function __construct($cinemaName = '', $name='', $ticketPrice='', $capacity=''){
           
+            $this->setCinemaName($cinemaName);
             $this->setName($name);
             $this->setTicketPrice($ticketPrice);
             $this->setCapacity($capacity);                
