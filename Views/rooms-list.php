@@ -5,9 +5,11 @@
     <h2 class="display-4"> Listado de Salas </h2>
     <table class="table table-bordered">
         <thead>
+            <th scope="col"> Cine </th>
             <th scope="col"> Nombre </th>            
             <th scope="col"> Capacidad </th>
             <th scope="col"> Precio de la Sala </th>
+            <th scope="col"> Opciones </th>
         </thead>
 
         <tbody>
@@ -15,6 +17,7 @@
                 foreach($roomList as $room){
             ?>
                 <tr>
+                    <td> <?php echo $room->getCinemaName();  ?></td>
                     <td> <?php echo $room->getName();        ?> </td>
                     <td> <?php echo $room->getCapacity();    ?> </td>
                     <td> <?php echo $room->getTicketPrice(); ?> </td>
