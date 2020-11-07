@@ -5,6 +5,7 @@ namespace Controllers;
 //use DAO\MoviesDAO as MoviesDAO;
 use DAO\MoviesPDO as MoviesDAO;
 use DAO\GenresPDO as GenresDAO;
+use Models\Genre as Genre;
 
 
 class MoviesController
@@ -23,10 +24,9 @@ class MoviesController
         $moviesArray =  $this->moviesDAO->APItoMoviesArray();
         foreach ($moviesArray as $movie){
             $this->moviesDAO->Add($movie);
-            foreach($movie->getGenres_ids() as $IdGenre){
-                $this->moviesDAO->AddGenresXmovie($movie->getId(),$IdGenre);
-            }
-        }
+            foreach($movie->getGenresArray() as $genre)
+                $this->moviesDAO->AddGenresXmovie($movie->getId(),$genre->getId());
+            }  
     }
 
 

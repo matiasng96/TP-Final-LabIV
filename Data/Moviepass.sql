@@ -3,6 +3,8 @@ USE Moviepass;
 DROP DATABASE moviepass;
 SELECT * FROM movies;
 SELECT * FROM genres;
+SELECT * FROM genresXmovies;
+DROP TABLE genresXmovies;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
@@ -22,17 +24,18 @@ CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
 );
 
 
-SELECT * FROM movies;
+SELECT * FROM movies WHERE (Id_movie = 425001);
 SELECT * FROM genresXmovies;
 SELECT * FROM genres;
 
 
-SELECT m.Title, g.GenreName, m.Runtime, m.Original_language , m.Poster_path
+SELECT g.Id_genre, g.GenreName
 FROM movies m
 INNER JOIN genresXmovies gXm 
 ON (m.Id_movie = gXm.Id_movie)
 INNER JOIN genres g
 ON (g.Id_genre = gXm.Id_genre)
+WHERE(m.Id_movie = '425001');
 
 GROUP BY(m.Title);
 

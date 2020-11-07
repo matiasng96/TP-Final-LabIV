@@ -2,9 +2,11 @@
 
 namespace DAO;
 
+use DAO\GenresPDO as GenresDAO;
 use DAO\IMoviesDAO as IMoviesDAO;
 use Models\Movie as Movie;
 use \PDOException as Exception;
+
 
 class MoviesPDO implements IMoviesDAO
 {
@@ -12,6 +14,26 @@ class MoviesPDO implements IMoviesDAO
     private $connection;
     private $tableName = "movies";
     private $tableGxM = "genresXmovies";
+    private $genresDAO;
+
+    public function __construct()
+    {
+        $this->genresDAO = new GenresDAO;
+    }
+
+
+//     SELECT g.GenreName
+// FROM movies m
+// INNER JOIN genresXmovies gXm 
+// ON (m.Id_movie = gXm.Id_movie)
+// INNER JOIN genres g
+// ON (g.Id_genre = gXm.Id_genre)
+// WHERE(m.Id_movie = '425001');
+
+
+
+
+
 
     public function Add(Movie $movie)
     {
@@ -68,6 +90,7 @@ class MoviesPDO implements IMoviesDAO
                 $movie->setId($value["Id_movie"]);
                 $movie->setPoster_path($value["Poster_path"]);
                 $movie->setRuntime($value["Runtime"]);
+                //$movie->setGenresArray($this->genresDAO->getGenresByMovieID($value["Id_movie"]));
                 $movie->setLanguage($value["Original_language"]);
                 $movie->setTitle($value["Title"]);
 
@@ -102,6 +125,8 @@ class MoviesPDO implements IMoviesDAO
     }
 
 
+    //Paso los datos de la API a un arreglo de objetos Movie, 
+    //también llamo al método GetGenresIDsArray de GenresPDO para crear Objectos Genre y añadirlos como un arreglo de generos en el Objeto Movie
     public function APItoMoviesArray()
     {
 
@@ -119,7 +144,8 @@ class MoviesPDO implements IMoviesDAO
             } else {
                 $movie->setRuntime(120);
             }
-            $movie->setGenres_ids($data['genre_ids']);
+            //El atributo name dentro del objeto Genre va a estar vacío, otro método se encargará de cargarlo.
+            $movie->setGenresArray($this->genresDAO->GetGenresIDsArray($data['genre_ids']));
             $movie->setLanguage($data['original_language']);
             $movie->setTitle($data['title']);
 

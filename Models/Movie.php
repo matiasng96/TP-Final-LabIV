@@ -4,12 +4,25 @@
         
         class Movie{
 
+
+
                 private $id;
                 private $poster_path; //image url
                 private $runtime;
-                private $genres_ids;
+                private $genresArray;
                 private $language;
                 private $title;  
+
+
+                public function __construct($id = '', $poster_path = '', $runtime = '', $genresArray = array(), $language = '', $title = ''){
+
+                        $this->setId($id);
+                        $this->setPoster_path($poster_path);
+                        $this->setRuntime($runtime);
+                        $this->setGenresArray($genresArray);
+                        $this->setLanguage($language);
+                        $this->setTitle($title);
+                    }  
                
                 
                 public function getId(){return $this->id; }
@@ -27,7 +40,7 @@
                 public function getLanguage(){return $this->language;}
                 public function setLanguage($language) {$this->language = $language;}
 
-                public function getGenres_ids(){return $this->genres_ids;}
-                public function setGenres_ids($genres_ids){$this->genres_ids = $genres_ids;}
+                public function getGenresArray(){return $this->genresArray;}
+                public function setGenresArray($genresArray){$this->genresArray = $genresArray;}
         }
 ?>

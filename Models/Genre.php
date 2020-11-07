@@ -7,6 +7,12 @@ class Genre
     private $id;
     private $name;
 
+    public function __construct($id = '', $name = ''){
+
+        $this->setId($id);
+        $this->setName($name);
+    }  
+
     public function getId()
     {
         return $this->id;
