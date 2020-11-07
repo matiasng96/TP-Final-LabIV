@@ -16,22 +16,22 @@
         public function Add(Cinema $cinema)
         {
             try {
-                $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) 
-                VALUES (:CinemaName, :TotalCapacity, :CinemaAddress);";
+                
+                $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress, RoomName) 
+                VALUES (:CinemaName, :TotalCapacity, :CinemaAddress, :RoomName);";
 
                 $parameters["CinemaName"] = $cinema->getName();
                 $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
-                $parameters["CinemaAddress"] = $cinema->getAddress();
-                
+                $parameters["CinemaAddress"] = $cinema->getAddress();  
+                $parameters["RoomName"]= $cinema->getRooms();           
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
-
-            } catch (Exception $ex) {
+            } 
+            catch(Exception $ex) {
                 throw $ex;
             }
         }
-
 
         //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
         public function SearchCinemaByName($CinemaName)
@@ -106,8 +106,6 @@
                 $query = 'SELECT * FROM'.$this->tableName.'WHERE cinema =" '.$cinema.'";';
                 $obj = $this->connection->Execute($query);
 
-
-                echo "HOLA CHE";
                 $roomList = array();
 
                 if($obj){
@@ -130,23 +128,27 @@
         public function getOneCinema($cinema){
 
             try{
-
-                $query = 'SELECT * FROM'.$this->tableName.'WHERE cinema = " ' . $cinema. '";';
+                $parameters['CinemaName'] = $cinema;              
+                $query = "SELECT * FROM ".$this->tableName." WHERE (CinemaName = :CinemaName);";
                 $this->connection = Connection::GetInstance();
 
-                $obj = $this->connection->Execute($query);
-
-                $cinema = null;
+                $obj = $this->connection->Execute($query, $parameters);
 
                 if($obj){
-
+                    
+                    
                     $row = $obj[0];
+
+                    echo "<br> ACA EMPIEZA EL IF";
+                    var_dump($row);
+                    
 
                     $cinema = new Cinema();
                     $cinema->setName($row['CinemaName']);
                     $cinema->setAddress($row['CinemaAddress']);
                     $cinema->setTotalCapacity($row['TotalCapacity']);
-                    $cinema->setRooms($this->getRoomCinema($row['CinemaName']));
+                    //$cinema->setRooms($this->getRoomCinema($row['CinemaName']));
+                    echo '<pre> CINE QUE RETORNA -->' , var_dump($cinema) , '</pre>';
                     return $cinema;
                 }
                 else{
