@@ -10,12 +10,11 @@
         private $address;     
         private $rooms = array();   
 
-        public function __construct($name = '', $totalCapacity = '', $address = '', $rooms = array()){
+        public function __construct($name = '', $totalCapacity = '', $address = ''){
 
             $this->setName($name);
             $this->setTotalCapacity($totalCapacity);
             $this->setAddress($address);
-            $this->setRooms($rooms);
         }  
 
         public function setName($name){$this->name = $name;}
