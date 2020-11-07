@@ -1,7 +1,8 @@
 <?php
     namespace Controllers;
     use DAO\RoomsPDO as RoomsPDO;
-    use Models\Room as Room;
+use Exception;
+use Models\Room as Room;
 
     class RoomsController{
 
@@ -11,8 +12,15 @@
 
         public function ShowListView(){
 
-            $roomList = $this->rooomPDO->getAll();
-            require_once(VIEWS_PATH."rooms-list.php");
+            try{                
+                $roomList = $this->rooomPDO->getAll();
+                //echo "<hr><br> ACA MUESTRO ROOMLIST<br>"; //" EL ERROR ESTA EN ROOMPDO ";
+                //echo '<pre>' , var_dump($roomList) , '</pre>';     
+                require_once(VIEWS_PATH."rooms-list.php");
+            }
+            catch(Exception $ex){
+                echo "<script> Error: $ex </script>";
+            }           
         }
 
         public function ShowAddView($cinemaName){
@@ -22,9 +30,14 @@
 
         public function Add($cinemaName, $name, $price, $capacity){
 
-            $room = new Room($cinemaName, $name, $price, $capacity);            
-            $this->rooomPDO->Add($room);
-            $this->ShowListView();
+            try{
+                $room = new Room($cinemaName, $name, $price, $capacity);            
+                $this->rooomPDO->Add($room);                
+                $this->ShowListView();
+            }
+            catch(Exception $ex){
+                echo "<script> Error: $ex </script>";
+            }           
         }
     }
 ?>
