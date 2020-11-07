@@ -8,14 +8,13 @@
         private $name;
         private $totalCapacity; //La suma de la capacidad de cada sala.
         private $address;     
-        private $rooms;   
+        private $rooms = array();   
 
-        public function __construct($name = '', $totalCapacity = '', $address = '', $rooms = array()){
+        public function __construct($name = '', $totalCapacity = '', $address = ''){
 
             $this->setName($name);
             $this->setTotalCapacity($totalCapacity);
             $this->setAddress($address);
-            //$this->$rooms = array();
         }  
 
         public function setName($name){$this->name = $name;}

@@ -42,13 +42,11 @@
 
         public function read ($UserEmail)
         {
-            try
-            {
+            try{
                 
-            $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
+                $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
 
-            $parameters ["UserEmail"] = $UserEmail;
-            
+                $parameters ["UserEmail"] = $UserEmail;            
             
                 $this->connection= Connection::getInstance();
                 $result = $this->connection->Execute($sql, $parameters);

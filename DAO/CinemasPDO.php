@@ -1,136 +1,203 @@
 <?php
 
-namespace DAO;
+    namespace DAO;
 
-use \Exception as Exception;
-use DAO\Connection as Connection;
-use Models\Cinema as Cinema;
+    use \Exception as Exception;
+    use Models\Cinema as Cinema;
+    use DAO\Connection as Connection;
+    use Models\Room as Room;
 
-class CinemasPDO implements ICinemasDAO
-{
-    private $connection;
-    private $tableName = "cinemas";
-
-    public function Add(Cinema $cinema)
+    class CinemasPDO implements ICinemasDAO
     {
-        try {
-            $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) VALUES (:CinemaName, :TotalCapacity, :CinemaAddress);";
+        private $connection;
+        private $tableName = "cinemas";
+        private $tableRooms = "rooms";
 
-            $parameters["CinemaName"] = $cinema->getName();
-            $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
-            $parameters["CinemaAddress"] = $cinema->getAddress();
-            
+        public function Add(Cinema $cinema)
+        {
+            try {
+                
+                $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress, RoomName) 
+                VALUES (:CinemaName, :TotalCapacity, :CinemaAddress, :RoomName);";
 
-            $this->connection = Connection::GetInstance();
+                $parameters["CinemaName"] = $cinema->getName();
+                $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
+                $parameters["CinemaAddress"] = $cinema->getAddress();  
+                $parameters["RoomName"]= $cinema->getRooms();           
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-
-
-    //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
-    public function SearchCinemaByName($CinemaName)
-    {
-        try {
-
-            $query = "SELECT * FROM " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
-
-            $parameters['CinemaName'] = $CinemaName;
-
-            $this->connection = Connection::GetInstance();
-
-            $cinemaResults = $this->connection->Execute($query, $parameters);
-
-            if (!empty($cinemaResults)) {
-                return true;
-            } else {
-                return false;
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            } 
+            catch(Exception $ex) {
+                throw $ex;
             }
-        } catch (Exception $ex) {
-            throw $ex;
         }
-    }
 
-    public function Edit($currentName, Cinema $newCinema)
-    {
-        try {
+        //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
+        public function SearchCinemaByName($CinemaName)
+        {
+            try {
 
-            $query = "UPDATE " . $this->tableName . 
-            " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemaAddress = :CinemaAddress WHERE (CinemaName = :currentName);";
+                $query = "SELECT * FROM " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
 
-            $parameters["CinemaName"] = $newCinema->getName();
-            $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();
-            $parameters["CinemaAddress"] = $newCinema->getAddress();
-            $parameters["currentName"] = $currentName;
+                $parameters['CinemaName'] = $CinemaName;
 
-            $this->connection = Connection::GetInstance();
+                $this->connection = Connection::GetInstance();
 
-            $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+                $cinemaResults = $this->connection->Execute($query, $parameters);
 
-            return $deletedCount;
-
-        } catch (Exception $ex) {
-
-            throw $ex;
-        }
-    }
-
-    public function Delete($CinemaName)
-    {
-        try {
-
-            $query = "DELETE FROM  " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
-
-            $parameters['CinemaName'] = $CinemaName;
-
-            $this->connection = Connection::GetInstance();
-
-            $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
-
-            return $deletedCount;
-        } catch (Exception $ex) {
-
-            throw $ex;
-        }
-    }
-
-    public function GetAll()
-    {
-        try {
-            //Creo un arreglo de cines.
-
-            $cinemasList = array();
-
-            //Creo una query Seleccionando todos lso cines de la tabla Cinemas.
-
-            $query = "SELECT * FROM " . $this->tableName;
-
-            //Creo una instancia de Connection.
-
-            $this->connection = Connection::GetInstance();
-
-            //Guardo los cines que provienen de la Base de Datos, está acción la realiza el execute, que a su vez llama al fetchAll()
-
-            $cinemasResults = $this->connection->Execute($query);
-
-            //Recorro el arreglo de Cines(dela base de datos) y tomo los datos de cada fila para crear un objeto Cinema y guardo cada objeto en $cinemasList.
-
-            foreach ($cinemasResults as $row) {
-                $cinema = new Cinema();
-                $cinema->setName($row['CinemaName']);
-                $cinema->setTotalCapacity($row['TotalCapacity']);
-                $cinema->setAddress($row['CinemaAddress']);
-
-                array_push($cinemasList, $cinema);
+                if (!empty($cinemaResults)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $ex) {
+                throw $ex;
             }
+        }
 
-            return $cinemasList;
+        public function Edit($currentName, Cinema $newCinema)
+        {
+            try {
 
-        } catch (Exception $ex) {
+                $query = "UPDATE " . $this->tableName . 
+                " SET CinemaName = :CinemaName , TotalCapacity = :TotalCapacity, CinemaAddress = :CinemaAddress WHERE (CinemaName = :currentName);";
 
-            throw $ex;
+                $parameters["CinemaName"] = $newCinema->getName();
+                $parameters["TotalCapacity"] = $newCinema->getTotalCapacity();
+                $parameters["CinemaAddress"] = $newCinema->getAddress();
+                $parameters["currentName"] = $currentName;
+
+                $this->connection = Connection::GetInstance();
+
+                $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+
+                return $deletedCount;
+
+            } catch (Exception $ex) {
+
+                throw $ex;
+            }
+        }
+
+        public function Delete($CinemaName)
+        {
+            try {
+
+                $query = "DELETE FROM  " . $this->tableName . " WHERE (CinemaName = :CinemaName);";
+
+                $parameters['CinemaName'] = $CinemaName;
+
+                $this->connection = Connection::GetInstance();
+
+                $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+
+                return $deletedCount;
+            } catch (Exception $ex) {
+
+                throw $ex;
+            }
+        }
+
+        public function getRoomCinema($cinema){
+
+            try{
+
+                $query = 'SELECT * FROM'.$this->tableName.'WHERE cinema =" '.$cinema.'";';
+                $obj = $this->connection->Execute($query);
+
+                $roomList = array();
+
+                if($obj){
+
+                    $room = $obj['0'];
+                    $roomList = array_map(function($room){
+
+                        return new Room($room['CinemaName'],$room['RoomName'],$room['TicketPrice'],$room['Capacity']);
+                    }, $obj);
+
+                    return $roomList;
+                }
+            }
+            catch(Exception $ex){
+                
+                throw $ex;
+            }
+        }
+
+        public function getOneCinema($cinema){
+
+            try{
+                $parameters['CinemaName'] = $cinema;              
+                $query = "SELECT * FROM ".$this->tableName." WHERE (CinemaName = :CinemaName);";
+                $this->connection = Connection::GetInstance();
+
+                $obj = $this->connection->Execute($query, $parameters);
+
+                if($obj){
+                    
+                    
+                    $row = $obj[0];
+
+                    echo "<br> ACA EMPIEZA EL IF";
+                    var_dump($row);
+                    
+
+                    $cinema = new Cinema();
+                    $cinema->setName($row['CinemaName']);
+                    $cinema->setAddress($row['CinemaAddress']);
+                    $cinema->setTotalCapacity($row['TotalCapacity']);
+                    //$cinema->setRooms($this->getRoomCinema($row['CinemaName']));
+                    echo '<pre> CINE QUE RETORNA -->' , var_dump($cinema) , '</pre>';
+                    return $cinema;
+                }
+                else{
+
+                    return null;
+                }
+            }
+            catch(Exception $ex){
+
+                throw $ex;
+            }
+        }
+
+        public function GetAll()
+        {
+            try {
+                //Creo un arreglo de cines.
+
+                $cinemasList = array();
+
+                //Creo una query Seleccionando todos lso cines de la tabla Cinemas.
+
+                $query = "SELECT * FROM " . $this->tableName;
+
+                //Creo una instancia de Connection.
+
+                $this->connection = Connection::GetInstance();
+
+                //Guardo los cines que provienen de la Base de Datos, está acción la realiza el execute, que a su vez llama al fetchAll()
+
+                $cinemasResults = $this->connection->Execute($query);
+
+                //Recorro el arreglo de Cines(dela base de datos) y tomo los datos de cada fila para crear un objeto Cinema y guardo cada objeto en $cinemasList.
+
+                foreach ($cinemasResults as $row) {
+                    $cinema = new Cinema();
+                    $cinema->setName($row['CinemaName']);
+                    $cinema->setTotalCapacity($row['TotalCapacity']);
+                    $cinema->setAddress($row['CinemaAddress']);
+
+                    array_push($cinemasList, $cinema);
+                }
+
+                return $cinemasList;
+
+            } catch (Exception $ex) {
+
+                throw $ex;
+            }
         }
     }
-}
+?>

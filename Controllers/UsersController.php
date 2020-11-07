@@ -20,6 +20,16 @@
             $this->userRole = new RolePDO();
         }
 
+        public function ShowLogInView()
+        {
+            require_once(VIEWS_PATH ."login.php");
+        }
+
+        public function ShowSignUpView()
+        {
+            require_once (VIEWS_PATH ."registry.php");
+        }
+
         
         public function setSession($user)
         {
@@ -112,8 +122,7 @@
             
             require_once(VIEWS_PATH."registry.php"); /// VISTA DE REGISTRO
             }
-        
-
+         
         }           
     }        
 ?>
