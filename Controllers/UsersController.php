@@ -48,9 +48,12 @@
                         echo($user->getUserRoleId());
                         require_once(VIEWS_PATH . "movies-list.php");
                     }
+                }else
+                {
+                    require_once(VIEWS_PATH . "login.php");
                 }
             }else {
-                //echo($user->getUserRoleId());
+                echo("holaaa");
 
                 require_once(VIEWS_PATH . "login.php");
             }
