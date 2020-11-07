@@ -6,6 +6,7 @@
     /*Si usamos este namespace accedemos al DAO con PDO. */
     use DAO\CinemasPDO as CinemasDAO;   
     use Models\Cinema;
+    use DAO\RoomsPDO as RoomsPDO;
 
     class CinemasController
     {
@@ -28,11 +29,13 @@
 
         public function Add($name, $TotalCapacity, $address)
         {
-            $exists = $this->cinemasDAO->SearchCinemaByName($name);
+            $exists = $this->cinemasDAO->SearchCinemaByName($name);            
             
             if(!$exists){
-
+                
+                $room = new RoomsPDO();
                 $cinema = new Cinema($name, $TotalCapacity, $address);
+                $cinema->setRooms($room->getRoomsCinema($cinema->getName()));                  
                 $this->cinemasDAO->Add($cinema);
                 $this->ShowAddView();
             }
@@ -51,6 +54,7 @@
                 $this->ShowListView();
             }else{
                 echo "<script> alert('Ha ocurrido un error inesperado al intentar Eliminar dicho Cine, por favor intente nuevamente.');</script>";
+                $this->ShowListView();
             }
         }
 
