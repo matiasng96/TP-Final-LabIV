@@ -19,23 +19,28 @@ class MoviesController
     }
 
 
-    public function Add ()
+    public function Add()
     {
         $moviesArray =  $this->moviesDAO->APItoMoviesArray();
-        foreach ($moviesArray as $movie){
+        foreach ($moviesArray as $movie) {
             $this->moviesDAO->Add($movie);
-            foreach($movie->getGenresArray() as $genre)
-                $this->moviesDAO->AddGenresXmovie($movie->getId(),$genre->getId());
-            }  
+            foreach ($movie->getGenresArray() as $genre)
+                $this->moviesDAO->AddGenresXmovie($movie->getId(), $genre->getId());
+        }
+    }
+
+    public function ShowListByGenre($genre){
+        $moviesList = $this->moviesDAO->FilterByGenre($genre);
+
+        require_once(VIEWS_PATH . "movies-list.php");
+
     }
 
 
     public function ShowListView()
     {
-        $this->Add();
         $moviesList = $this->moviesDAO->GetAll();
 
-        require_once(VIEWS_PATH."movies-list.php");
+        require_once(VIEWS_PATH . "movies-list.php");
     }
-
 }

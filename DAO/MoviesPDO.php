@@ -3,8 +3,11 @@
 namespace DAO;
 
 use DAO\GenresPDO as GenresDAO;
+use Models\Genre as Genre;
+
 use DAO\IMoviesDAO as IMoviesDAO;
 use Models\Movie as Movie;
+
 use \PDOException as Exception;
 
 
@@ -12,8 +15,9 @@ class MoviesPDO implements IMoviesDAO
 {
     private $moviesList = array();
     private $connection;
-    private $tableName = "movies";
+    private $tableMovies = "movies";
     private $tableGxM = "genresXmovies";
+    private $tableGenres = "genres";
     private $genresDAO;
 
     public function __construct()
@@ -22,23 +26,10 @@ class MoviesPDO implements IMoviesDAO
     }
 
 
-//     SELECT g.GenreName
-// FROM movies m
-// INNER JOIN genresXmovies gXm 
-// ON (m.Id_movie = gXm.Id_movie)
-// INNER JOIN genres g
-// ON (g.Id_genre = gXm.Id_genre)
-// WHERE(m.Id_movie = '425001');
-
-
-
-
-
-
     public function Add(Movie $movie)
     {
         try {
-            $sql = "INSERT INTO " . $this->tableName . "(Id_movie, Poster_path, Runtime, Original_language, Title) 
+            $query = "INSERT INTO " . $this->tableMovies . "(Id_movie, Poster_path, Runtime, Original_language, Title) 
                                                       VALUE (:Id_movie, :Poster_path, :Runtime, :Original_language, :Title);";
 
             $parameters["Id_movie"] = $movie->getId();
@@ -49,40 +40,84 @@ class MoviesPDO implements IMoviesDAO
 
             $this->connection = Connection::GetInstance();
 
-            $this->connection->ExecuteNonQuery($sql, $parameters);
-
+            $this->connection->ExecuteNonQuery($query, $parameters);
         } catch (Exception $ex) {
 
             throw $ex;
         }
     }
 
-    public function AddGenresXmovie($IdMovie, $IdGenre){
+    public function AddGenresXmovie($IdMovie, $IdGenre)
+    {
         try {
-            $sql = "INSERT INTO " . $this->tableGxM . "(Id_movie, Id_genre) 
+            $query = "INSERT INTO " . $this->tableGxM . "(Id_movie, Id_genre) 
                                                       VALUE (:Id_movie, :Id_genre);";
 
             $parameters["Id_movie"] = $IdMovie;
             $parameters["Id_genre"] = $IdGenre;
-        
+
             $this->connection = Connection::GetInstance();
 
-            $this->connection->ExecuteNonQuery($sql, $parameters);
-
+            $this->connection->ExecuteNonQuery($query, $parameters);
         } catch (Exception $ex) {
 
             throw $ex;
         }
     }
 
-
-    public function GetAll()
+    public function GetGenresXmovies($IdMovie)
     {
+
         try {
-            $sql = "SELECT * FROM " . $this->tableName . ";";
+
+            $genresArray = array();
+
+            $query = "SELECT g.Id_genre, g.GenreName
+            FROM " . " $this->tableMovies m " .
+
+                "INNER JOIN " . " $this->tableGxM gXm " .
+                "ON (m.Id_movie = gXm.Id_movie)" .
+
+                "INNER JOIN " . " $this->tableGenres g " .
+                "ON (g.Id_genre = gXm.Id_genre)
+
+            WHERE(m.Id_movie = '$IdMovie');";
+
+            $this->connection = Connection::GetInstance();
+
+            $genresResults = $this->connection->Execute($query);
+
+            foreach ($genresResults as $row) {
+                $genre = new Genre();
+                $genre->setId($row['Id_genre']);
+                $genre->setName($row['GenreName']);
+
+                array_push($genresArray, $genre);
+            }
+
+            return $genresArray;
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
+
+    public function FilterByGenre($genreName){
+
+        try {
+            $query = "SELECT *
+            FROM " . " $this->tableMovies m " .
+
+                "INNER JOIN " . " $this->tableGxM gXm " .
+                "ON (m.Id_movie = gXm.Id_movie)" .
+
+                "INNER JOIN " . " $this->tableGenres g " .
+                "ON (g.Id_genre = gXm.Id_genre)
+
+            WHERE(g.GenreName = '$genreName');";
 
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql);
+            $result = $this->connection->Execute($query);
 
 
             foreach ($result as $value) {
@@ -90,7 +125,7 @@ class MoviesPDO implements IMoviesDAO
                 $movie->setId($value["Id_movie"]);
                 $movie->setPoster_path($value["Poster_path"]);
                 $movie->setRuntime($value["Runtime"]);
-                //$movie->setGenresArray($this->genresDAO->getGenresByMovieID($value["Id_movie"]));
+                $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
                 $movie->setLanguage($value["Original_language"]);
                 $movie->setTitle($value["Title"]);
 
@@ -98,7 +133,39 @@ class MoviesPDO implements IMoviesDAO
             }
 
             return $this->moviesList;
+            
+        } catch (Exception $ex) {
 
+            throw $ex;
+        }
+
+
+
+    }
+
+
+    public function GetAll()
+    {
+        try {
+            $query = "SELECT * FROM " . $this->tableMovies . ";";
+
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($query);
+
+
+            foreach ($result as $value) {
+                $movie = new Movie();
+                $movie->setId($value["Id_movie"]);
+                $movie->setPoster_path($value["Poster_path"]);
+                $movie->setRuntime($value["Runtime"]);
+                $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
+                $movie->setLanguage($value["Original_language"]);
+                $movie->setTitle($value["Title"]);
+
+                array_push($this->moviesList, $movie);
+            }
+
+            return $this->moviesList;
         } catch (Exception $ex) {
 
             throw $ex;

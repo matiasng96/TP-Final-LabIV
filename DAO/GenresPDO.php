@@ -14,6 +14,9 @@ class GenresPDO
 
     private $connection;
     private $tableName = "genres";
+    
+
+    
 
     public function GetGenresAPI()
     {
