@@ -61,11 +61,11 @@ require_once('nav.php');
                          </td>
 
                          <td>
-                              <?php echo $movie->getLanguage() ?>
+                              <?php echo strtoupper($movie->getLanguage()) ?>
                          </td>
 
                          <td>
-                              <?php echo $movie->getRuntime() ?>
+                              <?php echo $movie->getRuntime() . " min." ?>
                          </td>
 
                          <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>

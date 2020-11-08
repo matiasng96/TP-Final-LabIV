@@ -29,16 +29,17 @@ class MoviesController
         }
     }
 
-    public function ShowListByGenre($genre){
+    public function ShowListByGenre($genre)
+    {
         $moviesList = $this->moviesDAO->FilterByGenre($genre);
 
         require_once(VIEWS_PATH . "movies-list.php");
-
     }
 
 
     public function ShowListView()
     {
+        $this->Add();
         $moviesList = $this->moviesDAO->GetAll();
 
         require_once(VIEWS_PATH . "movies-list.php");

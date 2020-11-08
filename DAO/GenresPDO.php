@@ -56,14 +56,14 @@ class GenresPDO
             $genresResults = $this->connection->Execute($query);
 
             foreach ($genresResults as $row) {
-                $genre = new Genre();
-                $genre->setId($row['Id_genre']);
-                $genre->setName($row['GenreName']);
-
+                
+                $genre = new Genre($row['Id_genre'], $row['GenreName']);
+             
                 array_push($genresList, $genre);
             }
 
             return $genresList;
+
         } catch (Exception $ex) {
 
             throw $ex;
@@ -78,10 +78,8 @@ class GenresPDO
 
         foreach ($genresAPIArray['genres'] as $data) {
 
-            $genre = new Genre();
-            $genre->setId($data['id']);
-            $genre->setName($data['name']);
-
+            $genre = new Genre($data['id'], $data['name']);
+            
             array_push($genresArray, $genre);
         };
 
