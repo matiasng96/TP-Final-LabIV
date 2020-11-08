@@ -46,10 +46,12 @@ require_once('nav.php');
                                                     <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn" >Borrar sala</button>
                                                 </form>
 
-                                                <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/ShowEditview">
-                                                    <input type="hidden" name="roomName" value="<?php echo $room->getName(); ?>">
-                                                    <input type="hidden" name="roomCapacity" value="<?php echo $room->getCapacity(); ?>">
-                                                    <input type="hidden" name="roomPrice" value="<?php echo $room->getTicketPrice(); ?>">
+                                                <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/ShowEditView">
+                                                    <!--<input type="hidden" name="Id_cinema" value="<?php// echo $room->getIdCinema(); ?>">
+                                                    <input type="hidden" name="cinemaName" value="<?php //echo $room->getCinemaName(); ?>">--->
+                                                    <input type="hidden" name="name" value="<?php echo $room->getName(); ?>">
+                                                    <input type="hidden" name="capacity" value="<?php echo $room->getCapacity(); ?>">
+                                                    <input type="hidden" name="ticketPrice" value="<?php echo $room->getTicketPrice(); ?>">
                                                     <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar sala</button>
                                                 </form>
                                             </td>

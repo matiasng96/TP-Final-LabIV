@@ -33,9 +33,7 @@
             
             if(!$exists){
                 
-                $room = new RoomsPDO();
-                $cinema = new Cinema($name, $TotalCapacity, $address);
-                $cinema->setRooms($room->getRoomsCinema($cinema->getName()));                  
+                $cinema = new Cinema($name, $TotalCapacity, $address);                
                 $this->cinemasDAO->Add($cinema);
                 $this->ShowAddView();
             }

@@ -1,6 +1,8 @@
 <?php
     namespace Controllers;
-    use DAO\RoomsPDO as RoomsPDO;
+
+use DAO\CinemasPDO as CinemasPDO;
+use DAO\RoomsPDO as RoomsPDO;
 use Exception;
 use Models\Room as Room;
 
@@ -13,14 +15,24 @@ use Models\Room as Room;
         public function ShowListView(){
 
             try{                
-                $roomList = $this->rooomPDO->getAll();
-                //echo "<hr><br> ACA MUESTRO ROOMLIST<br>"; //" EL ERROR ESTA EN ROOMPDO ";
-                //echo '<pre>' , var_dump($roomList) , '</pre>';     
+                $roomList = $this->rooomPDO->getAll();  
                 require_once(VIEWS_PATH."rooms-list.php");
             }
             catch(Exception $ex){
                 echo "<script> Error: $ex </script>";
             }           
+        }
+        public function ShowEditView($currentName,$name, $capacity, $ticketPrice)
+        {
+            require_once(VIEWS_PATH."room-edit.php");
+
+        }
+
+        public function viewArray($value)
+        {
+            echo('<pre>');
+            var_dump($value);
+            echo('</pre>');
         }
 
         public function ShowAddView($cinemaName){
@@ -28,16 +40,31 @@ use Models\Room as Room;
             require_once(VIEWS_PATH."add-rooms.php");
         }
 
-        public function Add($cinemaName, $name, $price, $capacity){
-
-            try{
-                $room = new Room($cinemaName, $name, $price, $capacity);            
-                $this->rooomPDO->Add($room);                
+        public function Add($cinemaName, $name, $price, $capacity)
+        {
+            $cinema= new CinemasPDO();
+            $aux=$cinema->getOneCinema($cinemaName);
+            
+            
+            try
+            {
+                $room = new Room($aux->getId(),$cinemaName, $name, $price, $capacity);     
+                $this->rooomPDO->Add($room); 
                 $this->ShowListView();
             }
             catch(Exception $ex){
                 echo "<script> Error: $ex </script>";
             }           
         }
+
+        public function Edit($currentName,$name, $capacity, $ticketPrice)
+        {
+            $room= new Room("","",$name, $ticketPrice, $capacity);
+            //$this->viewArray($room);
+            $this->rooomPDO->Edit($currentName,$room);
+
+
+        }
+
     }
 ?>

@@ -5,12 +5,14 @@
     class Room{
 
         private $name;
+        private $id_cinema;
         private $ticketPrice;
         private $capacity;
         private $cinemaName;
 
-        public function __construct($cinemaName = '', $name='', $ticketPrice='', $capacity=''){
+        public function __construct($id_cinema = '', $cinemaName = '', $name='', $ticketPrice='', $capacity=''){
           
+            $this->setIdCinema($id_cinema);
             $this->setCinemaName($cinemaName);
             $this->setName($name);
             $this->setTicketPrice($ticketPrice);
@@ -28,5 +30,8 @@
 
         public function getCinemaName(){return $this->cinemaName;}
         public function setCinemaName($cinemaName){$this->cinemaName = $cinemaName;}
+
+        public function getIdCinema(){return $this->id_cinema;}
+        public function setIdCinema($id_cinema){$this->id_cinema = $id_cinema;}
     }
 ?>

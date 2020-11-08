@@ -6,6 +6,7 @@
     use Models\Cinema as Cinema;
     use DAO\Connection as Connection;
     use Models\Room as Room;
+    use DAO\RoomsPDO as RoomPDO;
 
     class CinemasPDO implements ICinemasDAO
     {
@@ -17,13 +18,12 @@
         {
             try {
                 
-                $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress, RoomName) 
-                VALUES (:CinemaName, :TotalCapacity, :CinemaAddress, :RoomName);";
+                $query = "INSERT INTO " . $this->tableName . " (CinemaName, TotalCapacity, CinemaAddress) 
+                VALUES (:CinemaName, :TotalCapacity, :CinemaAddress);";
 
                 $parameters["CinemaName"] = $cinema->getName();
                 $parameters["TotalCapacity"] = $cinema->getTotalCapacity();
-                $parameters["CinemaAddress"] = $cinema->getAddress();  
-                $parameters["RoomName"]= $cinema->getRooms();           
+                $parameters["CinemaAddress"] = $cinema->getAddress();           
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -31,6 +31,13 @@
             catch(Exception $ex) {
                 throw $ex;
             }
+        }
+
+        public function viewArray($value)
+        {
+            echo('<pre>');
+            var_dump($value);
+            echo('</pre>');
         }
 
         //Si encuentra al Cine retorna True sino False, se usa en al controladora para validar que no se repita el nombre de Cine.
@@ -125,30 +132,22 @@
             }
         }
 
-        public function getOneCinema($cinema){
+        public function getOneCinema($cinemaName){
 
             try{
-                $parameters['CinemaName'] = $cinema;              
+                $parameters['CinemaName'] = $cinemaName;              
                 $query = "SELECT * FROM ".$this->tableName." WHERE (CinemaName = :CinemaName);";
                 $this->connection = Connection::GetInstance();
 
                 $obj = $this->connection->Execute($query, $parameters);
-
-                if($obj){
-                    
-                    
+                if($obj)
+                {    
                     $row = $obj[0];
-
-                    echo "<br> ACA EMPIEZA EL IF";
-                    var_dump($row);
-                    
-
                     $cinema = new Cinema();
+                    $cinema->setId($row["Id_cinema"]);
                     $cinema->setName($row['CinemaName']);
                     $cinema->setAddress($row['CinemaAddress']);
                     $cinema->setTotalCapacity($row['TotalCapacity']);
-                    //$cinema->setRooms($this->getRoomCinema($row['CinemaName']));
-                    echo '<pre> CINE QUE RETORNA -->' , var_dump($cinema) , '</pre>';
                     return $cinema;
                 }
                 else{
@@ -182,12 +181,14 @@
                 $cinemasResults = $this->connection->Execute($query);
 
                 //Recorro el arreglo de Cines(dela base de datos) y tomo los datos de cada fila para crear un objeto Cinema y guardo cada objeto en $cinemasList.
-
+                $room= new RoomPDO();
                 foreach ($cinemasResults as $row) {
                     $cinema = new Cinema();
                     $cinema->setName($row['CinemaName']);
                     $cinema->setTotalCapacity($row['TotalCapacity']);
                     $cinema->setAddress($row['CinemaAddress']);
+                    $cinema->setRooms($room->getRoomsCinema($row["Id_cinema"]));
+                    //$cinema->setRooms($room->getRoomsCinema($row["cinemaName"]));
 
                     array_push($cinemasList, $cinema);
                 }

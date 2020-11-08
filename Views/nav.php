@@ -13,6 +13,9 @@
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinemas/ShowListView">Listar Cines</a>
                </li>
                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>Rooms/ShowListView">Listar Salas</a>
+               </li>
+               <li class="nav-item">
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movies/ShowListView">Listar Pelis</a>
                </li>
                <li class="nav-item">

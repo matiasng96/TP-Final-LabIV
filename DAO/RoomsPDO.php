@@ -16,20 +16,31 @@ class RoomsPDO implements IRoomsPDO{
         {
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (CinemaName, RoomName, TicketPrice, Capacity) 
-                VALUES (:CinemaName, :RoomName, :TicketPrice, :Capacity);";
-
+                $query = "INSERT INTO ".$this->tableName." (Id_cinema ,CinemaName, RoomName, TicketPrice, Capacity) 
+                VALUES (:Id_cinema, :CinemaName, :RoomName, :TicketPrice, :Capacity);";
+                
+                $parameters["Id_cinema"] = $room->getIdCinema();
                 $parameters["CinemaName"] = $room->getCinemaName();
                 $parameters["RoomName"] = $room->getName();
                 $parameters["TicketPrice"] = $room->getTicketPrice();
                 $parameters["Capacity"] = $room->getCapacity();
                 
-                $this->connection = Connection::GetInstance();
+                
+                $this->connection = Connection::GetInstance();               
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
+
             } 
             catch(RoomPDOException $ex) {
                 throw $ex;
             }
+        }
+
+        public function viewArray($parameters)
+        {
+            echo('<pre>');
+            var_dump($parameters);
+            echo('</pre>');  
         }
 
         public function Delete($room){
@@ -50,15 +61,16 @@ class RoomsPDO implements IRoomsPDO{
 
         public function Edit($currentName, Room $newRoom){
 
+            
             try{
-                $query = "UPDATE".$this->tableName.
-                "SET RoomName = :RoomName, Capacity = :Capacity, TicketPrice = :TicketPrice WHERE (RoomName = :currentName);";
-
+                $query = "UPDATE ".$this->tableName.
+                " SET RoomName = :RoomName, Capacity = :Capacity, TicketPrice = :TicketPrice WHERE (RoomName = :currentName);";
+                echo($query);
                 $parameters['RoomName'] = $newRoom->getName();
                 $parameters['TicketPrice'] = $newRoom->getTicketPrice();
                 $parameters['Capacity'] = $newRoom->getCapacity();
                 $parameters['currentName'] = $currentName;
-
+                $this->viewArray($parameters);
                 $this->connection = Connection ::GetInstance();
 
                 $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -71,11 +83,11 @@ class RoomsPDO implements IRoomsPDO{
         }
 
 
-        public function getRoomsCinema($cinemaName){
+        public function getRoomsCinema($Id_cinema){
 
             try{
-                $parameters['CinemaName'] = $cinemaName;
-                $query = "SELECT * FROM ".$this->tableName." WHERE (CinemaName = :cinemaName);";
+                $parameters['Id_cinema'] = $Id_cinema;
+                $query = "SELECT * FROM ".$this->tableName." WHERE (Id_cinema = :Id_cinema);";
                 $this->connection = Connection ::GetInstance();
 
                 $result = $this->connection->Execute($query, $parameters);
@@ -83,13 +95,8 @@ class RoomsPDO implements IRoomsPDO{
 
                 foreach($result as $value){
 
-                    $room = new Room();
-                    $room->setCinemaName($value['CinemaName']);
-                    $room->setName($value['RoomName']);
-                    $room->setTicketPrice($value['TicketPrice']);
-                    $room->setCapacity($value['Capacity']);
-
-                    array_push($roomList, $room);
+                    $aux=$this->create($value);
+                    array_push($roomList, $aux);
                 }
                 return $roomList;
             }
@@ -99,38 +106,41 @@ class RoomsPDO implements IRoomsPDO{
             }
         }
 
-        public function getAll(){
+
+        private function create($value)
+	{
+		$room = new Room();
+		$room->setIdCinema($value['Id_cinema']);
+		$room->setName($value['RoomName']);
+		$room->setCapacity($value['Capacity']);
+		$room->setTicketPrice($value['TicketPrice']);
+		$room->setCinemaName($value['CinemaName']);
+
+		return $room;
+	}
+
+        public function getAll(){  ///RETORNA TODAS LAS ROOM CORRESPONDIENTES A UNA SALA
 
             try{
-                
                 $roomList = array();
-                $query = "SELECT * FROM ".$this->tableName;
+
+                $query="SELECT r.Id_cinema,r.RoomName,r.Capacity,r.TicketPrice,c.CinemaName 
+                FROM rooms r INNER JOIN cinemas c ON c.Id_cinema=r.Id_cinema;";
+
                 $this->connection = Connection::GetInstance();
-                $roomsResults = $this->connection->Execute($query);
 
-                //echo '<pre>' , var_dump($roomsResults) , '</pre>';               
+                $result = $this->connection->Execute($query);
 
-                $cinemaPDO = new CinemasPDO();
-                
+                    foreach($result as $value)
+                    {
+                        if(!empty($result))
+                        {
 
-                foreach($roomsResults as $row){
-
-                    //echo "<br>PRIMER FOREACH";
-
-                    foreach($row as $room){
-                        
-                        $room = new Room();                                              
-                        //$cinema = $$cinemaPDO->getOneCinema($row["CinemaName"]);
-                        //$room->setCinemaName($cinema->getName());
-                        $room->setCinemaName($cinemaPDO->getOneCinema($row["CinemaName"]));
-                        $room->setName($row['RoomName']);
-                        $room->setTicketPrice($row['TicketPrice']);
-                        $room->setCapacity($row['Capacity']);
-                    }
+                            $cinema= $this->create($value);
+                            array_push($roomList, $cinema);
+                        }
                     
-                       
-                    array_push($roomList, $room);
-                }
+                    }
                 return $roomList;        
             }
             catch(RoomPDOException $ex){

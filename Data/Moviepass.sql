@@ -1,24 +1,27 @@
-CREATE DATABASE Moviepass;
-USE Moviepass;
+CREATE DATABASE moviepass;
+USE moviepass;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
 CinemaName VARCHAR(30) NOT NULL,
 TotalCapacity SMALLINT NOT NULL,
 CinemaAddress VARCHAR(20) NOT NULL,
-RoomName VARCHAR (20) NOT NULL,
 CONSTRAINT pk_IdCinema PRIMARY KEY (Id_cinema),
 CONSTRAINT unq_Cinema_name UNIQUE (CinemaName),
-CONSTRAINT unq_Cinema_address UNIQUE (CinemaAddress),
-CONSTRAINT fk_roomName foreign key (RoomName) REFERENCES rooms (RoomName)
+CONSTRAINT unq_Cinema_address UNIQUE (CinemaAddress)
 );
+SELECT r.Id_room,r.RoomName,r.Capacity,r.TicketPrice,c.CinemaName 
+			FROM rooms r INNER JOIN cinemas c ON c.Id_cinema=r.Id_cinema;
 
 CREATE TABLE IF NOT EXISTS rooms(
+Id_room INT NOT NULL AUTO_INCREMENT,
+Id_cinema INT NOT NULL,
 CinemaName VARCHAR(20) NOT NULL,
 RoomName VARCHAR(20) NOT NULL,
 TicketPrice FLOAT NOT NULL,
 Capacity INT NOT NULL,
-CONSTRAINT pk_roomName PRIMARY KEY(RoomName)
+CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
+CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
 CREATE TABLE IF NOT EXISTS movies(
@@ -77,5 +80,8 @@ CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 
 
 
-drop table users;
-select * from users;
+drop table rooms;
+
+select * from rooms;
+
+

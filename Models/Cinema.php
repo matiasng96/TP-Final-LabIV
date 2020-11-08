@@ -5,6 +5,7 @@
 
         //Acá cambio lo de Ticket Price, se agregaron las salas (Rooms) en cada cine. Room es una clase y entre sus atributos está el precio de 
         //la entrada. Esto es un requisito que agregaron. Se cambió la estructura de los cines.
+        private $id;
         private $name;
         private $totalCapacity; //La suma de la capacidad de cada sala.
         private $address;     
@@ -15,7 +16,9 @@
             $this->setName($name);
             $this->setTotalCapacity($totalCapacity);
             $this->setAddress($address);
-        }  
+        } 
+        public function setId($id){$this->id = $id;}
+        public function getId(){return $this->id;} 
 
         public function setName($name){$this->name = $name;}
         public function getName(){return $this->name;}
