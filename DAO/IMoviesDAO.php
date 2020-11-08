@@ -7,6 +7,6 @@
           
           public function Add(Movie $movie);
           public function GetAll(); //from JSON
-          public function delete($id);
+        
      }        
 ?>

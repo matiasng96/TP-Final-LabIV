@@ -1,5 +1,10 @@
-CREATE DATABASE moviepass;
-USE moviepass;
+CREATE DATABASE Moviepass;
+USE Moviepass;
+DROP DATABASE moviepass;
+SELECT * FROM movies;
+SELECT * FROM genres;
+SELECT * FROM genresXmovies;
+DROP TABLE genresXmovies;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
@@ -34,9 +39,24 @@ Capacity SMALLINT NOT NULL,
 CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
 );
 
+
+SELECT g.Id_genre, g.GenreName
+FROM movies m
+INNER JOIN genresXmovies gXm 
+ON (m.Id_movie = gXm.Id_movie)
+INNER JOIN genres g
+ON (g.Id_genre = gXm.Id_genre)
+WHERE(m.Id_movie = '425001');
+
+GROUP BY(m.Title);
+
+INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
+
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  
 Poster_path VARCHAR(200)  NOT NULL,
+Runtime SMALLINT NOT NULL,
+Original_language VARCHAR(10),
 Title VARCHAR(30) NOT NULL,
 CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
