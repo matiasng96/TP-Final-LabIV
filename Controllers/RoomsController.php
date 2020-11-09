@@ -22,10 +22,9 @@ use Models\Room as Room;
                 echo "<script> Error: $ex </script>";
             }           
         }
-        public function ShowEditView($currentName,$name, $capacity, $ticketPrice)
+        public function ShowEditView($name, $capacity, $ticketPrice)
         {
             require_once(VIEWS_PATH."room-edit.php");
-
         }
 
         public function viewArray($value)
@@ -59,11 +58,23 @@ use Models\Room as Room;
 
         public function Edit($currentName,$name, $capacity, $ticketPrice)
         {
-            $room= new Room("","",$name, $ticketPrice, $capacity);
-            //$this->viewArray($room);
+            $room= new Room(" "," ",$name, $ticketPrice, $capacity);
             $this->rooomPDO->Edit($currentName,$room);
+            $cienmasPDO= new CinemasController();
+            $cienmasPDO->ShowListView();
+        }
 
-
+        public function Delete($roomName)
+        {
+            $deleted = $this->rooomPDO->Delete($roomName);
+            if ($deleted > 0)
+            {
+                $this->ShowListView();
+            }else
+            {
+                echo "<script> alert('Ha ocurrido un error inesperado al intentar Eliminar dicha sala, por favor intente nuevamente.');</script>";
+                $this->ShowListView();
+            }
         }
 
     }

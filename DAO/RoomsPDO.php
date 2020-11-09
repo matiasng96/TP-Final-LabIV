@@ -43,12 +43,12 @@ class RoomsPDO implements IRoomsPDO{
             echo('</pre>');  
         }
 
-        public function Delete($room){
+        public function Delete($RoomName){
 
             try{
 
-                $query = "DELETE FROM".$this->tableName."WHERE (RoomName = :RoomName);";
-                $parameters['RoomName'] = $room;
+                $query = "DELETE FROM ".$this->tableName." WHERE (RoomName = :RoomName);";
+                $parameters['RoomName'] = $RoomName;
                 $this->connection = Connection::GetInstance();
                 $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
                 return $deletedCount;
@@ -65,12 +65,10 @@ class RoomsPDO implements IRoomsPDO{
             try{
                 $query = "UPDATE ".$this->tableName.
                 " SET RoomName = :RoomName, Capacity = :Capacity, TicketPrice = :TicketPrice WHERE (RoomName = :currentName);";
-                echo($query);
                 $parameters['RoomName'] = $newRoom->getName();
                 $parameters['TicketPrice'] = $newRoom->getTicketPrice();
                 $parameters['Capacity'] = $newRoom->getCapacity();
                 $parameters['currentName'] = $currentName;
-                $this->viewArray($parameters);
                 $this->connection = Connection ::GetInstance();
 
                 $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
