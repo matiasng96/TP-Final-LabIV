@@ -121,13 +121,7 @@ class MoviesPDO implements IMoviesDAO
             foreach ($result as $value) {
                 $movie = new Movie($value["Id_movie"], $value["Poster_path"], $value["Runtime"], 
                 $this->GetGenresXmovies($value["Id_movie"]), $value["Original_language"], $value["Title"]);
-               /*  $movie->setId($value["Id_movie"]);
-                $movie->setPoster_path($value["Poster_path"]);
-                $movie->setRuntime($value["Runtime"]);
-                $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
-                $movie->setLanguage($value["Original_language"]);
-                $movie->setTitle($value["Title"]);
-               */
+          
                 array_push($this->moviesList, $movie);
             }
 
@@ -155,12 +149,6 @@ class MoviesPDO implements IMoviesDAO
             foreach ($result as $value) {
                 $movie = new Movie($value["Id_movie"], $value["Poster_path"], $value["Runtime"], 
                 $this->GetGenresXmovies($value["Id_movie"]), $value["Original_language"], $value["Title"]);
-             /* $movie->setId($value["Id_movie"]);
-                $movie->setPoster_path($value["Poster_path"]);
-                $movie->setRuntime($value["Runtime"]);
-                $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
-                $movie->setLanguage($value["Original_language"]);
-                $movie->setTitle($value["Title"]); */
 
                 array_push($this->moviesList, $movie);
             }
@@ -215,23 +203,10 @@ class MoviesPDO implements IMoviesDAO
             $movie = new Movie($data['id'], $data['poster_path'], $this->CheckAndGetRuntime($data['id']), 
             $this->genresDAO->GetGenresIDsArray($data['genre_ids']), $data['original_language'], $data['title']);
 
-        
-          /*   $movie->setId($data['id']);
-            $movie->setPoster_path($data['poster_path']);
-            //A veces la duración está en 0 en la API, entonces asignamos por defecto 120 minutos.
-            if ($this->GetMoviesRuntimeFromAPI($data['id']) > 0) {
-                $movie->setRuntime($this->GetMoviesRuntimeFromAPI($data['id']));
-            } else {
-                $movie->setRuntime(120);
-            }
-            //El atributo name dentro del objeto Genre va a estar vacío, otro método se encargará de cargarlo.
-            $movie->setGenresArray($this->genresDAO->GetGenresIDsArray($data['genre_ids']));
-            $movie->setLanguage($data['original_language']);
-            $movie->setTitle($data['title']); */
-
             array_push($moviesArray, $movie);
         };
 
         return $moviesArray;
     }
 }
+?>

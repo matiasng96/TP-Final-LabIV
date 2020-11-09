@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use DAO\GenresPDO as GenresDAO;
+use PDOException as Exception;
 
 class GenresController
 {
@@ -14,13 +15,19 @@ class GenresController
         $this->genresDAO = new GenresDAO;
     }
 
-    public function SaveAllGenres(){
-        $genresList = $this->genresDAO->APItoGenresArray(); 
-      
-        foreach($genresList as $genre){
-            $this->genresDAO->Add($genre);
+    public function SaveAllGenres()
+    {
+        try {
+            $genresList = $this->genresDAO->APItoGenresArray();
+
+            foreach ($genresList as $genre) {
+                $this->genresDAO->Add($genre);
+            }
+        } catch (Exception $ex) {
+
+            //$error = $ex->getMessage();
+            echo $ex->getMessage();
         }
     }
 }
-
 ?>

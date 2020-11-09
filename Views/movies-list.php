@@ -17,6 +17,7 @@ require_once('nav.php');
                               <div class="col-auto my-1">
                                    <select name="genre" class="custom-select mr-sm-2">
                                         <option selected>Elegir Género</option>
+                                        <option value="All">All</option>
                                         <option value="Action">Action</option>
                                         <option value="Adventure">Adventure</option>
                                         <option value="Animation">Animation</option>
@@ -47,31 +48,39 @@ require_once('nav.php');
           </thead>
           <tbody>
                <?php
-               foreach ($moviesList as $movie) {
+               if (empty($moviesList)) {
                ?>
-                    <tr>
-                         <td>
-                              <?php echo $movie->getTitle() ?>
-                         </td>
+                    <div class="alert alert-info" role="alert">
+                         <?php echo $ResultsNotFound; ?>
+                    </div>
+                    <?php
+               } else {
+                    foreach ($moviesList as $movie) {
+                    ?>
+                         <tr>
+                              <td>
+                                   <?php echo $movie->getTitle() ?>
+                              </td>
 
-                         <td>
-                              <?php foreach ($movie->getGenresArray() as $genre) {
-                                   echo $genre->getName() . "<br>";
-                              } ?>
-                         </td>
+                              <td>
+                                   <?php foreach ($movie->getGenresArray() as $genre) {
+                                        echo $genre->getName() . "<br>";
+                                   } ?>
+                              </td>
 
-                         <td>
-                              <?php echo strtoupper($movie->getLanguage()) ?>
-                         </td>
+                              <td>
+                                   <?php echo strtoupper($movie->getLanguage()) ?>
+                              </td>
 
-                         <td>
-                              <?php echo $movie->getRuntime() . " min." ?>
-                         </td>
+                              <td>
+                                   <?php echo $movie->getRuntime() . " min." ?>
+                              </td>
 
-                         <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
+                              <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
 
-                    </tr>
+                         </tr>
                <?php
+                    }
                }
                ?>
                </tr>

@@ -148,4 +148,3 @@ class RoomsPDO implements IRoomsPDO{
             }
         }
     }
-?>
