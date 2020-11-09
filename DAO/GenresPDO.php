@@ -36,12 +36,6 @@ class GenresPDO
 
         foreach ($genresIDS as $ID) {
 
-<<<<<<< HEAD
-public function Add(Genre $genre)
-{
-    try {
-        $query = "INSERT INTO " . $this->tableName . " (Id_genre, GenreName) VALUES (:Id_genre, :GenreName);";
-=======
             $genre = new Genre($ID);
             array_push($genresArray, $genre);
         }
@@ -58,7 +52,6 @@ public function Add(Genre $genre)
             $query = "SELECT * FROM " . $this->tableName;
 
             $this->connection = Connection::GetInstance();
->>>>>>> TestMovies
 
             $genresResults = $this->connection->Execute($query);
 
