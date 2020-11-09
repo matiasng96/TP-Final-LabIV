@@ -2,17 +2,9 @@
 
     namespace DAO;
 
-<<<<<<< HEAD
-    use \Exception as Exception;
-    use Models\Cinema as Cinema;
+    use \PDOException as Exception;
     use DAO\Connection as Connection;
-    use Models\Room as Room;
-    use DAO\RoomsPDO as RoomPDO;
-=======
-use \PDOException as Exception;
-use DAO\Connection as Connection;
-use Models\Cinema as Cinema;
->>>>>>> TestMovies
+    use Models\Cinema as Cinema;
 
     class CinemasPDO implements ICinemasDAO
     {
