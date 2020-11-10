@@ -2,11 +2,10 @@
 
     namespace DAO;
 
-    use \Exception as Exception;
-    use Models\Cinema as Cinema;
+    use \PDOException as Exception;
     use DAO\Connection as Connection;
+    use Models\Cinema as Cinema;
     use Models\Room as Room;
-    use DAO\RoomsPDO as RoomPDO;
 
     class CinemasPDO implements ICinemasDAO
     {
@@ -181,7 +180,7 @@
                 $cinemasResults = $this->connection->Execute($query);
 
                 //Recorro el arreglo de Cines(dela base de datos) y tomo los datos de cada fila para crear un objeto Cinema y guardo cada objeto en $cinemasList.
-                $room= new RoomPDO();
+                $room= new RoomsPDO();
                 foreach ($cinemasResults as $row) {
                     $cinema = new Cinema();
                     $cinema->setName($row['CinemaName']);

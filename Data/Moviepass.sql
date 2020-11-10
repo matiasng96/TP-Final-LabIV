@@ -1,5 +1,10 @@
-CREATE DATABASE moviepass;
-USE moviepass;
+CREATE DATABASE Moviepass;
+USE Moviepass;
+DROP DATABASE moviepass;
+SELECT * FROM movies;
+SELECT * FROM genres;
+SELECT * FROM genresXmovies;
+DROP TABLE genresXmovies;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
@@ -34,9 +39,24 @@ Capacity SMALLINT NOT NULL,
 CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
 );
 
+
+SELECT g.Id_genre, g.GenreName
+FROM movies m
+INNER JOIN genresXmovies gXm 
+ON (m.Id_movie = gXm.Id_movie)
+INNER JOIN genres g
+ON (g.Id_genre = gXm.Id_genre)
+WHERE(m.Id_movie = '425001');
+
+/*GROUP BY(m.Title);
+*/
+INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
+
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  
 Poster_path VARCHAR(200)  NOT NULL,
+Runtime SMALLINT NOT NULL,
+Original_language VARCHAR(10),
 Title VARCHAR(30) NOT NULL,
 CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie),
 CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
@@ -65,10 +85,10 @@ UserLastName VARCHAR(30) NOT NULL,
 UserPassword VARCHAR(30) NOT NULL,
 UserGender VARCHAR(40) NOT NULL,
 UserDni BIGINT NOT NULL,
-Id_userRole BIT NOT NULL,
+Id_userRole INT NOT NULL,
 CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId),
 CONSTRAINT `unq_email` UNIQUE(UserEmail),
-CONSTRAINT `fk_users_roles` FOREIGN KEY(id_userRole) REFERENCES userRole(id_role)
+CONSTRAINT `fk_users_roles` FOREIGN KEY (Id_userRole) REFERENCES userRole (Id_role)
 );
 
 CREATE TABLE IF NOT EXISTS userRole (
@@ -78,10 +98,8 @@ CONSTRAINT `PK-Id_role`PRIMARY KEY (Id_role),
 CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 );
 
-
-
 drop table rooms;
-
+select * from users;
 select * from rooms;
 
 
