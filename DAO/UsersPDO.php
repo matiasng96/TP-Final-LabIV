@@ -78,6 +78,33 @@
             }
         }
 
+        public function Edit($currentEmail, User $newUser){
+
+            try{
+
+                $query = "UPDATE ".$this->userTable.
+                " SET UserEmail = :UserEmail , UserName = :UserName , UserLastName = :UserLastName , UserPassword = :UserPassword ,
+                 UserGender = :UserGender , UserDni = :UserDni WHERE (UserEmail = :currentEmail);";
+                
+                $parameters['UserName'] = $newUser->getName();
+                $parameters['UserEmail'] = $newUser->getEmail();
+                $parameters['UserLastName'] = $newUser->getLastName();
+                $parameters['UserPassword'] = $newUser->getPassword();
+                $parameters['UserGender'] = $newUser->getGender();
+                $parameters['UserDni'] = $newUser->getDni();
+                $parameters['currentEmail'] = $currentEmail;
+
+                $this->connection = Connection ::GetInstance();
+                $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+
+                return $deletedCount;
+            }
+            catch(PDOException $ex){
+
+                throw $ex;
+            }
+        }
+
     ///FUNCION QUE RETORNA LA LISTA DE USERS, NECESARIA PARA AGREGAR ROL A LOS USUARIOS
         public function checkUserList()
         {
