@@ -48,8 +48,8 @@ INNER JOIN genres g
 ON (g.Id_genre = gXm.Id_genre)
 WHERE(m.Id_movie = '425001');
 
-GROUP BY(m.Title);
-
+/*GROUP BY(m.Title);
+*/
 INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
 
 CREATE TABLE IF NOT EXISTS movies(
@@ -85,10 +85,10 @@ UserLastName VARCHAR(30) NOT NULL,
 UserPassword VARCHAR(30) NOT NULL,
 UserGender VARCHAR(40) NOT NULL,
 UserDni BIGINT NOT NULL,
-Id_userRole BIT NOT NULL,
+Id_userRole INT NOT NULL,
 CONSTRAINT `PK-Id_users` PRIMARY KEY (UserId),
 CONSTRAINT `unq_email` UNIQUE(UserEmail),
-CONSTRAINT `fk_users_roles` FOREIGN KEY(id_userRole) REFERENCES userRole(id_role)
+CONSTRAINT `fk_users_roles` FOREIGN KEY (Id_userRole) REFERENCES userRole (Id_role)
 );
 
 CREATE TABLE IF NOT EXISTS userRole (
@@ -98,10 +98,8 @@ CONSTRAINT `PK-Id_role`PRIMARY KEY (Id_role),
 CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 );
 
-
-
 drop table rooms;
-
+select * from users;
 select * from rooms;
 
 
