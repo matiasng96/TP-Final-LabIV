@@ -49,7 +49,8 @@ use Models\Room as Room;
             {
                 $room = new Room($aux->getId(),$cinemaName, $name, $price, $capacity);     
                 $this->rooomPDO->Add($room); 
-                $this->ShowListView();
+                $cinemaController = new CinemasController();
+                $cinemaController->ShowListView();
             }
             catch(Exception $ex){
                 echo "<script> Error: $ex </script>";
