@@ -4,22 +4,21 @@
 
     class User{
        
-        private $id;
-        private $lastName;
         private $name;
-        private $dni;
+        private $lastName;
         private $gender;
+        private $dni;        
         private $email;
         private $password;
         private $rol;
+        private $id;
 
-        function __construct ($id = '', $email='', $password='', $name='', $lastName='', $gender='', $dni=''){
+        function __construct ($name='', $lastName='', $gender='', $dni='', $email='', $password=''){
 
-            $this->setId($id);
-            $this->setLastName($lastName);
             $this->setName($name);
-            $this->setDni($dni);
+            $this->setLastName($lastName);
             $this->setGender($gender);
+            $this->setDni($dni);           
             $this->setEmail($email);
             $this->setPassword($password);
         }
