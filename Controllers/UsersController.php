@@ -34,6 +34,13 @@
 
             require_once(VIEWS_PATH."edit-user.php");
         }
+        
+        public function viewArray($parameters)
+        {
+            echo('<pre>');
+            var_dump($parameters);
+            echo('</pre>');  
+        }
 
         
         public function setSession($user)
@@ -44,11 +51,6 @@
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
-            //echo('<pre>');
-            //var_dump($user);
-            //echo('</pre>');    
-            
-            
             
             if(strcmp($user->getEmail(), $email) == 0)
             {
@@ -68,7 +70,6 @@
                     require_once(VIEWS_PATH . "login.php");
                 }
             }else {
-                echo("holaaa");
 
                 require_once(VIEWS_PATH . "login.php");
             }
@@ -119,7 +120,8 @@
             $user = new User();
              
             $user= $this->setUser($name, $lastName, $gender, $dni, $email, $password);
-
+            
+            //$this->viewArray();
             if($flag==0)
             {
                 $user->setUserRole($roleArray[0]);

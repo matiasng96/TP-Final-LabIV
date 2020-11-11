@@ -29,14 +29,14 @@ CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
 CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
+#===============TABLA PELICULAS=============================
 CREATE TABLE IF NOT EXISTS movies(
-Id_movie INT NOT NULL,
-Id_genre INT NOT NULL,
-MovieName VARCHAR(30) NOT NULL,    
-Id_room INT NOT NULL AUTO_INCREMENT,
-RoomName VARCHAR(30) NOT NULL,
-Capacity SMALLINT NOT NULL,
-CONSTRAINT `PK-Id_room` PRIMARY KEY (Id_room)
+Id_movie INT NOT NULL,  
+Poster_path VARCHAR(200)  NOT NULL,
+Runtime SMALLINT NOT NULL,
+Original_language VARCHAR(10),
+Title VARCHAR(30) NOT NULL,
+CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie)
 );
 
 
@@ -52,22 +52,14 @@ WHERE(m.Id_movie = '425001');
 */
 INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
 
-CREATE TABLE IF NOT EXISTS movies(
-Id_movie INT NOT NULL,  
-Poster_path VARCHAR(200)  NOT NULL,
-Runtime SMALLINT NOT NULL,
-Original_language VARCHAR(10),
-Title VARCHAR(30) NOT NULL,
-CONSTRAINT `PK-Id_movie` PRIMARY KEY (Id_movie),
-CONSTRAINT `FK-Id_genre` FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
-);
-
+#===============TABLA GENEROS=============================
 CREATE TABLE IF NOT EXISTS genres(
 Id_genre INT NOT NULL,
 GenreName VARCHAR(30) NOT NULL,
 CONSTRAINT `PK-Id_genre` PRIMARY KEY (Id_genre)
 );
 
+#===============TABLA GENEROSXPELICULAS=============================
 CREATE TABLE IF NOT EXISTS genresXmovies(
 Id_genresXmovies INT NOT NULL AUTO_INCREMENT,
 Id_movie INT NOT NULL,
