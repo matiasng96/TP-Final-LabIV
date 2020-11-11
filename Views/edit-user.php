@@ -1,15 +1,14 @@
-
 <?php
     require_once("nav.php");
 ?>
-
 
 <div class="form-group">       
     <form action="<?php echo FRONT_ROOT ?>User/Edit" method="POST">
     
         <div class="col-auto">
             <h2> Editar mi perfil </h2>
-        </div>
+            <input type="hidden" name="currentEmail" value="<?php echo $email ?>">
+        </div>       
 
         <div class="col-auto">
             <label for="nombre"> Nombre </label>
@@ -24,6 +23,14 @@
         <div class="col-auto">
             <label for="genero"> Genero </label>
             <input class="form-control" type="" name="gender" id="genero" value="<?php echo $gender ?>" required>
+
+            <select id="gender" name="gender" aria-selected="select" required>
+                <optgroup label="Sex" required>
+                    <option value="male" required> Male </option>
+                    <option value="female" required> Female </option>
+                    <option value="other" required> Other </option>
+                </optgroup>
+            </select>       
         </div>
 
         <div class="col-auto">
