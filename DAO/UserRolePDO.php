@@ -48,17 +48,19 @@
         {
             $userRole = null;
     
-            try
-            {
-                $parameters['id'] = $id;
-    
+            try{
+
+                $parameters['id'] = $id;    
                 $query = "SELECT * FROM userRole WHERE Id_role=:id";
     
-                $this->connection = Connection::getInstance();
-    
+                $this->connection = Connection::getInstance();     
                 $resultSet = $this->connection->Execute($query, $parameters);
     
+                echo "ACA EL RESULTA DE LA QUERY -> ";
+                var_dump($resultSet);
+
                 if(!empty($resultSet)) {
+                   
                     $userRole = $this->read($resultSet[0]);
                 }
             }
@@ -68,10 +70,5 @@
             }
             return $userRole;
         }
-    
-
-
     }
-
-
 ?>
