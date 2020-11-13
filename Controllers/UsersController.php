@@ -124,7 +124,6 @@
              
             $user= $this->setUser($name, $lastName, $gender, $dni, $email, $password);
             
-            //$this->viewArray();
             if($flag==0)
             {
                 $user->setUserRole($roleArray[0]);
