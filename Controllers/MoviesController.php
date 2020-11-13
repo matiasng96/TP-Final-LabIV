@@ -22,6 +22,7 @@ class MoviesController
 
     public function Add()
     {
+        //$this->genresController->SaveAllGenres();
         try {
             $moviesArray =  $this->moviesDAO->APItoMoviesArray();
             foreach ($moviesArray as $movie) {
@@ -56,11 +57,10 @@ class MoviesController
     public function ShowListView()
     {
         try {
-            /*
-        Este bloque cargas los géneros y las películas
+            
+        //Este bloque cargas los géneros y las películas
         //$this->genresController->SaveAllGenres();
         //$this->Add();
-        */
             $moviesList = $this->moviesDAO->GetAll();
         } catch (Exception $ex) {
 

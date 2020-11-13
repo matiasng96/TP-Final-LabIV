@@ -80,7 +80,6 @@ class MoviesPDO implements IMoviesDAO
 
                 "INNER JOIN " . " $this->tableGenres g " .
                 "ON (g.Id_genre = gXm.Id_genre)
-
             WHERE(m.Id_movie = '$IdMovie');";
 
             $this->connection = Connection::GetInstance();
@@ -111,7 +110,6 @@ class MoviesPDO implements IMoviesDAO
 
                 "INNER JOIN " . " $this->tableGenres g " .
                 "ON (g.Id_genre = gXm.Id_genre)
-
             WHERE(g.GenreName = '$genreName');";
 
             $this->connection = Connection::getInstance();

@@ -30,7 +30,8 @@
             require_once (VIEWS_PATH ."registry.php");
         }
 
-        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password){
+        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
+        {
 
             require_once(VIEWS_PATH."edit-user.php");
         }
@@ -46,6 +47,8 @@
         public function setSession($user)
         {
             $_SESSION["userLogedIn"] = $user;
+            //$this->viewArray($_SESSION["userLogedIn"]);
+            //echo($_SESSION["userLogedIn"];
         }
 
         public function logIn($email, $password)

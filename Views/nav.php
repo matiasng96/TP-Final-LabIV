@@ -22,7 +22,7 @@
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/ShowLogInView"> Iniciar Sesion</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/Edit">Editar Usuario</a>
+                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/ShowEditView">Editar Usuario</a>
                </li>
                <li class="nav-item">
                     <a class="nav-link" href="<?php echo FRONT_ROOT ?>Users/LogOut"> Cerra Sesion</a>

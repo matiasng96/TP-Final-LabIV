@@ -5,7 +5,7 @@
     use DAO\CinemasPDO as CinemasPDO;
     use DAO\Connection as Connection;
     use Exception as RoomPDOException;
-use FFI\Exception;
+    use FFI\Exception;
 
 class RoomsPDO implements IRoomsPDO{
 
