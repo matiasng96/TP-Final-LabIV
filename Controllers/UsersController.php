@@ -60,12 +60,11 @@
                     }
                 }else
                 {
-                    require_once(VIEWS_PATH . "login.php");
+                    require_once(VIEWS_PATH."login.php");
                 }
             }else {
-                echo("holaaa");
-
-                require_once(VIEWS_PATH . "login.php");
+                echo "<script> alert('No estas registrado, Hazlo ahora mientras que es gratis!'); </script>";
+                require_once(VIEWS_PATH."login.php");
             }
           
         }
@@ -85,7 +84,7 @@
             }
             catch(Exception $ex){
 
-                echo "<script> Se produjo un error al querer modificar la informacion. </script>";
+                echo "<script> alert('Se produjo un error al querer modificar la informacion.'); </script>";
             }
             //$user = $this->userDAO->read($email);
             //$this->userDAO->Add($user);
