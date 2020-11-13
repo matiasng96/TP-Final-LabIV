@@ -55,21 +55,23 @@
         {
             $user= $this->userDAO->read($email);   
             
-            if(strcmp($user->getEmail(), $email) == 0)
-            {
-                if(strcmp($user->getPassword(), $password)== 0)
-                {
+            if(strcmp($user->getEmail(), $email) == 0){
+                
+                if(strcmp($user->getPassword(), $password)== 0){
                     
                     $this->setSession($user);
-                    if($user->getUserRoleId() == 1 )
-                    {
+                    if($user->getUserRoleId() == 1){
+
                         require_once(VIEWS_PATH . "administrator.php");
                     }elseif ($user->getUserRoleId() == 2) {
-                        echo($user->getUserRoleId());
-                        require_once(VIEWS_PATH . "movies-list.php");
+                        
+                        require_once(VIEWS_PATH . "userlogged.php");
+                        
+                        //$movieController = new MoviesController();
+                        //$movieController->ShowListByGenre("All");
                     }
-                }else
-                {
+                }else{
+
                     require_once(VIEWS_PATH."login.php");
                 }
             }else {
