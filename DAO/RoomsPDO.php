@@ -5,7 +5,7 @@
     use DAO\CinemasPDO as CinemasPDO;
     use DAO\Connection as Connection;
     use Exception as RoomPDOException;
-use FFI\Exception;
+    use FFI\Exception;
 
 class RoomsPDO implements IRoomsPDO{
 
@@ -60,8 +60,6 @@ class RoomsPDO implements IRoomsPDO{
         }
 
         public function Edit($currentName, Room $newRoom){
-
-            
             try{
                 $query = "UPDATE ".$this->tableName.
                 " SET RoomName = :RoomName, Capacity = :Capacity, TicketPrice = :TicketPrice WHERE (RoomName = :currentName);";
@@ -79,10 +77,8 @@ class RoomsPDO implements IRoomsPDO{
                 throw $ex;
             }
         }
-
-
-        public function getRoomsCinema($Id_cinema){
-
+        public function getRoomsCinema($Id_cinema)
+        {
             try{
                 $parameters['Id_cinema'] = $Id_cinema;
                 $query = "SELECT * FROM ".$this->tableName." WHERE (Id_cinema = :Id_cinema);";
@@ -146,4 +142,3 @@ class RoomsPDO implements IRoomsPDO{
             }
         }
     }
-?>

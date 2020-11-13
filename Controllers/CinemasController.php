@@ -35,7 +35,7 @@
                 
                 $cinema = new Cinema($name, $TotalCapacity, $address);                
                 $this->cinemasDAO->Add($cinema);
-                $this->ShowAddView();
+                require_once(VIEWS_PATH."movies-list.php");
             }
             else{
 

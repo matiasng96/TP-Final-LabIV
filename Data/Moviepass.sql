@@ -22,6 +22,22 @@ CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
 CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
+select * from cinemas inner join rooms on cinemas.Id_cinemas = rooms.Id_cinema;
+select * from rooms inner join cinemas  on cinemas.Id_cinema = rooms.Id_cinema;
+
+
+SELECT g.Id_genre, g.GenreName
+FROM movies m
+INNER JOIN genresXmovies gXm 
+ON (m.Id_movie = gXm.Id_movie)
+INNER JOIN genres g
+ON (g.Id_genre = gXm.Id_genre)
+WHERE(m.Id_movie = '425001');
+
+/*GROUP BY(m.Title);
+*/
+INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
+
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  
 Poster_path VARCHAR(200)  NOT NULL,
@@ -46,13 +62,6 @@ CONSTRAINT fk_IdMovie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT fk_IdGenre FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
-CREATE TABLE IF NOT EXISTS userRole (
-Id_role INT NOT NULL auto_increment,
-RoleDescrip VARCHAR (40) NOT NULL,
-CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
-CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
-);
-
 CREATE TABLE IF NOT EXISTS users(
 UserId INT NOT NULL AUTO_INCREMENT,
 UserName VARCHAR(30) NOT NULL,
@@ -65,6 +74,13 @@ Id_userRole INT NOT NULL,
 CONSTRAINT pk_IdUsers PRIMARY KEY (UserId),
 CONSTRAINT unq_Email UNIQUE(UserEmail),
 CONSTRAINT fk_usersRoles FOREIGN KEY (Id_userRole) REFERENCES userRole (Id_role)
+);
+
+CREATE TABLE IF NOT EXISTS userRole (
+Id_role INT NOT NULL auto_increment,
+RoleDescrip VARCHAR (40) NOT NULL,
+CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
+CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 );
 
 drop table rooms;

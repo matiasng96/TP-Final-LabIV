@@ -30,21 +30,31 @@
             require_once (VIEWS_PATH ."registry.php");
         }
 
-        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password){
+        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
+        {
 
             require_once(VIEWS_PATH."edit-user.php");
+        }
+        
+        public function viewArray($parameters)
+        {
+            echo('<pre>');
+            var_dump($parameters);
+            echo('</pre>');  
         }
 
         
         public function setSession($user)
         {
             $_SESSION["userLogedIn"] = $user;
+            //$this->viewArray($_SESSION["userLogedIn"]);
+            //echo($_SESSION["userLogedIn"];
         }
 
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
-         
+            
             if(strcmp($user->getEmail(), $email) == 0)
             {
                 if(strcmp($user->getPassword(), $password)== 0)
@@ -98,33 +108,26 @@
             if($exist->getEmail() == NULL){
              
                 $roleArray= $this->userRole->retrieveAll();//TRAIGO EL ARREGLO DE ROLES, NECESARIO PARA AGREGAR ROL AL USUARIO
-                $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)
-
-                
+                $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)                
 
                 $user = new User($name, $lastName, $gender, $dni, $email, $password);
-                $rol = new Rol();
-                
-                var_dump($roleArray);
 
                 if($flag==0){
 
-                    $rol->setRol($roleArray[0]);
-                    $user->setUserRole($rol);
+                    $user->setUserRole($roleArray[0]);
                 }
                 else{
-                    $rol->setRol($roleArray[1]);
-                    $user->setUserRole($rol);
-                }
 
+                    $user->setUserRole($roleArray[1]);
+                }
                 $this->userDAO->Add($user);
 
                 require_once(VIEWS_PATH."login.php");  // VISTA DE LOGGEO
-           }
-           else{
+            }
+            else{
 
                 require_once(VIEWS_PATH."registry.php"); /// VISTA DE REGISTRO
-           }    
+            }    
         }           
     }        
 ?>

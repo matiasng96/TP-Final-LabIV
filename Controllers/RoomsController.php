@@ -3,7 +3,7 @@
 
 use DAO\CinemasPDO as CinemasPDO;
 use DAO\RoomsPDO as RoomsPDO;
-use Exception;
+use PDOException as Exception;
 use Models\Room as Room;
 
     class RoomsController{
