@@ -1,11 +1,14 @@
 <?php
     namespace Controllers;
 
-    class HomeController
+use Exception;
+
+class HomeController
     {
         public function Index($message = "")
         {
-           require_once(VIEWS_PATH."edit-user.php");
+            $moviesController = new MoviesController();
+            $moviesController->ShowListView();          
         }        
     }
 ?>
