@@ -22,7 +22,7 @@ class MoviesController
 
     public function Add()
     {
-        //$this->genresController->SaveAllGenres();
+        $this->genresController->SaveAllGenres();
         try {
             $moviesArray =  $this->moviesDAO->APItoMoviesArray();
             foreach ($moviesArray as $movie) {
@@ -45,12 +45,12 @@ class MoviesController
                 $moviesList = $this->moviesDAO->FilterByGenre($genre);
                 if (empty($moviesList)) {
                     $ResultsNotFound = "Actualmente no hay películas de ese género disponibles.";
-                }
+                }                
             }
+            require_once(VIEWS_PATH . "movies-list.php");
         } catch (Exception $ex) {
             $error = $ex->getMessage();
-        }
-        require_once(VIEWS_PATH . "movies-list.php");
+        }        
     }
 
 
