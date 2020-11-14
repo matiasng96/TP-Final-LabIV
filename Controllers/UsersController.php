@@ -32,7 +32,6 @@
 
         public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
         {
-
             require_once(VIEWS_PATH."edit-user.php");
         }
         
@@ -63,12 +62,10 @@
                     if($user->getUserRoleId() == 1){
 
                         require_once(VIEWS_PATH . "administrator.php");
-                    }elseif ($user->getUserRoleId() == 2) {
-                        
-                        require_once(VIEWS_PATH . "userlogged.php");
-                        
-                        //$movieController = new MoviesController();
-                        //$movieController->ShowListByGenre("All");
+                    }elseif ($user->getUserRoleId() == 2) {    
+
+                        $movieController = new MoviesController();                        
+                        $movieController->ShowListView();                        
                     }
                 }else{
 
@@ -77,8 +74,7 @@
             }else {
                 echo "<script> alert('No estas registrado, Hazlo ahora mientras que es gratis!'); </script>";
                 require_once(VIEWS_PATH."login.php");
-            }
-          
+            }          
         }
 
         public function logOut()
