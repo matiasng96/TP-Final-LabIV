@@ -97,19 +97,26 @@
                                    <?php
                                         switch($rol){
 
-                                             case 1: ?>                                             
+                                             case 1: ?>   
+                                                  <form action=" " method="POST">
                                                        <button class="btn btn-primary mb-2"> Crear funcion </button>
                                                        <button class="btn btn-primary mb-2"> Cargar </button>
+                                                  </form>                                          
+                                                       
                                                   <?php break;?>
 
                                              <?php
                                              case 2:?>
-                                                       <button class="btn btn-primary" > Comprar entradas </button>                                        
+                                                  <form>
+                                                       <button class="btn btn-primary" > Comprar entradas </button> 
+                                                  </form>                                                                                             
                                                   <?php break;?>
 
                                              <?php
                                              default:?>
-                                                       <button class="btn btn-primary" > Para comprar entradas Inicia sesion </button>
+                                                  <form action="Users/ShowLogInView" method="POST">
+                                                       <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
+                                                  </form>                                                       
                                                        <?php break;                                             
                                         }
                                    ?>
