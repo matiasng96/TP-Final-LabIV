@@ -5,6 +5,7 @@ SELECT * FROM movies;
 SELECT * FROM genres;
 SELECT * FROM genresXmovies;
 DROP TABLE genresXmovies;
+SELECT * FROM users;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
