@@ -12,11 +12,9 @@
         private $connection;
         private $userTable = "users";
         
-        public function Add (User $user)
-        {
+        public function Add (User $user){
         
-            try
-            {
+            try{
                 $sql = "INSERT INTO ".$this->userTable.
                 "(UserName, UserEmail, UserLastName ,UserPassword ,UserGender , UserDni, Id_userRole) 
                 VALUES(:UserName, :UserEmail, :UserLastName, :UserPassword, :UserGender, :UserDni , :Id_userRole);";
@@ -28,8 +26,6 @@
                 $parameters ["UserGender"]= $user->getGender();
                 $parameters ["UserDni"]= $user->getDni();
                 $parameters["Id_userRole"]= $user->getUserRoleId();
-
-
                 
                 $this->connection= Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql, $parameters);
@@ -40,17 +36,13 @@
             }        
         }
 
-        public function read ($UserEmail)
-        {
-            try{
-                
-                $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
+        public function read ($UserEmail){
 
-                $parameters ["UserEmail"] = $UserEmail;            
-            
+            try{                
+                $sql= "SELECT * FROM ".$this->userTable." WHERE (UserEmail = :UserEmail) LIMIT 1;";
+                $parameters ["UserEmail"] = $UserEmail;     
                 $this->connection= Connection::getInstance();
-                $result = $this->connection->Execute($sql, $parameters);
-               
+                $result = $this->connection->Execute($sql, $parameters);              
                 
                 $user2 = new User();
 
@@ -68,7 +60,6 @@
                     $userRoleDAO = new RoleDAO();
                     $userRole = $userRoleDAO->retrieveOne($value["Id_userRole"]);
                     $user2->setUserRole($userRole);
-
                 }
                 return $user2;
 
@@ -81,7 +72,6 @@
         public function Edit($currentEmail, User $newUser){
 
             try{
-
                 $query = "UPDATE ".$this->userTable.
                 " SET UserEmail = :UserEmail , UserName = :UserName , UserLastName = :UserLastName , UserPassword = :UserPassword ,
                  UserGender = :UserGender , UserDni = :UserDni WHERE (UserEmail = :currentEmail);";
@@ -106,20 +96,16 @@
         }
 
     ///FUNCION QUE RETORNA LA LISTA DE USERS, NECESARIA PARA AGREGAR ROL A LOS USUARIOS
-        public function checkUserList()
-        {
-            try
-            {
+        public function checkUserList(){
+
+            try{
                 $query = "SELECT COUNT(*) as quantity FROM " . $this->userTable ;
-
                 $this->connection = Connection::getInstance();
-
                 $resultSet = $this->connection->execute($query);
-
             }
-            catch (PDOException $e)
-            {
-            throw $e;
+            catch (PDOException $e){
+                
+                throw $e;
             }
         
             return $resultSet[0]['quantity'];

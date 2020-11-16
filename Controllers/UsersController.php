@@ -6,7 +6,7 @@
     use Models\Rol as Rol;
     use DAO\UsersPDO as UserDAO;
     use DAO\UserRolePDO as RolePDO;
-    
+    use Exception as Exception;
 
    class UsersController{
        
@@ -32,7 +32,6 @@
 
         public function ShowEditView()
         {
-
             require_once(VIEWS_PATH."edit-user.php");
         }
         
@@ -55,28 +54,27 @@
         {
             $user= $this->userDAO->read($email);   
             
-            if(strcmp($user->getEmail(), $email) == 0)
-            {
-                if(strcmp($user->getPassword(), $password)== 0)
-                {
+            if(strcmp($user->getEmail(), $email) == 0){
+                
+                if(strcmp($user->getPassword(), $password)== 0){
                     
                     $this->setSession($user);
-                    if($user->getUserRoleId() == 1 )
-                    {
+                    if($user->getUserRoleId() == 1){
+
                         require_once(VIEWS_PATH . "administrator.php");
-                    }elseif ($user->getUserRoleId() == 2) {
-                        echo($user->getUserRoleId());
-                        require_once(VIEWS_PATH . "movies-list.php");
+                    }elseif ($user->getUserRoleId() == 2) {    
+
+                        $movieController = new MoviesController();                        
+                        $movieController->ShowListView();                        
                     }
-                }else
-                {
-                    require_once(VIEWS_PATH . "login.php");
+                }else{
+
+                    require_once(VIEWS_PATH."login.php");
                 }
             }else {
-
-                require_once(VIEWS_PATH . "login.php");
-            }
-          
+                echo "<script> alert('No estas registrado, hazlo ahora mientras que es gratis!'); </script>";
+                require_once(VIEWS_PATH."login.php");
+            }          
         }
 
         public function logOut()
@@ -94,52 +92,34 @@
             require_once(VIEWS_PATH."movies-list.php");
         }
 
-        public function setUser ($name, $lastName, $gender, $dni, $email, $password)
-        {
-            $aux= new User();
-            $aux->setEmail($email);
-            $aux->setPassword($password);
-            $aux->setName($name);
-            $aux->setLastName($lastName);
-            $aux->setGender($gender);
-            $aux->setDni($dni);
-
-            return $aux;
-        }
-
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
         {
-
-            $exist= $this->userDAO->read($email);
-           
+            $exist= $this->userDAO->read($email);           
             
             ///PREGUNTA SI ESTA SETTEADO O ES DISTINTA DE NULL LA VARIABLE EXIST
-            if($exist->getEmail() == NULL)
-            {
+            if($exist->getEmail() == NULL){
              
-            $roleArray= $this->userRole->retrieveAll();//TRAIGO EL ARREGLO DE ROLES, NECESARIO PARA AGREGAR ROL AL USUARIO
-            $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)
+                $roleArray= $this->userRole->retrieveAll();//TRAIGO EL ARREGLO DE ROLES, NECESARIO PARA AGREGAR ROL AL USUARIO
+                $flag= $this->userDAO->checkUserList(); ///RETORNA EL LA CANTIDAD DE USUARIOS (quantity)                
 
-            $user = new User();
-             
-            $user= $this->setUser($name, $lastName, $gender, $dni, $email, $password);
-            
-            if($flag==0)
-            {
-                $user->setUserRole($roleArray[0]);
-            }else
-            {
-                $user->setUserRole($roleArray[1]);
-            }
-            $this->userDAO->Add($user);
+                $user = new User($name, $lastName, $gender, $dni, $email, $password);
 
-            require_once(VIEWS_PATH."login.php");  // VISTA DE LOGGEO
-           }else
-            {
-            
-            require_once(VIEWS_PATH."registry.php"); /// VISTA DE REGISTRO
+                if($flag==0){
+
+                    $user->setUserRole($roleArray[0]);
+                }
+                else{
+
+                    $user->setUserRole($roleArray[1]);
+                }
+                $this->userDAO->Add($user);
+
+                require_once(VIEWS_PATH."login.php");  // VISTA DE LOGGEO
             }
-         
+            else{
+
+                require_once(VIEWS_PATH."registry.php"); /// VISTA DE REGISTRO
+            }    
         }           
     }        
 ?>

@@ -1,8 +1,6 @@
-
 <?php
     require_once("nav.php");
 ?>
-
 
 <div class="form-group">       
     <form action="<?php echo FRONT_ROOT ?>Users/Edit" method="POST">

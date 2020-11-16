@@ -1,7 +1,18 @@
 <?php
-require_once('nav.php');
-//var_dump($_SESSION);
-//echo "DNI: " . $_SESSION['userLogedIn']->getDni();
+     $rol = 0;
+     if(isset($_SESSION['userLogedIn'])){
+
+          $rol = $_SESSION['userLogedIn']->getUserRoleId();
+
+          switch($rol){
+               case 1: require_once("nav.php"); break;
+               case 2: require_once("nav-logged.php"); break;
+          }  
+     }      
+     else{          
+          require_once("nav-notLogged.php");
+          echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
+     }          
 ?>
 <div class="container">
 
@@ -13,6 +24,8 @@ require_once('nav.php');
                <th>Idioma</th>
                <th>Duración</th>
                <th>Portada</th>
+               <th>Opciones</th>
+               
                <th>
                     <form method="post" action="<?php echo FRONT_ROOT ?>Movies/ShowListByGenre">
                          <div class="form-row align-items-center">
@@ -78,8 +91,29 @@ require_once('nav.php');
                                    <?php echo $movie->getRuntime() . " min." ?>
                               </td>
 
-                              <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
+                              <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td> 
+                              
+                              <td> 
+                                   <?php
+                                        switch($rol){
 
+                                             case 1: ?>                                             
+                                                       <button class="btn btn-primary mb-2"> Crear funcion </button>
+                                                       <button class="btn btn-primary mb-2"> Cargar </button>
+                                                  <?php break;?>
+
+                                             <?php
+                                             case 2:?>
+                                                       <button class="btn btn-primary" > Comprar entradas </button>                                        
+                                                  <?php break;?>
+
+                                             <?php
+                                             default:?>
+                                                       <button class="btn btn-primary" > Para comprar entradas Inicia sesion </button>
+                                                       <?php break;                                             
+                                        }
+                                   ?>
+                              </td>
                          </tr>
                <?php
                     }

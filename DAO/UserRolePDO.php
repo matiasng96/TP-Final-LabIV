@@ -5,11 +5,9 @@
     use PDOException as PDOException;
     use DAO\Connection as Connection;
 
-
     class UserRolePDO 
     {
         private $connection;
-
 
         private function read($row) {
             $userRole = new Rol($row["RoleDescrip"]);
@@ -17,11 +15,12 @@
             return $userRole;
         }
     ///FUNCION QUE RETORNA TODOS LOS ROLES DE LA BASE DE DATOS
-        public function retrieveAll() {
+        public function retrieveAll(){
+
             $userRoleList = array();
     
-            try
-            {
+            try{
+
                 $sql = "SELECT * FROM userRole;";
                 $this->connection = Connection::getInstance();
     
@@ -35,30 +34,27 @@
                     }
                 }
             }
-            catch (PDOException $ex)
-            {
+            catch (PDOException $ex){
+
                 throw $ex;
             }
-            
             return $userRoleList;
         }
 
         /// FUNCION QUE ME TRAE UN ROL, BUSCADO POR ID DE ROL
-        public function retrieveOne($id)
-        {
+        public function retrieveOne($id){
+
             $userRole = null;
     
-            try
-            {
-                $parameters['id'] = $id;
-    
+            try{
+                $parameters['id'] = $id;    
                 $query = "SELECT * FROM userRole WHERE Id_role=:id";
     
-                $this->connection = Connection::getInstance();
-    
+                $this->connection = Connection::getInstance();     
                 $resultSet = $this->connection->Execute($query, $parameters);
-    
+
                 if(!empty($resultSet)) {
+                   
                     $userRole = $this->read($resultSet[0]);
                 }
             }
@@ -68,10 +64,5 @@
             }
             return $userRole;
         }
-    
-
-
     }
-
-
 ?>
