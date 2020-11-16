@@ -11,7 +11,7 @@
         private $email;
         private $password;
         private $rol;
-        private $id;
+
 
         function __construct ($name='', $lastName='', $gender='', $dni='', $email='', $password=''){
 
@@ -22,9 +22,6 @@
             $this->setEmail($email);
             $this->setPassword($password);
         }
-
-        public function setId($id){$this->id = $id;}
-        public function getId(){return $this->id;}
         
         public function setLastName($lastName){$this->lastName = $lastName;}
         public function getLastName(){return $this->lastName;}
