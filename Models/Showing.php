@@ -10,6 +10,14 @@
         private $date;
         private $time;
 
+        public function __construct($room = " ", $movie = " ", $date = " ", $time = " ")
+        {
+            $this->setRoom($room);
+            $this->setMovie($movie);
+            $this->setDate($date);
+            $this->setTime($time);
+        }
+
 
         
         public function getRoom()

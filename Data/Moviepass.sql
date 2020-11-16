@@ -5,6 +5,7 @@ SELECT * FROM movies;
 SELECT * FROM genres;
 SELECT * FROM genresXmovies;
 DROP TABLE genresXmovies;
+SELECT * FROM users;
 
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
@@ -29,6 +30,17 @@ CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
 CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
+CREATE TABLE IF NOT EXISTS showing (
+Id_showing INT NOT NULL AUTO_INCREMENT,
+Date_showing DATE,
+Time_showing TIME,
+Id_room INT NOT NULL,
+Id_movie INT NOT NULL,
+CONSTRAINT pk_IdShowing PRIMARY KEY (Id_showing),
+CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
+CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)
+);
+
 select * from cinemas inner join rooms on cinemas.Id_cinemas = rooms.Id_cinema;
 select * from rooms inner join cinemas  on cinemas.Id_cinema = rooms.Id_cinema;
 
@@ -42,14 +54,21 @@ Capacity SMALLINT NOT NULL,
 CONSTRAINT pk_IdRoom PRIMARY KEY (Id_room)
 );
 
-
-SELECT g.Id_genre, g.GenreName
-FROM movies m
+SELECT m.* FROM  movies m
 INNER JOIN genresXmovies gXm 
 ON (m.Id_movie = gXm.Id_movie)
-INNER JOIN genres g
+INNER JOIN genres g 
 ON (g.Id_genre = gXm.Id_genre)
-WHERE(m.Id_movie = '425001');
+WHERE(g.GenreName = 'Action');
+
+
+SELECT g.Id_genre, g.GenreName, m.*
+FROM genres g
+INNER JOIN movies m 
+ON (m.Id_movie = gXm.Id_movie)
+LEFT JOIN genresXmovies gXm 
+ON (g.Id_genre = gXm.Id_genre)
+WHERE(m.Id_movie = '425001') && (g.GenreName = 'Comedy');
 
 /*GROUP BY(m.Title);
 */

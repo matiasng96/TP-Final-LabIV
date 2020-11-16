@@ -22,7 +22,7 @@ class MoviesController
 
     public function Add()
     {
-        //$this->genresController->SaveAllGenres();
+        $this->genresController->SaveAllGenres();
         try {
             $moviesArray =  $this->moviesDAO->APItoMoviesArray();
             foreach ($moviesArray as $movie) {

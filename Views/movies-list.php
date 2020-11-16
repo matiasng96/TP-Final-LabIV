@@ -1,5 +1,7 @@
 <?php
 require_once('nav.php');
+//var_dump($_SESSION);
+//echo "DNI: " . $_SESSION['userLogedIn']->getDni();
 ?>
 <div class="container">
 
