@@ -1,7 +1,8 @@
 <?php
      $rol = 0;
+     
      if(isset($_SESSION['userLogedIn'])){
-
+          
           $rol = $_SESSION['userLogedIn']->getUserRoleId();
 
           switch($rol){
@@ -9,10 +10,11 @@
                case 2: require_once("nav-logged.php"); break;
           }  
      }      
-     else{          
+     else{
+          
           require_once("nav-notLogged.php");
           echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
-     }          
+     }
 ?>
 <div class="container">
 

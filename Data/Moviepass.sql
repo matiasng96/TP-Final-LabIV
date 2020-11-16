@@ -1,6 +1,8 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
 
+drop database Moviepass;
+
 CREATE TABLE IF NOT EXISTS cinemas(
 Id_cinema INT NOT NULL AUTO_INCREMENT,
 CinemaName VARCHAR(30) NOT NULL,
@@ -78,28 +80,13 @@ CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
 CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 );
 
-drop table rooms;
-select * from showing;
-select * from rooms;
+insert into userRole (RoleDescrip) values ("Admin");
+insert into userRole (RoleDescrip) values ("User");
 
-DROP DATABASE moviepass;
+select * from showing;
+select * from users;
+
 SELECT * FROM movies;
-SELECT * FROM genres;
+SELECT * FROM userRole;
 SELECT * FROM genresXmovies;
 DROP TABLE genresXmovies;
-
-SELECT r.Id_room,r.RoomName,r.Capacity,r.TicketPrice,c.CinemaName 
-			FROM rooms r INNER JOIN cinemas c ON c.Id_cinema=r.Id_cinema;
-select * from cinemas inner join rooms on cinemas.Id_cinemas = rooms.Id_cinema;
-select * from rooms inner join cinemas  on cinemas.Id_cinema = rooms.Id_cinema;
-SELECT g.Id_genre, g.GenreName
-FROM movies m
-INNER JOIN genresXmovies gXm 
-ON (m.Id_movie = gXm.Id_movie)
-INNER JOIN genres g
-ON (g.Id_genre = gXm.Id_genre)
-WHERE(m.Id_movie = '425001');
-
-/*GROUP BY(m.Title);
-*/
-INSERT INTO genresXmovies (Id_movie,Id_genre) VALUES(1,3);
