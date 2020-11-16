@@ -30,7 +30,7 @@
             require_once (VIEWS_PATH ."registry.php");
         }
 
-        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
+        public function ShowEditView()
         {
 
             require_once(VIEWS_PATH."edit-user.php");
@@ -85,13 +85,13 @@
             require_once(VIEWS_PATH . "login.php");
         }
     
-        public function Edit($name, $lastName, $gender, $dni, $email, $password ){
-
-            $user = $this->userDAO->read($email);
+        public function Edit($currentEmail, $name, $lastName, $gender, $dni, $email, $password)
+        {
+            $user = $this->userDAO->read($currentEmail);
             $user = new User($user->getId(), $email, $password, $name, $lastName, $gender, $dni);
-            $this->userDAO->Add($user);
-
-
+            $this->userDAO->Edit($currentEmail,$user);
+            $this->setSession($user);
+            require_once(VIEWS_PATH."movies-list.php");
         }
 
         public function setUser ($name, $lastName, $gender, $dni, $email, $password)

@@ -5,44 +5,45 @@
 
 
 <div class="form-group">       
-    <form action="<?php echo FRONT_ROOT ?>User/Edit" method="POST">
+    <form action="<?php echo FRONT_ROOT ?>Users/Edit" method="POST">
     
         <div class="col-auto">
             <h2> Editar mi perfil </h2>
         </div>
-
-        <div class="col-auto">
+            <input type="hidden" name="currentEmail" value="<?php echo $_SESSION['userLogedIn']->getEmail();?>" required>
+        
+            <div class="col-auto">
             <label for="nombre"> Nombre </label>
-            <input class="form-control" type="text" name="name" id="nombre" value="<?php echo $name ?>" required>
+            <input class="form-control" type="text" name="name" value="<?php echo $_SESSION['userLogedIn']->getName();?>" required>
         </div>
 
         <div class="col-auto">
             <label for="apellido"> Apellido </label>
-            <input class="form-control" type="text" name="lastName" id="apellido" value="<?php echo $lastName ?>" required>
+            <input class="form-control" type="text" name="lastName" value="<?php echo $_SESSION['userLogedIn']->getLastName();?>" required>
         </div>
 
-        <div class="col-auto">
+        <!-- <div class="col-auto">
             <label for="genero"> Genero </label>
-            <input class="form-control" type="" name="gender" id="genero" value="<?php echo $gender ?>" required>
-        </div>
+            <input class="form-control" type="" name="gender" value="<?php // echo $_SESSION['userLogedIn']->getGender();?>" required>
+        </div> -->
 
         <div class="col-auto">
             <label for="dni"> DNI </label>
-            <input class="form-control" type="number" name="dni" id="dni" value="<?php echo $dni ?>" required>
+            <input class="form-control" type="number" name="dni" value="<?php echo $_SESSION['userLogedIn']->getDni();?>" required>
         </div>
 
         <div class="col-auto">
             <label for="email"> Email </label>
-            <input class="form-control" type="email" name="email" id="email" value="<?php echo $email ?>" required>
+            <input class="form-control" type="email" name="email" value="<?php echo $_SESSION['userLogedIn']->getEmail(); ?>" required>
         </div>
 
         <div class="col-auto">
             <label for="contraseña"> Contraseña </label>
-            <input class="form-control" type="text" name="password" id="contraseña" value="<?php echo $password ?>" required>
+            <input class="form-control" type="text" name="password" value="<?php echo $_SESSION['userLogedIn']->getPassword(); ?>" required>
         </div>
 
         <div class="col-auto">
-            <button class="btn btn-danger btn-block mt-2" type="submit"> Guaradar Cambios </button>
+            <button class="btn btn-danger btn-block mt-2" type="submit"> Guardar Cambios </button>
         </div>
     </form>
 </div>
