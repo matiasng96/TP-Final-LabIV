@@ -14,6 +14,7 @@
 
         <tbody>
             <?php 
+
                 foreach($roomList as $room){
             ?>
                 <tr>
@@ -21,7 +22,6 @@
                     <td> <?php echo $room->getName();        ?> </td>
                     <td> <?php echo $room->getCapacity();    ?> </td>
                     <td> <?php echo $room->getTicketPrice(); ?> </td>
-
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/Delete">
                             <input type="hidden" name="roomName" value="<?php echo $room->getName() ?>">
@@ -35,6 +35,7 @@
                             <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
+                    ?>
                 </tr>
             <?php
                 }

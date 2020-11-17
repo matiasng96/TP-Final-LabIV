@@ -30,7 +30,7 @@
             require_once (VIEWS_PATH ."registry.php");
         }
 
-        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
+        public function ShowEditView()
         {
             require_once(VIEWS_PATH."edit-user.php");
         }
@@ -72,7 +72,7 @@
                     require_once(VIEWS_PATH."login.php");
                 }
             }else {
-                echo "<script> alert('No estas registrado, Hazlo ahora mientras que es gratis!'); </script>";
+                echo "<script> alert('No estas registrado, hazlo ahora mientras que es gratis!'); </script>";
                 require_once(VIEWS_PATH."login.php");
             }          
         }
@@ -85,20 +85,18 @@
             $movieController->ShowListView();
         }
     
-        public function Edit($currentEmail, $name, $lastName, $gender, $dni, $email, $password ){
-
-            try{
-                $user = new User($name, $lastName, $gender, $dni, $email, $password);
-                $userEdited = $this->userDAO->Edit($currentEmail, $user);
-                var_dump($userEdited);
-            }
-            catch(Exception $ex){
-
-                echo "<script> alert('Se produjo un error al querer modificar la informacion.'); </script>";
-            }
-            //$user = $this->userDAO->read($email);
-            //$this->userDAO->Add($user);
-        }      
+        public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
+        {
+            $user = $this->userDAO->read($currentEmail);
+            $id = $user->getId();
+            $rol = $user->getUserRole();
+            $user = new User($name, $lastName,$gender, $dni, $email, $password);
+            $user->setId($id);
+            $user->setUserRole($rol);
+            $this->userDAO->Edit($currentEmail,$user);
+            $this->setSession($user);      
+            require_once(VIEWS_PATH."movies-list.php");
+        }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
         {

@@ -64,7 +64,6 @@ class MoviesController
             $moviesList = $this->moviesDAO->GetAll();
         } catch (Exception $ex) {
 
-            //$error = $ex->getMessage();
             echo $ex->getMessage();
         }
 
