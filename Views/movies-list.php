@@ -1,10 +1,8 @@
 <?php
      $rol = 0;
-     
      if(isset($_SESSION['userLogedIn'])){
           
           $rol = $_SESSION['userLogedIn']->getUserRoleId();
-
           switch($rol){
                case 1: require_once("nav.php"); break;
                case 2: require_once("nav-logged.php"); break;

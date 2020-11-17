@@ -83,12 +83,16 @@
             require_once(VIEWS_PATH . "login.php");
         }
     
-        public function Edit($currentEmail, $name, $lastName, $gender, $dni, $email, $password)
+        public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
         {
             $user = $this->userDAO->read($currentEmail);
-            $user = new User($user->getId(), $email, $password, $name, $lastName, $gender, $dni);
+            $id = $user->getId();
+            $rol = $user->getUserRole();
+            $user = new User($name, $lastName,$gender, $dni, $email, $password);
+            $user->setId($id);
+            $user->setUserRole($rol);
             $this->userDAO->Edit($currentEmail,$user);
-            $this->setSession($user);
+            $this->setSession($user);      
             require_once(VIEWS_PATH."movies-list.php");
         }
 

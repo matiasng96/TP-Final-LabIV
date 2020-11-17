@@ -20,11 +20,16 @@
             <input class="form-control" type="text" name="lastName" value="<?php echo $_SESSION['userLogedIn']->getLastName();?>" required>
         </div>
 
-        <!-- <div class="col-auto">
-            <label for="genero"> Genero </label>
-            <input class="form-control" type="" name="gender" value="<?php // echo $_SESSION['userLogedIn']->getGender();?>" required>
-        </div> -->
 
+        <div class="col-auto">
+            <label for="gender">Género:</label>
+            <select name="gender">
+                <option name="selected" value="<?php ucfirst($_SESSION['userLogedIn']->getGender());?>" disabled selected hidden ><?php echo ucfirst($_SESSION['userLogedIn']->getGender()); ?></option>
+                <option name="male" value="Male">Male</option>
+                <option name="female" value="Female">Female</option>
+            </select>
+        </div>
+        
         <div class="col-auto">
             <label for="dni"> DNI </label>
             <input class="form-control" type="number" name="dni" value="<?php echo $_SESSION['userLogedIn']->getDni();?>" required>
