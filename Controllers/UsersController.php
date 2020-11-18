@@ -30,7 +30,7 @@
             require_once (VIEWS_PATH ."registry.php");
         }
 
-        public function ShowEditView($name, $lastName, $gender, $dni, $email, $password)
+        public function ShowEditView()
         {
             require_once(VIEWS_PATH."edit-user.php");
         }
@@ -84,21 +84,25 @@
             $movieController = new MoviesController();
             $movieController->ShowListView();
         }
-    
-        public function Edit($currentEmail, $name, $lastName, $gender, $dni, $email, $password ){
-
+        
+        public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
+        {
             try{
-                $user = new User($name, $lastName, $gender, $dni, $email, $password);
-                $userEdited = $this->userDAO->Edit($currentEmail, $user);
-                var_dump($userEdited);
+            $user = $this->userDAO->read($currentEmail);
+            $id = $user->getId();
+            $rol = $user->getUserRole();
+            $user = new User($name, $lastName,$gender, $dni, $email, $password);
+            $user->setId($id);
+            $user->setUserRole($rol);
+            $this->userDAO->Edit($currentEmail,$user);
+            $this->setSession($user);   
+            require_once(VIEWS_PATH."login.php");
             }
             catch(Exception $ex){
-
                 echo "<script> alert('Se produjo un error al querer modificar la informacion.'); </script>";
-            }
-            //$user = $this->userDAO->read($email);
-            //$this->userDAO->Add($user);
-        }      
+            }  
+           
+        }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
         {
