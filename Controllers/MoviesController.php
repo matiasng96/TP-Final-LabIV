@@ -34,6 +34,8 @@ class MoviesController
         } catch (Exception $ex) {
             $error = $ex->getMessage();
         }
+
+        $this->ShowListView();
     }
 
     public function ShowListByGenre($genre)
@@ -57,14 +59,9 @@ class MoviesController
     public function ShowListView()
     {
         try {
-            
-        //Este bloque cargas los géneros y las películas
-        //$this->genresController->SaveAllGenres();
-        //$this->Add();
             $moviesList = $this->moviesDAO->GetAll();
         } catch (Exception $ex) {
 
-            //$error = $ex->getMessage();
             echo $ex->getMessage();
         }
 

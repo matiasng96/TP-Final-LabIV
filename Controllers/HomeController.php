@@ -7,8 +7,7 @@ class HomeController
     {
         public function Index($message = "")
         {
-            $moviesController = new MoviesController();
-            $moviesController->ShowListView();          
+            require_once(VIEWS_PATH."login.php");  
         }        
     }
 ?>
