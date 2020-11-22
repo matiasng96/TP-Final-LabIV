@@ -1,5 +1,9 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
+SELECT * FROM movies;
+SELECT * FROM genres;
+SELECT * FROM genresXmovies;
+DROP TABLE genresXmovies;
 
 drop database Moviepass;
 
@@ -12,6 +16,7 @@ CONSTRAINT pk_IdCinema PRIMARY KEY (Id_cinema),
 CONSTRAINT unq_CinemaName UNIQUE (CinemaName),
 CONSTRAINT unq_CinemaAddress UNIQUE (CinemaAddress)
 );
+
 
 CREATE TABLE IF NOT EXISTS rooms(
 Id_room INT NOT NULL AUTO_INCREMENT,
@@ -59,6 +64,14 @@ CONSTRAINT fk_IdMovie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT fk_IdGenre FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
+CREATE TABLE IF NOT EXISTS userRole (
+Id_role INT NOT NULL auto_increment,
+RoleDescrip VARCHAR (40) NOT NULL,
+CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
+CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
+);
+
+
 CREATE TABLE IF NOT EXISTS users(
 UserId INT NOT NULL AUTO_INCREMENT,
 UserName VARCHAR(30) NOT NULL,
@@ -73,12 +86,8 @@ CONSTRAINT unq_Email UNIQUE(UserEmail),
 CONSTRAINT fk_usersRoles FOREIGN KEY (Id_userRole) REFERENCES userRole (Id_role)
 );
 
-CREATE TABLE IF NOT EXISTS userRole (
-Id_role INT NOT NULL auto_increment,
-RoleDescrip VARCHAR (40) NOT NULL,
-CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
-CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
-);
+INSERT INTO userRole (RoleDescrip) VALUE ("Admin");
+INSERT INTO userRole (RoleDescrip) VALUE ("User");
 
 insert into userRole (RoleDescrip) values ("Admin");
 insert into userRole (RoleDescrip) values ("User");

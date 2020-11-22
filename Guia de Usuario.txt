@@ -1,0 +1,16 @@
+1.En la tabla de userRole hay que insertar los roles:
+
+INSERT INTO userRole (RoleDescrip) VALUE ("Admin");
+INSERT INTO userRole (RoleDescrip) VALUE ("User");
+
+El primer usuario que se registre será el Administrador.
+
+2.Loguearse como Administrador y clickear en Cargar las pelis.
+
+3.Al registrar un nuevo Usuario, ya será considerado como un Usuario normal.
+
+-Funcionan los ABM de User, Cines y Salas. 
+-Listar películas y filtrar por género también.
+-El problema es que no tenemos implementada la Función 
+y compra de entradas por eso en metodología nos dieron 
+tiempo hasta el martes 24 para agregar esas funcionalidades.

@@ -1,18 +1,6 @@
-<?php
-     $rol = 0;
-     if(isset($_SESSION['userLogedIn'])){
-          
-          $rol = $_SESSION['userLogedIn']->getUserRoleId();
-          switch($rol){
-               case 1: require_once("nav.php"); break;
-               case 2: require_once("nav-logged.php"); break;
-          }  
-     }      
-     else{
-          
-          require_once("nav-notLogged.php");
-          echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
-     }
+
+ <?php
+ require_once (VIEWS_PATH . "navSelector.php");
 ?>
 <div class="container">
 
@@ -97,19 +85,26 @@
                                    <?php
                                         switch($rol){
 
-                                             case 1: ?>                                             
+                                             case 1: ?>   
+                                                  <form action=" " method="POST">
                                                        <button class="btn btn-primary mb-2"> Crear funcion </button>
                                                        <button class="btn btn-primary mb-2"> Cargar </button>
+                                                  </form>                                          
+                                                       
                                                   <?php break;?>
 
                                              <?php
                                              case 2:?>
-                                                       <button class="btn btn-primary" > Comprar entradas </button>                                        
+                                                  <form>
+                                                       <button class="btn btn-primary" > Comprar entradas </button> 
+                                                  </form>                                                                                             
                                                   <?php break;?>
 
                                              <?php
                                              default:?>
-                                                       <button class="btn btn-primary" > Para comprar entradas Inicia sesion </button>
+                                                  <form action="Users/ShowLogInView" method="POST">
+                                                       <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
+                                                  </form>                                                       
                                                        <?php break;                                             
                                         }
                                    ?>

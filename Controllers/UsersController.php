@@ -82,9 +82,10 @@
             session_destroy();
             require_once(VIEWS_PATH . "login.php");
         }
-    
+        
         public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
         {
+            try{
             $user = $this->userDAO->read($currentEmail);
             $id = $user->getId();
             $rol = $user->getUserRole();
@@ -92,8 +93,13 @@
             $user->setId($id);
             $user->setUserRole($rol);
             $this->userDAO->Edit($currentEmail,$user);
-            $this->setSession($user);      
-            require_once(VIEWS_PATH."movies-list.php");
+            $this->setSession($user);   
+            require_once(VIEWS_PATH."login.php");
+            }
+            catch(Exception $ex){
+                echo "<script> alert('Se produjo un error al querer modificar la informacion.'); </script>";
+            }  
+           
         }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
