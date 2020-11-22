@@ -99,10 +99,10 @@ class MoviesPDO implements IMoviesDAO
         }
     }
 
-    public function FilterByGenre($genreName){
+    public function FilterByGenre($genreName){ //revisar
 
         try {
-            $query = "SELECT *
+            $query = "SELECT m.*
             FROM " . " $this->tableMovies m " .
 
                 "INNER JOIN " . " $this->tableGxM gXm " .
@@ -129,9 +129,6 @@ class MoviesPDO implements IMoviesDAO
 
             throw $ex;
         }
-
-
-
     }
 
 

@@ -1,18 +1,18 @@
 <?php
      $rol = 0;
      if(isset($_SESSION['userLogedIn'])){
-
+          
           $rol = $_SESSION['userLogedIn']->getUserRoleId();
-
           switch($rol){
                case 1: require_once("nav.php"); break;
                case 2: require_once("nav-logged.php"); break;
           }  
      }      
-     else{          
+     else{
+          
           require_once("nav-notLogged.php");
           echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
-     }          
+     }
 ?>
 <div class="container">
 
@@ -114,7 +114,8 @@
 
                                              <?php
                                              default:?>
-                                                  <form action="Users/ShowLogInView" method="POST">
+                                                  <form action="Users/checkSession" method="POST">
+                                                       <input hidden type="text" name="" value="">
                                                        <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
                                                   </form>                                                       
                                                        <?php break;                                             

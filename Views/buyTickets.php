@@ -2,6 +2,15 @@
     <form action="<?php echo FRONT_ROOT?> BuyTickets/checkSessionStart" method="POST">
         <div>
             <label for="cinema"> Elige tu Cine </label>
+            <select>
+                <?php
+                    foreach($cinemaList as $cinema){
+                ?>                   
+                        <option value="<?php $cinema ?>"> <?php $cinema ?> </option> 
+                <?php                    
+                    }
+                ?>
+            </select>  
             <input name="cinema" id="cinema" type=" " required>
         </div>
 

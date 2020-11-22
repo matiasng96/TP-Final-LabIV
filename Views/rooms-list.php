@@ -1,5 +1,18 @@
 <?php
-    require_once("nav.php");
+     $rol = 0;
+     if(isset($_SESSION['userLogedIn'])){
+          
+          $rol = $_SESSION['userLogedIn']->getUserRoleId();
+          switch($rol){
+               case 1: require_once("nav.php"); break;
+               case 2: require_once("nav-logged.php"); break;
+          }  
+     }      
+     else{
+          
+          require_once("nav-notLogged.php");
+          echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
+     }
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Salas </h2>
@@ -21,7 +34,6 @@
                     <td> <?php echo $room->getName();        ?> </td>
                     <td> <?php echo $room->getCapacity();    ?> </td>
                     <td> <?php echo $room->getTicketPrice(); ?> </td>
-
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/Delete">
                             <input type="hidden" name="roomName" value="<?php echo $room->getName() ?>">

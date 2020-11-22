@@ -50,6 +50,15 @@
             //echo($_SESSION["userLogedIn"];
         }
 
+        public function checkSession(){
+
+            if(!isset($_SESSION['userLogedIn'])){
+
+                require_once(VIEWS_PATH."login.php");
+            }
+
+        }
+
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
@@ -72,10 +81,11 @@
                     require_once(VIEWS_PATH."login.php");
                 }
             }else {
-                echo "<script> alert('No estas registrado, Hazlo ahora mientras que es gratis!'); </script>";
+                echo "<script> alert('No estas registrado, hazlo ahora mientras que es gratis!'); </script>";
                 require_once(VIEWS_PATH."login.php");
             }          
         }
+
 
         public function logOut()
         {
