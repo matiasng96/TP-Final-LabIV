@@ -1,9 +1,5 @@
 CREATE DATABASE Moviepass;
 USE Moviepass;
-SELECT * FROM movies;
-SELECT * FROM genres;
-SELECT * FROM genresXmovies;
-DROP TABLE genresXmovies;
 
 drop database Moviepass;
 
@@ -17,7 +13,6 @@ CONSTRAINT unq_CinemaName UNIQUE (CinemaName),
 CONSTRAINT unq_CinemaAddress UNIQUE (CinemaAddress)
 );
 
-
 CREATE TABLE IF NOT EXISTS rooms(
 Id_room INT NOT NULL AUTO_INCREMENT,
 Id_cinema INT NOT NULL,
@@ -29,13 +24,14 @@ CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
 CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
-CREATE TABLE IF NOT EXISTS showing (
+CREATE TABLE IF NOT EXISTS showtime (
 Id_showing INT NOT NULL AUTO_INCREMENT,
 Date_showing DATE,
 Time_showing TIME,
 Tickets INT NOT NULL,
 Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
+Is_available BOOLEAN,
 CONSTRAINT pk_IdShowing PRIMARY KEY (Id_showing),
 CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
 CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)
@@ -65,14 +61,6 @@ CONSTRAINT fk_IdMovie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie),
 CONSTRAINT fk_IdGenre FOREIGN KEY (Id_genre) REFERENCES genres (Id_genre)
 );
 
-CREATE TABLE IF NOT EXISTS userRole (
-Id_role INT NOT NULL auto_increment,
-RoleDescrip VARCHAR (40) NOT NULL,
-CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
-CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
-);
-
-
 CREATE TABLE IF NOT EXISTS users(
 UserId INT NOT NULL AUTO_INCREMENT,
 UserName VARCHAR(30) NOT NULL,
@@ -87,12 +75,17 @@ CONSTRAINT unq_Email UNIQUE(UserEmail),
 CONSTRAINT fk_usersRoles FOREIGN KEY (Id_userRole) REFERENCES userRole (Id_role)
 );
 
-INSERT INTO userRole (RoleDescrip) VALUE ("Admin");
-INSERT INTO userRole (RoleDescrip) VALUE ("User");
+CREATE TABLE IF NOT EXISTS userRole (
+Id_role INT NOT NULL auto_increment,
+RoleDescrip VARCHAR (40) NOT NULL,
+CONSTRAINT pk_IdRole PRIMARY KEY (Id_role),
+CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
+);
 
 insert into userRole (RoleDescrip) values ("Admin");
 insert into userRole (RoleDescrip) values ("User");
 
+drop table users;
 select * from showing;
 select * from users;
 

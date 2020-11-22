@@ -14,7 +14,6 @@
 
         <tbody>
             <?php 
-
                 foreach($roomList as $room){
             ?>
                 <tr>
@@ -35,7 +34,6 @@
                             <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
-                    ?>
                 </tr>
             <?php
                 }

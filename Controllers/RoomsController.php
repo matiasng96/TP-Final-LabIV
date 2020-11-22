@@ -8,14 +8,14 @@ use Models\Room as Room;
 
     class RoomsController{
 
-        private $rooomPDO;
+        private $roomPDO;
 
-        public function __construct(){$this->rooomPDO = new RoomsPDO;}
+        public function __construct(){$this->roomPDO = new RoomsPDO;}
 
         public function ShowListView(){
 
             try{                
-                $roomList = $this->rooomPDO->getAll();  
+                $roomList = $this->roomPDO->getAll();  
                 require_once(VIEWS_PATH."rooms-list.php");
             }
             catch(Exception $ex){
@@ -48,7 +48,7 @@ use Models\Room as Room;
             try
             {
                 $room = new Room($aux->getId(),$cinemaName, $name, $price, $capacity);     
-                $this->rooomPDO->Add($room); 
+                $this->roomPDO->Add($room); 
                 $cinemaController = new CinemasController();
                 $cinemaController->ShowListView();
             }
@@ -60,21 +60,22 @@ use Models\Room as Room;
         public function Edit($currentName,$name, $capacity, $ticketPrice)
         {
             $room= new Room(" "," ",$name, $ticketPrice, $capacity);
-            $this->rooomPDO->Edit($currentName,$room);
+            $this->roomPDO->Edit($currentName,$room);
             $cienmasPDO= new CinemasController();
             $cienmasPDO->ShowListView();
         }
 
         public function Delete($roomName)
         {
-            $deleted = $this->rooomPDO->Delete($roomName);
+            $deleted = $this->roomPDO->Delete($roomName);
+            $cinemaController = new CinemasController();
             if ($deleted > 0)
             {
-                $this->ShowListView();
+                $cinemaController->ShowListView();
             }else
             {
                 echo "<script> alert('Ha ocurrido un error inesperado al intentar Eliminar dicha sala, por favor intente nuevamente.');</script>";
-                $this->ShowListView();
+                $cinemaController->ShowListView();
             }
         }
 

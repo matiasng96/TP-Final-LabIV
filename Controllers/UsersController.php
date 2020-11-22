@@ -50,6 +50,15 @@
             //echo($_SESSION["userLogedIn"];
         }
 
+        public function checkSession(){
+
+            if(!isset($_SESSION['userLogedIn'])){
+
+                require_once(VIEWS_PATH."login.php");
+            }
+
+        }
+
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
@@ -76,6 +85,7 @@
                 require_once(VIEWS_PATH."login.php");
             }          
         }
+
 
         public function logOut()
         {
