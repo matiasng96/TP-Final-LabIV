@@ -1,5 +1,18 @@
 <?php
-    require_once("nav.php");
+     $rol = 0;
+     if(isset($_SESSION['userLogedIn'])){
+          
+          $rol = $_SESSION['userLogedIn']->getUserRoleId();
+          switch($rol){
+               case 1: require_once("nav.php"); break;
+               case 2: require_once("nav-logged.php"); break;
+          }  
+     }      
+     else{
+          
+          require_once("nav-notLogged.php");
+          echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
+     }
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Salas </h2>
@@ -14,7 +27,6 @@
 
         <tbody>
             <?php 
-
                 foreach($roomList as $room){
             ?>
                 <tr>
@@ -35,7 +47,6 @@
                             <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
                         </form>
                     </td>
-                    ?>
                 </tr>
             <?php
                 }
