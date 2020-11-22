@@ -50,6 +50,15 @@
             //echo($_SESSION["userLogedIn"];
         }
 
+        public function checkSession(){
+
+            if(!isset($_SESSION['userLogedIn'])){
+
+                require_once(VIEWS_PATH."login.php");
+            }
+
+        }
+
         public function logIn($email, $password)
         {
             $user= $this->userDAO->read($email);   
@@ -77,6 +86,7 @@
             }          
         }
 
+
         public function logOut()
         {
             $_SESSION['userLogedIn'] = null;
@@ -94,8 +104,12 @@
             $user->setId($id);
             $user->setUserRole($rol);
             $this->userDAO->Edit($currentEmail,$user);
-            $this->setSession($user);      
-            require_once(VIEWS_PATH."movies-list.php");
+            $this->setSession($user);                
+            echo "<script> alert('Se han guardado las modificaciones de tu perfil con exito.'); </script>";
+
+            $movieController = new MoviesController();                        
+            $movieController->ShowListView(); 
+            //require_once(VIEWS_PATH."movies-list.php");
         }
 
         public function SignUp($name, $lastName, $gender, $dni, $email, $password)
