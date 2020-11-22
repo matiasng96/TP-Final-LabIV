@@ -1,14 +1,15 @@
 <?php
     namespace Models;
 
-    //Esta clase corresponde al modelado de la función (en referencia a la proyección de la película). Tenemos la sala correspondiente,
-    // la peli, fecha y horario. 
+    //Esta clase corresponde al modelado de la Función (en referencia a la proyección de la película). Tenemos la sala correspondiente,
+    // la peli, fecha y horario y cantidad de tickets. 
     class Showing {
 
         private $room;
         private $movie;
         private $date;
         private $time;
+        private $tickets;
 
 
         
@@ -62,5 +63,19 @@
         {
                 $this->time = $time;
 
+        }
+
+    
+        public function getTickets()
+        {
+                return $this->tickets;
+        }
+
+
+        public function setTickets($tickets)
+        {
+                $this->tickets = $tickets;
+
+                return $this;
         }
     }
