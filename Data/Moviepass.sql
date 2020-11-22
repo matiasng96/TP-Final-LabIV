@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS showing (
 Id_showing INT NOT NULL AUTO_INCREMENT,
 Date_showing DATE,
 Time_showing TIME,
+Tickets INT NOT NULL,
 Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
 CONSTRAINT pk_IdShowing PRIMARY KEY (Id_showing),

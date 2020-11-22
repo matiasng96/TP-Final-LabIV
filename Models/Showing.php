@@ -9,6 +9,7 @@
         private $movie;
         private $date;
         private $time;
+        private $tickets;
 
         public function __construct($room = " ", $movie = " ", $date = " ", $time = " ")
         {
@@ -69,6 +70,17 @@
         public function setTime($time)
         {
                 $this->time = $time;
+
+        }
+        public function getTickets()
+        {
+                return $this->tickets;
+        }
+
+     
+        public function setTickets($tickets)
+        {
+                $this->tickets = $tickets;
 
         }
     }
