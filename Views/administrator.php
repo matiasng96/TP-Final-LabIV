@@ -1,7 +1,6 @@
 <?php
-require_once("nav.php");
+    require_once (VIEWS_PATH . "navSelector.php");
 ?>
-
 <div class="container row justify-content-center">
     <div class="form-group mt-4 border borderForm">
         <form action="<?php echo FRONT_ROOT ?>Movies/Add" method="POST">

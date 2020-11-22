@@ -1,9 +1,6 @@
 <?php
-require_once("nav.php");
+    require_once (VIEWS_PATH . "navSelector.php");
 ?>
-
-</div>
-
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="border borderForm col-10 col-md-8 col-lg-6">

@@ -79,10 +79,8 @@
 
         public function logOut()
         {
-            $_SESSION['userLogedIn'] = null;
             session_destroy();
-            $movieController = new MoviesController();
-            $movieController->ShowListView();
+            require_once(VIEWS_PATH . "login.php");
         }
         
         public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
