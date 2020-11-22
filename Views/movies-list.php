@@ -114,7 +114,8 @@
 
                                              <?php
                                              default:?>
-                                                  <form action="Users/ShowLogInView" method="POST">
+                                                  <form action="Users/checkSession" method="POST">
+                                                       <input hidden type="text" name="" value="">
                                                        <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
                                                   </form>                                                       
                                                        <?php break;                                             
