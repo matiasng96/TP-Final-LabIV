@@ -8,20 +8,7 @@ require_once('nav.php');
     <div class="form-group mt-4 border borderForm">
         <form action="<?php echo FRONT_ROOT ?>Movies/Add" method="POST">
             <div class="col-auto">
-<<<<<<< HEAD
                 <button type="submit" class="btn btn-primary mt-2 mb-2"> Cargar Películas Base de Datos </button>
-=======
-            <!-- De la API a la BDD  -->
-                <button type="submit" class="btn btn-primary mt-2 mb-2"> Cargar Películas</button>  
-            </div>
-        </form>
-    </div>
-
-    <div class="form-group mt-4 border borderForm">
-        <form action="<?php echo FRONT_ROOT ?>Showing/SaveAllGenres" method="POST">
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mt-2 mb-2"> Crear Función </button>
->>>>>>> Alex
             </div>
         </form>
     </div>

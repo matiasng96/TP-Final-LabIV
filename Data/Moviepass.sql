@@ -24,12 +24,14 @@ CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
 CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
-CREATE TABLE IF NOT EXISTS showing (
+CREATE TABLE IF NOT EXISTS showtime (
 Id_showing INT NOT NULL AUTO_INCREMENT,
 Date_showing DATE,
 Time_showing TIME,
+Tickets INT NOT NULL,
 Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
+Is_available BOOLEAN,
 CONSTRAINT pk_IdShowing PRIMARY KEY (Id_showing),
 CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
 CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)

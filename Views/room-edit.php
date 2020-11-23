@@ -11,10 +11,6 @@ require_once("nav.php");
 
         <div class="col-auto">
             <input type="hidden" name="currentName" value="<?php echo $name ?>">
-<<<<<<< HEAD
-=======
-           
->>>>>>> Alex
 
             <label for="name"> Nombre </label>
             <input class="form-control" type="text" name="name" value="<?php echo $name ?>" required>

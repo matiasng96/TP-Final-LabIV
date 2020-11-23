@@ -3,13 +3,14 @@
 
     //Esta clase corresponde al modelado de la Función (en referencia a la proyección de la película). Tenemos la sala correspondiente,
     // la peli, fecha y horario y cantidad de tickets. 
-    class Showing {
+    class Showtime {
 
         private $room;
         private $movie;
         private $date;
         private $time;
         private $tickets;
+        private $isAvailable;
 
         public function __construct($room = " ", $movie = " ", $date = " ", $time = " ")
         {
@@ -83,6 +84,18 @@
         public function setTickets($tickets)
         {
                 $this->tickets = $tickets;
+
+                return $this;
+        }
+
+        public function getIsAvailable()
+        {
+                return $this->isAvailable;
+        }
+
+        public function setIsAvailable($isAvailable)
+        {
+                $this->isAvailable = $isAvailable;
 
                 return $this;
         }
