@@ -18,8 +18,8 @@ class ShowtimeController{
 
     public function Add($date, $time, $Id_room, $Id_movie){
         
-        $showing = new Showtime(" ", " ", $date, $time);
-        $this->showtimeDAO->Add($showing,$Id_room,$Id_movie);
+        $showtime = new Showtime(" ", " ", $date, $time);
+        $this->showtimeDAO->Add($showtime,$Id_room,$Id_movie);
         
     }
 
