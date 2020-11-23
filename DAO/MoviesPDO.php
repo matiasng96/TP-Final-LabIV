@@ -88,7 +88,7 @@ class MoviesPDO implements IMoviesDAO
 
             foreach ($genresResults as $row) {
                 $genre = new Genre($row['Id_genre'], $row['GenreName']);
-        
+
                 array_push($genresArray, $genre);
             }
 
@@ -99,7 +99,8 @@ class MoviesPDO implements IMoviesDAO
         }
     }
 
-    public function FilterByGenre($genreName){ //revisar
+    public function FilterByGenre($genreName)
+    { //revisar
 
         try {
             $query = "SELECT m.*
@@ -117,14 +118,56 @@ class MoviesPDO implements IMoviesDAO
 
 
             foreach ($result as $value) {
-                $movie = new Movie($value["Id_movie"], $value["Poster_path"], $value["Runtime"], 
-                $this->GetGenresXmovies($value["Id_movie"]), $value["Original_language"], $value["Title"]);
-          
+                $movie = new Movie(
+                    $value["Id_movie"],
+                    $value["Poster_path"],
+                    $value["Runtime"],
+                    $this->GetGenresXmovies($value["Id_movie"]),
+                    $value["Original_language"],
+                    $value["Title"]
+                );
+
                 array_push($this->moviesList, $movie);
             }
 
             return $this->moviesList;
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
+    public function viewArray($value)
+    {
+        echo('<pre>');
+        var_dump($value);
+        echo('</pre>');
+    }
+    private function create($value){
+
+        $movie = new Movie();
+        $movie->setId($value['Id_movie']);
+        $movie->setPoster_path($value['Poster_path']);
+        $movie->setRuntime($value['Runtime']);
+        $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
+        $movie->setLanguage($value['Original_language']);
+        $movie->setTitle($value['Title']);
+        return $movie;
+    }
+
+    public function GetOne($Id_movie)
+    {
+        try {
+            $parameters["Id_movie"] = $Id_movie;
+            $query = "SELECT * FROM " . " $this->tableMovies m " . "WHERE(m.Id_movie = :Id_movie);";
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($query, $parameters);
+
+            foreach ($result as $value){
+                $movie= $this->create($value);
+            }
             
+            return $movie;
+
         } catch (Exception $ex) {
 
             throw $ex;
@@ -142,14 +185,20 @@ class MoviesPDO implements IMoviesDAO
 
 
             foreach ($result as $value) {
-                $movie = new Movie($value["Id_movie"], $value["Poster_path"], $value["Runtime"], 
-                $this->GetGenresXmovies($value["Id_movie"]), $value["Original_language"], $value["Title"]);
+                $movie = new Movie(
+                    $result["Id_movie"],
+                    $result["Poster_path"],
+                    $result["Runtime"],
+                    $this->GetGenresXmovies($result["Id_movie"]),
+                    $result["Original_language"],
+                    $result["Title"]
+                );
 
                 array_push($this->moviesList, $movie);
             }
 
             return $this->moviesList;
-
+            
         } catch (Exception $ex) {
 
             throw $ex;
@@ -176,7 +225,8 @@ class MoviesPDO implements IMoviesDAO
     }
 
     //A veces la duración está en 0 en la API, entonces asignamos por defecto 120 minutos. Retorna el valor de Runtime de la API según el Movie ID.
-    public function CheckAndGetRuntime($movieID){
+    public function CheckAndGetRuntime($movieID)
+    {
         if ($this->GetMoviesRuntimeFromAPI($movieID) > 0) {
             return $this->GetMoviesRuntimeFromAPI($movieID);
         } else {
@@ -195,8 +245,14 @@ class MoviesPDO implements IMoviesDAO
 
         foreach ($nowPlayingArray["results"] as $data) {
 
-            $movie = new Movie($data['id'], $data['poster_path'], $this->CheckAndGetRuntime($data['id']), 
-            $this->genresDAO->GetGenresIDsArray($data['genre_ids']), $data['original_language'], $data['title']);
+            $movie = new Movie(
+                $data['id'],
+                $data['poster_path'],
+                $this->CheckAndGetRuntime($data['id']),
+                $this->genresDAO->GetGenresIDsArray($data['genre_ids']),
+                $data['original_language'],
+                $data['title']
+            );
 
             array_push($moviesArray, $movie);
         };
@@ -204,4 +260,3 @@ class MoviesPDO implements IMoviesDAO
         return $moviesArray;
     }
 }
-?>
