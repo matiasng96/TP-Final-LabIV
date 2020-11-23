@@ -16,8 +16,8 @@
             
             if(isset($_SESSION['userLogedIn'])){
 
-                $rol = $_SESSION['userLogedIn']->getUserRoleId();
-                switch($rol){
+                $this->rol = $_SESSION['userLogedIn']->getUserRoleId();
+                switch($this->rol){
                     case 1: require_once(VIEWS_PATH."nav-admin.php"); break;
                     case 2: require_once(VIEWS_PATH."nav-logged.php"); break;
                 }  
