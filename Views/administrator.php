@@ -1,7 +1,6 @@
 <?php
-require_once('nav.php');
+    require_once (VIEWS_PATH . "navSelector.php");
 ?>
-
 <div class="container row justify-content-center">
 
 <!-- Carga de datos -->

@@ -1,7 +1,6 @@
 <?php
-    require_once("nav.php");
+    require_once (VIEWS_PATH . "navSelector.php");
 ?>
-
 <div class="form-group">       
     <form action="<?php echo FRONT_ROOT ?>Users/Edit" method="POST">
     

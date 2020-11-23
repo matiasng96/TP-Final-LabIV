@@ -1,18 +1,5 @@
 <?php
-     $rol = 0;
-     if(isset($_SESSION['userLogedIn'])){
-          
-          $rol = $_SESSION['userLogedIn']->getUserRoleId();
-          switch($rol){
-               case 1: require_once("nav.php"); break;
-               case 2: require_once("nav-logged.php"); break;
-          }  
-     }      
-     else{
-          
-          require_once("nav-notLogged.php");
-          echo "<script> alert('Estas navegando sin haber iniciado sesion.'); </script>";
-     }
+    require_once (VIEWS_PATH . "navSelector.php");
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Salas </h2>
