@@ -87,13 +87,15 @@
         }
 
 
-        public function logOut()
-        {
+        public function logOut(){
+            
             session_destroy();
-            $moviesController = new MoviesController();
-            $moviesController->ShowListView();
-
+            $this->setSession(null);
+            
             echo "<script> alert('Se cerro la sesión con éxito.') </script>";
+
+            $moviesController = new MoviesController();
+            $moviesController->ShowListView();            
         }
         
         public function Edit($currentEmail, $name, $lastName,$gender, $dni, $email, $password)
