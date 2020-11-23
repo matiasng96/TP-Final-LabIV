@@ -1,5 +1,8 @@
 <?php
-    require_once (VIEWS_PATH . "navSelector.php");
+     use Controllers\NavController;
+     $nav = new NavController();
+     $nav ->selectNav();
+     $rol =  $nav->getRol();
 ?>
 <div class="form-group">       
     <form action="<?php echo FRONT_ROOT ?>Users/Edit" method="POST">

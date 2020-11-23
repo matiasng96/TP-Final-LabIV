@@ -1,5 +1,8 @@
 <?php
-    require_once (VIEWS_PATH . "navSelector.php");
+     use Controllers\NavController;
+     $nav = new NavController();
+     $nav ->selectNav();
+     $rol =  $nav->getRol();
 ?>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">

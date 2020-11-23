@@ -1,5 +1,8 @@
 <?php
-    require_once (VIEWS_PATH . "navSelector.php");
+     use Controllers\NavController;
+     $nav = new NavController();
+     $nav ->selectNav();
+     $rol =  $nav->getRol();
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Funciones </h2>

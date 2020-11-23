@@ -1,7 +1,9 @@
 <?php
-    require_once("navSelector.php");
+     use Controllers\NavController;
+     $nav = new NavController();
+     $nav ->selectNav();
+     $rol =  $nav->getRol();
 ?>
-
 <div>
     <form action="<?php echo FRONT_ROOT?> BuyTickets/checkSessionStart" method="POST">
         <div>
