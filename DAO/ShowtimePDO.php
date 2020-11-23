@@ -6,7 +6,10 @@ use Models\Showtime as Showtime;
 use DAO\Connection as Connection;
 use Models\Room;
 
-class ShowtimePDO {
+
+
+
+ class ShowtimePDO {
 
     private $connection;
     private $tableName = "showtime";

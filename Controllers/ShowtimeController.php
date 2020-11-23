@@ -4,7 +4,7 @@ namespace Controllers;
 use DAO\ShowtimePDO as ShowtimeDAO;
 use Models\Showtime as Showtime;
 
-class ShowingController{
+class ShowtimeController{
 
     private $showtimeDAO;
 

@@ -3,7 +3,8 @@
     
     //Clase de modelado de Salas de Cine. El ADMIN puede agregar las salas al cine
     class Room{
-        private $idRoom;
+
+        private $id;
         private $name;
         private $id_cinema;
         private $ticketPrice;
@@ -19,8 +20,9 @@
             $this->setCapacity($capacity);                
         }
 
-        public function setId(){return $this->idRoom;}
-        public function getId($idRoom){$this->idRoom = $idRoom;}
+        public function getId(){return $this->id;}
+        public function setId($id){$this->id = $id;}
+
         public function getName(){return $this->name;}
         public function setName($name){$this->name = $name;}
 
@@ -35,5 +37,6 @@
 
         public function getIdCinema(){return $this->id_cinema;}
         public function setIdCinema($id_cinema){$this->id_cinema = $id_cinema;}
+
     }
 ?>
