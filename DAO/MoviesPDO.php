@@ -174,12 +174,12 @@ class MoviesPDO implements IMoviesDAO
 
             foreach ($result as $value) {
                 $movie = new Movie(
-                    $result["Id_movie"],
-                    $result["Poster_path"],
-                    $result["Runtime"],
-                    $this->GetGenresXmovies($result["Id_movie"]),
-                    $result["Original_language"],
-                    $result["Title"]
+                    $value["Id_movie"],
+                    $value["Poster_path"],
+                    $value["Runtime"],
+                    $this->GetGenresXmovies($value["Id_movie"]),
+                    $value["Original_language"],
+                    $value["Title"]
                 );
 
                 array_push($this->moviesList, $movie);
