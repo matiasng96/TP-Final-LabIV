@@ -136,24 +136,36 @@ class MoviesPDO implements IMoviesDAO
             throw $ex;
         }
     }
+    public function viewArray($value)
+    {
+        echo('<pre>');
+        var_dump($value);
+        echo('</pre>');
+    }
+    private function create($value){
 
-    public function GetOne($movieTitle)
+        $movie = new Movie();
+        $movie->setId($value['Id_movie']);
+        $movie->setPoster_path($value['Poster_path']);
+        $movie->setRuntime($value['Runtime']);
+        $movie->setGenresArray($this->GetGenresXmovies($value["Id_movie"]));
+        $movie->setLanguage($value['Original_language']);
+        $movie->setTitle($value['Title']);
+        return $movie;
+    }
+
+    public function GetOne($Id_movie)
     {
         try {
-            $query = "SELECT * FROM " . " $this->tableMovies m " . "WHERE(m.Title = '$movieTitle');";
-
+            $parameters["Id_movie"] = $Id_movie;
+            $query = "SELECT * FROM " . " $this->tableMovies m " . "WHERE(m.Id_movie = :Id_movie);";
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($query);
+            $result = $this->connection->Execute($query, $parameters);
 
-            $movie = new Movie(
-                $result["Id_movie"],
-                $result["Poster_path"],
-                $result["Runtime"],
-                $this->GetGenresXmovies($result["Id_movie"]),
-                $result["Original_language"],
-                $result["Title"]
-            );
-
+            foreach ($result as $value){
+                $movie= $this->create($value);
+            }
+            
             return $movie;
 
         } catch (Exception $ex) {

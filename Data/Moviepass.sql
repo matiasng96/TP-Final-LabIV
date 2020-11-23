@@ -31,12 +31,13 @@ Time_showtime TIME,
 Tickets INT NOT NULL,
 Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
-Is_available BOOLEAN,
-CONSTRAINT pk_IdShowtime PRIMARY KEY (Id_Showtime),
+Is_available BIT,
+CONSTRAINT pk_IdShowtime PRIMARY KEY (Id_showtime),
 CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
 CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)
 );
-
+drop table showtime;
+insert into showtime (Date_showtime, Time_showtime, Tickets, Id_room, Id_movie, Is_available) values ("06-11-30","22:00:00",200, 1,340102, 1);
 CREATE TABLE IF NOT EXISTS movies(
 Id_movie INT NOT NULL,  
 Poster_path VARCHAR(200)  NOT NULL,
@@ -85,9 +86,8 @@ CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 insert into userRole (RoleDescrip) values ("Admin");
 insert into userRole (RoleDescrip) values ("User");
 
-drop table users;
-select * from showing;
-select * from users;
+select * from showtime;
+select * from rooms;
 
 SELECT * FROM movies;
 SELECT * FROM userRole;
