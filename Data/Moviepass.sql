@@ -21,7 +21,7 @@ RoomName VARCHAR(20) NOT NULL,
 TicketPrice FLOAT NOT NULL,
 Capacity INT NOT NULL,
 CONSTRAINT pk_IdRoom PRIMARY KEY(Id_room),
-CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
+CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS showtime (
@@ -33,8 +33,8 @@ Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
 Is_available BIT,
 CONSTRAINT pk_IdShowtime PRIMARY KEY (Id_showtime),
-CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
-CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)
+CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room) on delete cascade,
+CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie) on delete cascade
 );
 drop table showtime;
 insert into showtime (Date_showtime, Time_showtime, Tickets, Id_room, Id_movie, Is_available) values ("06-11-30","22:00:00",200, 1,340102, 1);
@@ -92,4 +92,4 @@ select * from rooms;
 SELECT * FROM movies;
 SELECT * FROM userRole;
 SELECT * FROM genresXmovies;
-DROP TABLE genresXmovies;
+drop table cinemas;

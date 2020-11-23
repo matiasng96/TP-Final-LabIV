@@ -23,7 +23,7 @@
                     <td> <?php echo $room->getTicketPrice(); ?> </td>
                     <td>
                         <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/Delete">
-                            <input type="hidden" name="roomName" value="<?php echo $room->getName() ?>">
+                            <input type="hidden" name="roomName" value="<?php echo $room->getId() ?>">
                             <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn" >Borrar</button>
                         </form>
 

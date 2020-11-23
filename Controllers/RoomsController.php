@@ -65,9 +65,9 @@ use Models\Room as Room;
             $cienmasPDO->ShowListView();
         }
 
-        public function Delete($roomName)
+        public function Delete($id_room)
         {
-            $deleted = $this->roomPDO->Delete($roomName);
+            $deleted = $this->roomPDO->Delete($id_room);
             $cinemaController = new CinemasController();
             if ($deleted > 0)
             {
