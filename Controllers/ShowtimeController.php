@@ -2,17 +2,22 @@
 namespace Controllers;
 
 use DAO\ShowtimePDO as ShowtimeDAO;
+use DAO\RoomsPDO as RoomsDAO;
 use Models\Showtime as Showtime;
 
 class ShowtimeController{
 
     private $showtimeDAO;
+    private $roomsDAO;
+
+
 
 
 
     public function __construct()
     {
         $this->showtimeDAO = new ShowtimeDAO();
+        $this->roomsDAO = new RoomsDAO();
     }
 
 
@@ -30,6 +35,18 @@ class ShowtimeController{
         require_once(VIEWS_PATH . "showtime-list.php");
 
     }
+
+    public function ShowAddView()
+    {
+
+        $rooms = $this->roomsDAO->getAll();
+        require_once(VIEWS_PATH . "add-showtime.php");
+
+    }
+
+
+
+
 
 }
 
