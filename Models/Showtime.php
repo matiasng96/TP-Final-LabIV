@@ -4,7 +4,7 @@
     //Esta clase corresponde al modelado de la Función (en referencia a la proyección de la película). Tenemos la sala correspondiente,
     // la peli, fecha y horario y cantidad de tickets. 
     class Showtime {
-
+        private $id;
         private $room;
         private $movie;
         private $date;
@@ -21,7 +21,15 @@
         }
 
 
-        
+        public function getId()
+        {
+                return $this->room;
+        }
+
+        public function setId($id)
+        {
+                $this->id = $id;
+        }
         public function getRoom()
         {
                 return $this->room;
@@ -30,8 +38,6 @@
         public function setRoom($room)
         {
                 $this->room = $room;
-
-               
         }
 
       

@@ -25,14 +25,14 @@ CONSTRAINT fk_idCinema FOREIGN KEY (Id_cinema) REFERENCES cinemas (Id_cinema)
 );
 
 CREATE TABLE IF NOT EXISTS showtime (
-Id_showing INT NOT NULL AUTO_INCREMENT,
-Date_showing DATE,
-Time_showing TIME,
+Id_showtime INT NOT NULL AUTO_INCREMENT,
+Date_showtime DATE,
+Time_showtime TIME,
 Tickets INT NOT NULL,
 Id_room INT NOT NULL,
 Id_movie INT NOT NULL,
-Is_available BOOLEAN,
-CONSTRAINT pk_IdShowing PRIMARY KEY (Id_showing),
+Is_available BIT,
+CONSTRAINT pk_IdShowtime PRIMARY KEY (Id_showtime),
 CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room),
 CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie)
 );
@@ -85,9 +85,9 @@ CONSTRAINT unq_user_roles UNIQUE(RoleDescrip)
 insert into userRole (RoleDescrip) values ("Admin");
 insert into userRole (RoleDescrip) values ("User");
 
-drop table users;
-select * from showing;
-select * from users;
+drop table showtime;
+select * from showtime;
+select * from rooms;
 
 SELECT * FROM movies;
 SELECT * FROM userRole;

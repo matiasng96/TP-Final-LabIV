@@ -98,11 +98,11 @@
             }
         }
 
-        public function getOneRoom($roomName){
+        public function getOneRoom($Id_room){
 
             try {
-                $parameters['RoomName'] = $roomName;
-                $sql = "SELECT * FROM ".$this->tableName." WHERE RoomName =:RoomName";
+                $parameters['Id_room'] = $Id_room;
+                $sql = "SELECT * FROM ".$this->tableName." WHERE (Id_room =:Id_room);";
                 $this->connection = Connection::getInstance();
                 
                 $obj = $this->connection->execute($sql,$parameters);
