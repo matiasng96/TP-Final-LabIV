@@ -95,7 +95,7 @@
 
                                              <?php
                                              case 2:?>
-                                                  <form>
+                                                  <form action="<?php VIEWS_PATH?>Tickets/Show" method="POST">
                                                        <button class="btn btn-primary" > Comprar entradas </button> 
                                                   </form>                                                                                             
                                                   <?php break;?>
