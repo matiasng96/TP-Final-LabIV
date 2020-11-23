@@ -7,7 +7,7 @@
     use Exception as RoomPDOException;
     use FFI\Exception;
 
-class RoomsPDO implements IRoomsPDO{
+    class RoomsPDO implements IRoomsPDO{
 
         private $connection;
         private $tableName = "rooms";
@@ -23,13 +23,10 @@ class RoomsPDO implements IRoomsPDO{
                 $parameters["CinemaName"] = $room->getCinemaName();
                 $parameters["RoomName"] = $room->getName();
                 $parameters["TicketPrice"] = $room->getTicketPrice();
-                $parameters["Capacity"] = $room->getCapacity();
+                $parameters["Capacity"] = $room->getCapacity();                
                 
-                
-                $this->connection = Connection::GetInstance();               
-
+                $this->connection = Connection::GetInstance();      
                 $this->connection->ExecuteNonQuery($query, $parameters);
-
             } 
             catch(RoomPDOException $ex) {
                 throw $ex;
@@ -77,6 +74,7 @@ class RoomsPDO implements IRoomsPDO{
                 throw $ex;
             }
         }
+
         public function getRoomsCinema($Id_cinema)
         {
             try{
@@ -100,18 +98,40 @@ class RoomsPDO implements IRoomsPDO{
             }
         }
 
+        public function getOneRoom($roomName){
 
-        private function create($value)
-	{
-		$room = new Room();
-		$room->setIdCinema($value['Id_cinema']);
-		$room->setName($value['RoomName']);
-		$room->setCapacity($value['Capacity']);
-		$room->setTicketPrice($value['TicketPrice']);
-		$room->setCinemaName($value['CinemaName']);
+            try {
+                $parameters['RoomName'] = $roomName;
+                $sql = "SELECT * FROM ".$this->tableName." WHERE RoomName =:RoomName";
+                $this->connection = Connection::getInstance();
+                
+                $obj = $this->connection->execute($sql,$parameters);
 
-		return $room;
-	}
+                if(!empty($obj)){
+
+                    $room = $this->create($obj[0]);
+                }
+                else{
+
+                    return null;
+                }
+                
+            } catch (RoomPDOException $e) {
+                throw $e;
+            }
+            return $room;
+        }
+        
+        private function create($value){
+
+            $room = new Room();
+            $room->setIdCinema($value['Id_cinema']);
+            $room->setName($value['RoomName']);
+            $room->setCapacity($value['Capacity']);
+            $room->setTicketPrice($value['TicketPrice']);
+            $room->setCinemaName($value['CinemaName']);
+            return $room;
+	    }
 
         public function getAll(){  ///RETORNA TODAS LAS ROOM CORRESPONDIENTES A UNA SALA
 
@@ -142,3 +162,4 @@ class RoomsPDO implements IRoomsPDO{
             }
         }
     }
+?>
