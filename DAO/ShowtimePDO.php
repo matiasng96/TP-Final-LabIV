@@ -8,7 +8,7 @@ use DAO\Connection as Connection;
 
 
 
- class ShowingPDO {
+ class ShowtimePDO {
 
     private $connection;
     private $tableName = "showtime";
@@ -19,8 +19,8 @@ use DAO\Connection as Connection;
     {
         try {
             
-            $query = "INSERT INTO " . $this->tableName . " (Date_showing, Time_showing, Tickets, Id_room, Id_movie, Is_available) 
-            VALUES (:Date_showing, :Time_showing, :Tickets, :Id_room, :Id_movie, :Is_available);";
+            $query = "INSERT INTO " . $this->tableName . " (Date_showtime, Time_showtime, Tickets, Id_room, Id_movie, Is_available) 
+            VALUES (:Date_showtime, :Time_showtime, :Tickets, :Id_room, :Id_movie, :Is_available);";
 
             $parameters["Date_showtime"] = $showtime->getDate();
             $parameters["Time_showtime"] = $showtime->getTime();

@@ -40,12 +40,12 @@
             echo('</pre>');  
         }
 
-        public function Delete($RoomName){
+        public function Delete($Id_room){
 
             try{
 
-                $query = "DELETE FROM ".$this->tableName." WHERE (RoomName = :RoomName);";
-                $parameters['RoomName'] = $RoomName;
+                $query = "DELETE FROM ".$this->tableName." WHERE (Id_room = :Id_room);";
+                $parameters['Id_room'] = $Id_room;
                 $this->connection = Connection::GetInstance();
                 $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
                 return $deletedCount;
@@ -55,6 +55,22 @@
                 throw $ex;
             }
         }
+
+        // public function Delete($RoomName){
+
+        //     try{
+
+        //         $query = "DELETE FROM ".$this->tableName." WHERE (RoomName = :RoomName);";
+        //         $parameters['RoomName'] = $RoomName;
+        //         $this->connection = Connection::GetInstance();
+        //         $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+        //         return $deletedCount;
+        //     }
+        //     catch(RoomPDOException $ex){
+
+        //         throw $ex;
+        //     }
+        // }
 
         public function Edit($currentName, Room $newRoom){
             try{
@@ -125,6 +141,7 @@
         private function create($value){
 
             $room = new Room();
+            $room->setId($value['Id_room']);
             $room->setIdCinema($value['Id_cinema']);
             $room->setName($value['RoomName']);
             $room->setCapacity($value['Capacity']);
@@ -138,7 +155,7 @@
             try{
                 $roomList = array();
 
-                $query="SELECT r.Id_cinema,r.RoomName,r.Capacity,r.TicketPrice,c.CinemaName 
+                $query="SELECT r.Id_room, r.Id_cinema,r.RoomName,r.Capacity,r.TicketPrice,c.CinemaName 
                 FROM rooms r INNER JOIN cinemas c ON c.Id_cinema=r.Id_cinema;";
 
                 $this->connection = Connection::GetInstance();

@@ -90,7 +90,7 @@
                                              case 1: ?>   
                                                   <form action=" " method="POST">
                                                        <button class="btn btn-primary mb-2"> Crear funcion </button>
-                                                       <button class="btn btn-primary mb-2"> Cargar </button>
+                                                       
                                                   </form>                                          
                                                        
                                                   <?php break;?>
