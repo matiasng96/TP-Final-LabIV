@@ -1,3 +1,7 @@
+<?php
+    require_once("navSelector.php");
+?>
+
 <div>
     <form action="<?php echo FRONT_ROOT?> BuyTickets/checkSessionStart" method="POST">
         <div>
