@@ -4,11 +4,9 @@ namespace DAO;
 use \PDOException as Exception;
 use Models\Showtime as Showtime;
 use DAO\Connection as Connection;
+use Models\Room;
 
-
-
-
- class ShowingPDO {
+class ShowtimePDO {
 
     private $connection;
     private $tableName = "showtime";
@@ -19,12 +17,13 @@ use DAO\Connection as Connection;
     {
         try {
             
-            $query = "INSERT INTO " . $this->tableName . " (Date_showing, Time_showing, Tickets, Id_room, Id_movie, Is_available) 
-            VALUES (:Date_showing, :Time_showing, :Tickets, :Id_room, :Id_movie, :Is_available);";
+            $query = "INSERT INTO " . $this->tableName . " (Date_showtime, Time_showtime, Tickets, Id_room, Id_movie, Is_available) 
+            VALUES (:Date_showtime, :Time_showtime, :Tickets, :Id_room, :Id_movie, :Is_available);";
 
             $parameters["Date_showtime"] = $showtime->getDate();
             $parameters["Time_showtime"] = $showtime->getTime();
-            $parameters["Tickets"] = $showtime->getTickets();
+            $room= new RoomsPDO();
+            $parameters["Tickets"] = $room->getOneRoom($Id_room)->getCapacity();
             $parameters["Id_room"] = $Id_room;           
             $parameters["Id_movie"] = $Id_movie;           
             $parameters["Is_available"] = 0;
