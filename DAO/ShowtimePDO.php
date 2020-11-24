@@ -36,7 +36,7 @@ use Models\Room;
             throw $ex;
         }
     }
- 
+   
 
     private function read($row) {
         $showtime = new Showtime();
@@ -84,6 +84,48 @@ use Models\Room;
         }
 
         return $showtimeList;
+    }
+
+
+    public function Edit($idShowtime, Showtime $newShowtime){
+        try{
+
+            $query = "UPDATE ".$this->tableName.
+            " SET Date_showtime = :Date_showtime, Time_showtime = :Time_showtime WHERE (Id_showtime = :idShowtime);";
+            $parameters['Date_showtime'] = $newShowtime->getDate();
+            $parameters['Time_showtime'] = $newShowtime->getTime();
+            $parameters['idShowtime'] = $idShowtime;
+            $this->connection = Connection ::GetInstance();
+
+            $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+            return $deletedCount;
+        
+        }catch(Exception $ex){
+
+            throw $ex;
+        }
+    }
+
+
+
+    
+    public function Delete($Id_showtime)
+    {
+        try {
+
+            $query = "DELETE FROM  " . $this->tableName . " WHERE (Id_showtime = :Id_showtime);";
+
+            $parameters['Id_showtime'] = $Id_showtime;
+
+            $this->connection = Connection::GetInstance();
+
+            $deletedCount = $this->connection->ExecuteNonQuery($query, $parameters);
+
+            return $deletedCount;
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
     }
 }
 

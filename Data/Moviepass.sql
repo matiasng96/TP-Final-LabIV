@@ -36,6 +36,7 @@ CONSTRAINT pk_IdShowtime PRIMARY KEY (Id_showtime),
 CONSTRAINT fk_Id_Room FOREIGN KEY (Id_room) REFERENCES rooms (Id_room) on delete cascade,
 CONSTRAINT fk_Id_Movie FOREIGN KEY (Id_movie) REFERENCES movies (Id_movie) on delete cascade
 );
+select * from showtime;
 drop table showtime;
 insert into showtime (Date_showtime, Time_showtime, Tickets, Id_room, Id_movie, Is_available) values ("06-11-30","22:00:00",200, 1,340102, 1);
 CREATE TABLE IF NOT EXISTS movies(

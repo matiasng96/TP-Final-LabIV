@@ -23,7 +23,7 @@
 
         public function getId()
         {
-                return $this->room;
+                return $this->id;
         }
 
         public function setId($id)

@@ -32,7 +32,7 @@ class ShowtimeController{
         $showtime->setIsAvailable("0");
         $this->showtimeDAO->Add($showtime);
         
-        require_once(VIEWS_PATH . "showtime-list.php");
+        $this->ShowListShowtime();
     }
     public function viewArray($value)
     {
@@ -44,14 +44,13 @@ class ShowtimeController{
 
     public function ShowListShowtime()
     {
-        $result=$this->showtimeDAO->getAll();
+        $result=$this->showtimeDAO->getAll(); 
         require_once(VIEWS_PATH . "showtime-list.php");
 
     }
 
     public function ShowAddView($id)
     {
-        //echo($id);
         $movie= $this->movieDAO->GetOne($id);
         $cinemaList= $this->cinemasPDO->GetAll();
         //$this->viewArray($cinemas);
@@ -60,8 +59,33 @@ class ShowtimeController{
 
     }
 
+    public function ShowEditView($idShowtime, $idRoom, $idMovie)
+    {
+        require_once(VIEWS_PATH . "showtime-edit.php");
+
+    }
+
+    public function edit ($idShowtime, $idRoom, $idMovie, $date, $time)
+    {
+    
+        $movie= $this->movieDAO->GetOne($idMovie);
+
+        $room=$this->roomsDAO->getOneRoom($idRoom);
+        
+        $showtime = new Showtime($room, $movie,$date, $time);
+
+        $this->showtimeDAO->Edit($idShowtime, $showtime);
+        $this->ShowListShowtime();
+
+    }
 
 
+    public function delete ($idShowtime)
+    {
+        $this->showtimeDAO->Delete($idShowtime);
+        $this->ShowListShowtime();
+
+    }
 
 
 }
