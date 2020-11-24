@@ -36,10 +36,11 @@ class ShowtimeController{
 
     }
 
-    public function ShowAddView()
+    public function ShowAddView($movieObj)
     {
 
-        $rooms = $this->roomsDAO->getAll();
+        $movie = $movieObj;
+        $roomsList = $this->roomsDAO->getAll();
         require_once(VIEWS_PATH . "add-showtime.php");
 
     }

@@ -85,10 +85,9 @@ require_once(VIEWS_PATH . "navSelector.php");
                                    switch ($rol) {
 
                                         case 1: ?>
-                                             <form action="Showtime/ShowAddView" method="POST">
-
-                                                  <button class="btn btn-primary btn-block mt-2" type="submit" value="<?php $movie ?>"> Seleccionar Película </button>
-
+                                             <form action="<?php echo FRONT_ROOT ?>Showtime/ShowAddView" method="POST">
+                                                  <input type="hidden" name="movieObj" value="<?php $movie->getTitle() ?>">
+                                                  <button class="btn btn-primary btn-block mt-2" type="submit"> Seleccionar Película </button>
                                              </form>
 
                                              <?php break; ?>
