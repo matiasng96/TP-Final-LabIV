@@ -1,8 +1,5 @@
- <?php
-     use Controllers\NavController;
-     $nav = new NavController();
-     $nav ->selectNav();
-     $rol =  $nav->getRol();
+<?php
+    require_once("nav-select.php");
 ?>
 <div class="container">
 

@@ -1,8 +1,5 @@
 <?php
-     use Controllers\NavController;
-     $nav = new NavController();
-     $nav ->selectNav();
-     $rol =  $nav->getRol();
+    require_once("nav-select.php");
 ?>
 <div class="container row justify-content-center">
     <div class="form-group mt-4 border borderForm">

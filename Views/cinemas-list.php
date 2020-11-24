@@ -1,8 +1,5 @@
 <?php
-     use Controllers\NavController;
-     $nav = new NavController();
-     $nav ->selectNav();
-     $rol =  $nav->getRol();
+    require_once("nav-select.php");
 ?>
 <div class="container">
     <h2 class="display-4">Listado de Cines</h2>
