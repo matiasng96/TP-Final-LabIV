@@ -1,6 +1,5 @@
 <?php
-    require_once("navSelector.php");
-
+    require_once("nav-select.php");
 ?>
 <div class="container row justify-content-center">
     <div class="form-group mt-4 border borderForm">

@@ -1,5 +1,5 @@
 <?php
-    require_once (VIEWS_PATH . "navSelector.php");
+    require_once("nav-select.php");
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Salas </h2>
@@ -9,7 +9,14 @@
             <th scope="col"> Nombre </th>            
             <th scope="col"> Capacidad </th>
             <th scope="col"> Precio de la Sala </th>
-            <th scope="col"> Opciones </th>
+
+            <?php 
+                if($rol == 1){
+            ?>
+                <th scope="col"> Opciones </th>
+            <?php 
+                }
+            ?>
         </thead>
 
         <tbody>
@@ -27,13 +34,25 @@
                             <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn" >Borrar</button>
                         </form>
 
-                        <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/ShowEditview">
-                            <input type="hidden" name="roomName" value="<?php echo $room->getName(); ?>">
-                            <input type="hidden" name="roomCapacity" value="<?php echo $room->getCapacity(); ?>">
-                            <input type="hidden" name="roomPrice" value="<?php echo $room->getTicketPrice(); ?>">
-                            <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
-                        </form>
-                    </td>
+                    <?php 
+                        if($rol == 1){
+                    ?>
+                            <td>
+                                <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/Delete">
+                                    <input type="hidden" name="roomName" value="<?php echo $room->getName() ?>">
+                                    <button class="btn btn-danger btn-block mb-2" type="submit" name="deleteBtn" >Borrar</button>
+                                </form>
+
+                                <form method="post" action="<?php echo FRONT_ROOT ?>Rooms/ShowEditview">
+                                    <input type="hidden" name="roomName" value="<?php echo $room->getName(); ?>">
+                                    <input type="hidden" name="roomCapacity" value="<?php echo $room->getCapacity(); ?>">
+                                    <input type="hidden" name="roomPrice" value="<?php echo $room->getTicketPrice(); ?>">
+                                    <button class="btn btn-primary btn-block" type="submit" name="editBtn" >Editar</button>
+                                </form>
+                            </td>
+                    <?php 
+                        }
+                    ?>
                 </tr>
             <?php
                 }

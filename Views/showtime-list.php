@@ -1,5 +1,5 @@
 <?php
-    require_once (VIEWS_PATH . "navSelector.php");
+    require_once("nav-select.php");
 ?>
 <div class="container">
     <h2 class="display-4"> Listado de Funciones </h2>
