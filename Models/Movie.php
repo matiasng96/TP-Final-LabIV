@@ -4,8 +4,6 @@
         
         class Movie{
 
-
-
                 private $id;
                 private $poster_path; //image url
                 private $runtime;
@@ -43,4 +41,3 @@
                 public function getGenresArray(){return $this->genresArray;}
                 public function setGenresArray($genresArray){$this->genresArray = $genresArray;}
         }
-?>

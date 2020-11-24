@@ -1,6 +1,5 @@
-
- <?php
- require_once (VIEWS_PATH . "navSelector.php");
+<?php
+require_once(VIEWS_PATH . "navSelector.php");
 ?>
 <div class="container">
 
@@ -13,7 +12,7 @@
                <th>Duración</th>
                <th>Portada</th>
                <th>Opciones</th>
-               
+
                <th>
                     <form method="post" action="<?php echo FRONT_ROOT ?>Movies/ShowListByGenre">
                          <div class="form-row align-items-center">
@@ -79,35 +78,36 @@
                                    <?php echo $movie->getRuntime() . " min." ?>
                               </td>
 
-                              <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td> 
-                              
-                              <td> 
+                              <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="200" height="200"></td>
+
+                              <td>
                                    <?php
-                                        switch($rol){
+                                   switch ($rol) {
 
-                                             case 1: ?>   
-                                                  <form action=" " method="POST">
-                                                       <button class="btn btn-primary mb-2"> Crear funcion </button>
-                                                       
-                                                  </form>                                          
-                                                       
-                                                  <?php break;?>
+                                        case 1: ?>
+                                             <form action="Showtime/ShowAddView" method="POST">
 
-                                             <?php
-                                             case 2:?>
-                                                  <form action="<?php VIEWS_PATH?>Tickets/Show" method="POST">
-                                                       <button class="btn btn-primary" > Comprar entradas </button> 
-                                                  </form>                                                                                             
-                                                  <?php break;?>
+                                                  <button class="btn btn-primary btn-block mt-2" type="submit" value="<?php $movie ?>"> Seleccionar Película </button>
 
-                                             <?php
-                                             default:?>
-                                                  <form action="Users/checkSession" method="POST">
-                                                       <input hidden type="text" name="" value="">
-                                                       <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
-                                                  </form>                                                       
-                                                       <?php break;                                             
-                                        }
+                                             </form>
+
+                                             <?php break; ?>
+
+                                        <?php
+                                        case 2: ?>
+                                             <form>
+                                                  <button class="btn btn-primary"> Comprar entradas </button>
+                                             </form>
+                                             <?php break; ?>
+
+                                        <?php
+                                        default: ?>
+                                             <form action="Users/checkSession" method="POST">
+                                                  <input hidden type="text" name="" value="">
+                                                  <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
+                                             </form>
+                                   <?php break;
+                                   }
                                    ?>
                               </td>
                          </tr>

@@ -81,7 +81,7 @@
                             <button class="btn btn-primary btn-block" type="submit" name="editBtn"> Editar cine </button>
                         </form>
 
-                        <button class="btn btn-danger btn-block mt-2" type="submit" data-toggle="modal" data-target="#addRoom" value="<?php echo $cinema->getName() ?>"> Agregar salas </button>
+                        <button class="btn btn-primary btn-block mt-2" type="submit" data-toggle="modal" data-target="#addRoom" value="<?php echo $cinema->getName() ?>"> Agregar salas </button>
 
                     </td>
 
