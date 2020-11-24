@@ -10,10 +10,6 @@ class ShowtimeController{
     private $showtimeDAO;
     private $roomsDAO;
 
-
-
-
-
     public function __construct()
     {
         $this->showtimeDAO = new ShowtimeDAO();
@@ -27,6 +23,12 @@ class ShowtimeController{
         $this->showtimeDAO->Add($showtime,$Id_room,$Id_movie);
         
     }
+    public function viewArray($value)
+    {
+        echo('<pre>');
+        var_dump($value);
+        echo('</pre>');
+    }
 
 
     public function ShowListShowtime()
@@ -36,9 +38,11 @@ class ShowtimeController{
 
     }
 
-    public function ShowAddView()
+    public function ShowAddView($idMovie)
     {
-
+        var_dump($idMovie);
+        echo($idMovie);
+        //$this->viewArray($movie);
         $rooms = $this->roomsDAO->getAll();
         require_once(VIEWS_PATH . "add-showtime.php");
 
