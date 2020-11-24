@@ -34,6 +34,7 @@
         {
             require_once(VIEWS_PATH."edit-user.php");
         }
+
         
         public function viewArray($parameters)
         {
@@ -70,7 +71,8 @@
                     $this->setSession($user);
                     if($user->getUserRoleId() == 1){
 
-                        require_once(VIEWS_PATH . "administrator.php");
+                        $movieController = new MoviesController();                        
+                        $movieController->ShowListView();
                     }elseif ($user->getUserRoleId() == 2) {    
 
                         $movieController = new MoviesController();                        

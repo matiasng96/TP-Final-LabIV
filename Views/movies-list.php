@@ -101,7 +101,7 @@ require_once(VIEWS_PATH . "navSelector.php");
 
                                         <?php
                                         default: ?>
-                                             <form action="Users/checkSession" method="POST">
+                                             <form action="<?php echo FRONT_ROOT ?> Users/checkSession" method="POST">
                                                   <input hidden type="text" name="" value="">
                                                   <button class="btn btn-primary" type="submit"> Para comprar entradas Inicia sesion </button>
                                              </form>
