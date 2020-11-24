@@ -9,7 +9,9 @@
             <th scope="col"> Hora </th>            
             <th scope="col"> Pelicula </th>
             <th scope="col"> Sala </th>
-            <th scope="col"> Tickets </th>
+            <th scope="col"> Cine </th>
+            <th scope="col"> Cantidad de Tickets </th>
+          
         </thead>
 
         <tbody>
@@ -23,7 +25,10 @@
                     <td> <?php echo $movie->getTitle();?> </td>
                     <?php $room = $showtime->getRoom(); ?>
                     <td> <?php echo $room->getName(); ?> </td>
+                    <td> <?php echo $room->getCinemaName(); ?> </td>
                     <td> <?php echo $showtime->getTickets()?> </td>
+                    <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="100" height="150"></td>
+
                 </tr>
             <?php
                 }

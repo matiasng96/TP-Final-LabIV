@@ -16,7 +16,7 @@ use Models\Room;
 
 
     
-    public function Add(Showtime $showtime, $Id_room, $Id_movie)
+    public function Add(Showtime $showtime)
     {
         try {
             
@@ -25,10 +25,9 @@ use Models\Room;
 
             $parameters["Date_showtime"] = $showtime->getDate();
             $parameters["Time_showtime"] = $showtime->getTime();
-            $room= new RoomsPDO();
-            $parameters["Tickets"] = $room->getOneRoom($Id_room)->getCapacity();
-            $parameters["Id_room"] = $Id_room;           
-            $parameters["Id_movie"] = $Id_movie;           
+            $parameters["Tickets"] = $showtime->getTickets();
+            $parameters["Id_room"] = $showtime->getRoom()->getId();           
+            $parameters["Id_movie"] = $showtime->getMovie()->getId();           
             $parameters["Is_available"] = 0;
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
@@ -79,8 +78,6 @@ use Models\Room;
             $room= $roomDao->getOneRoom($idRoom);//TRAIGO LA ROOM CORRESPONDIENTE AL ID
             $movieDao= new MoviesPDO();
             $movie= $movieDao->GetOne($idMovie); //TRAIGO LA MOVIE CORRSPONDIENTE AL ID 
-            //$this->viewArray($movie);
-
             $showtime->setMovie($movie);
             $showtime->setRoom($room);
             array_push($showtimeList, $showtime);

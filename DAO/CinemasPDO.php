@@ -183,6 +183,7 @@
                 $room= new RoomsPDO();
                 foreach ($cinemasResults as $row) {
                     $cinema = new Cinema();
+                    $cinema->setId($row["Id_cinema"]);
                     $cinema->setName($row['CinemaName']);
                     $cinema->setTotalCapacity($row['TotalCapacity']);
                     $cinema->setAddress($row['CinemaAddress']);
