@@ -15,7 +15,7 @@
                     <label for="password">Password:</label>
                     <input type="password" class="form-control password" placeholder="Password..." name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <button type="submit" class="btn btn-primary mb-2">Ingresar</button>
                 <p>No estás registrado?<a href="<?php echo FRONT_ROOT . "Users/ShowSignUpView" ?>"> Registrarse </a></p>
             </form>
         </div>

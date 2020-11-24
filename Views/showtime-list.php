@@ -11,6 +11,9 @@
             <th scope="col"> Sala </th>
             <th scope="col"> Cine </th>
             <th scope="col"> Tickets </th>
+            <th scope="col"> Portada </th>
+            <th scope="col"> Opciones </th>
+            
           
         </thead>
 
@@ -27,19 +30,19 @@
                     <td> <?php echo $room->getName(); ?> </td>
                     <td> <?php echo $room->getCinemaName(); ?> </td>
                     <td> <?php echo $showtime->getTickets()?> </td>
-                    <!-- <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="100" height="150"></td> -->
+                    <td><img class="img-fluid" src="https://image.tmdb.org/t/p/w500<?php echo $movie->getPoster_path() ?>" width="100" height="150"></td>
 
                     <td>
                         <form action="<?php echo FRONT_ROOT ?>Showtime/ShowEditView" method="POST">
                         <input type="hidden" name="IdShowtime" value="<?php echo $showtime->getId();?>">
                         <input type="hidden" name="IdRoom" value="<?php echo $room->getId();?>">
                         <input type="hidden" name="idMovie" value="<?php echo $movie->getId();?>">
-                        <button class="btn btn-primary btn-block mt-2" type="submit">Editar sala</button>
+                        <button class="btn btn-primary btn-block mt-2" type="submit">Cambiar Horario</button>
                         </form>
 
                         <form method="post" action="<?php echo FRONT_ROOT ?>Showtime/Delete">
                         <input type="hidden" name="IdShowtime" value="<?php echo $showtime->getId();?>">
-                        <button class="btn btn-danger btn-block mb-2" type="submit" >Eliminar Funcion</button>
+                        <button class="btn btn-danger btn-block mt-2" type="submit" >Eliminar Funcion</button>
                         </form>
                     </td>
                 </tr>

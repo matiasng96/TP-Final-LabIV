@@ -28,7 +28,7 @@ use Models\Room;
             $parameters["Tickets"] = $showtime->getTickets();
             $parameters["Id_room"] = $showtime->getRoom()->getId();           
             $parameters["Id_movie"] = $showtime->getMovie()->getId();           
-            $parameters["Is_available"] = 0;
+            $parameters["Is_available"] = 1;
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
         } 
